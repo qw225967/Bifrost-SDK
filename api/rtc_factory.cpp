@@ -44,6 +44,8 @@ namespace RTCApi {
 				this->udp_remote_addr_ = server_addr;
 		}
 
+		RtcFactory::~RtcFactory() = default;
+
 		bool RtcFactory::CreateRtpSenderStream(uint32_t ssrc) {
 				this->rtc_transport_->CreateRtpStream(
 				    ssrc, RTC::RtcTransport::StreamType::StreamSender);

@@ -43,6 +43,7 @@ namespace RTCApi {
 
 		public:
 				explicit RtcFactory(DataCallBackObserver* listener);
+				~RtcFactory() override;
 
 		private:
 				std::shared_ptr<CoreIO::UdpSocket> udp_socket_;
