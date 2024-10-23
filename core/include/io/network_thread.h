@@ -10,6 +10,7 @@
 
 #ifndef NETWORK_THREAD_H
 #define NETWORK_THREAD_H
+#include "utils/cpp11_adaptor.h"
 #include <future>
 #include <memory>
 #include <mutex>
@@ -46,7 +47,7 @@ namespace CoreIO {
 		public:
 				template<class T>
 				std::future<T> Post(std::function<T()> f) {
-						auto task             = std::make_unique<Task<T>>(std::move(f));
+						auto task = Cpp11Adaptor::make_unique<Task<T>>(std::move(f));
 						std::future<T> future = task->promise->get_future();
 
 						{
@@ -72,7 +73,7 @@ namespace CoreIO {
 						std::function<T()> func;
 
 						Task(std::function<T()> f)
-						    : promise(std::make_shared<std::promise<T>>()),
+						    : promise(Cpp11Adaptor::make_shared<std::promise<T>>()),
 						      func(std::move(f)) {
 						}
 
@@ -96,14 +97,14 @@ namespace CoreIO {
 				std::function<void()> func;
 
 				Task(std::function<void()> f)
-				    : promise(std::make_shared<std::promise<void>>()),
+				    : promise(Cpp11Adaptor::make_shared<std::promise<void>>()),
 				      func(std::move(f)) {
-        }
+				}
 
-        void Execute() override {
-            func();
-            promise->set_value();
-        }
-    };
-}
-#endif //NETWORK_THREAD_H
+				void Execute() override {
+						func();
+						promise->set_value();
+				}
+		};
+} // namespace CoreIO
+#endif // NETWORK_THREAD_H

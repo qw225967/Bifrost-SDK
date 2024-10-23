@@ -45,9 +45,9 @@ std::map<Type, std::string> RtcpPacket::type_to_string_ =
 						while (len > 0u) {
 								// 判断是否为rtcp包
 								if (!IsRtcp(data, len)) {
-										SPDLOG_ERROR(
-										    "[rtcp packet] data is not a RTCP packet no rtcp:%s",
-										    RTCUtils::Byte::BytesToHex(data, len));
+										// SPDLOG_ERROR(
+										//   "[rtcp packet] data is not a RTCP packet no rtcp:%s",
+										//  RTCUtils::Byte::BytesToHex(data, len));
 										return nullptr;
 								}
 
@@ -59,11 +59,11 @@ std::map<Type, std::string> RtcpPacket::type_to_string_ =
 
 								// 长度低于包解析记录的长则为包异常
 								if (len < packet_len) {
-										SPDLOG_ERROR(
-										    "[rtcp packet] packet length exceeds remaining data [len:%d, "
-										    "packet len:%d]",
-										    len,
-										    packet_len);
+										// SPDLOG_ERROR(
+										//    "[rtcp packet] packet length exceeds remaining data [len:%d, "
+										//   "packet len:%d]",
+										//  len,
+										//  packet_len);
 
 										return nullptr;
 								}
@@ -120,17 +120,17 @@ std::map<Type, std::string> RtcpPacket::type_to_string_ =
 
 								default:
 								{
-										SPDLOG_ERROR(
-										    "[rtcp packet] unknown RTCP packet type [packetType:{}]",
-										    static_cast<uint8_t>(header->packet_type));
+										// SPDLOG_ERROR(
+										//   "[rtcp packet] unknown RTCP packet type [packetType:{}]",
+										//  static_cast<uint8_t>(header->packet_type));
 								}
 								}
 
 								if (!current) {
 										std::string packet_type
 										    = Type2String(Type(header->packet_type));
-										SPDLOG_ERROR("[rtcp packet] error parsing {} RtcpPacket err!",
-										             packet_type.c_str());
+										// SPDLOG_ERROR("[rtcp packet] error parsing {} RtcpPacket err!",
+										//            packet_type.c_str());
 
 										return nullptr;
 								}

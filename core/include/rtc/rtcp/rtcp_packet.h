@@ -14,6 +14,7 @@
 
 #include "rtc/rtc_common.h"
 #define MS_LITTLE_ENDIAN 1
+// #define MS_BIG_ENDIAN 1
 namespace RTC {
 		namespace RTCP {
 				// 音频、视频 RTCP 发送间隔

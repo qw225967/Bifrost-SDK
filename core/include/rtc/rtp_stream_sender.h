@@ -32,15 +32,16 @@ namespace RTC {
 
 		public:
 				RtpStreamSender(Listener* listener, Params& params,
-				                const std::shared_ptr<CoreIO::NetworkThread>& thread);
+				                const std::shared_ptr<CoreIO::NetworkThread>& thread,
+				                bool dynamic_addr);
 				~RtpStreamSender() override;
 
 				bool ReceivePacket(RtpPacketPtr rtp_packet);
 				void ReceiveNack(
 				    const std::shared_ptr<RTCP::FeedbackRtpNackPacket>& nack_packet);
 				void ReceiveRtcpReceiverReport(
-				    const std::shared_ptr<RTCP::ReceiverReport>& report) {
-				}
+				    const std::shared_ptr<RTCP::ReceiverReport>& report);
+				std::shared_ptr<RTCP::SenderReport> GetRtcpSenderReport(uint64_t now_ms);
 
 		private:
 				void StorePacket(RtpPacketPtr& rtp_packet) const;
@@ -55,6 +56,8 @@ namespace RTC {
 				RTC::RtpDataCounter sent_transmission_counter_; // 已发送统计
 				size_t nack_count_{ 0u };
 				size_t nack_packet_count_{ 0u };
+
+				bool is_dynamic_addr_{ false };
 		};
 
 		typedef std::shared_ptr<RtpStreamSender> RtpStreamSenderPtr;

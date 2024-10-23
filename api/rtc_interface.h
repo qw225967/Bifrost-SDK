@@ -11,9 +11,18 @@
 #define RTC_INTERFACE_H
 
 #include <cstdint> // uint8_t, etc
+#include <string>
 
 namespace RTCApi {
 		class RtcInterface {
+		public:
+				/**
+				 * @brief 流目标类型
+				 * @details 流目标位client会发送rtcp，流目标是服务则是内部传输无需rtcp
+				 * @return 无
+				 */
+				enum class StreamTargetType { TargetClient, ServerClient };
+
 		public:
 				class DataCallBackObserver {
 				public:
@@ -24,6 +33,7 @@ namespace RTCApi {
 						 * @return 无
 						 */
 						virtual void OnReceiveAudio(uint8_t* data, uint32_t len) = 0;
+						virtual void OnReceiveEvent() = 0;
 				};
 
 		public:
@@ -36,7 +46,9 @@ namespace RTCApi {
 				 * @details 可以创建对应的文本流、音频流
 				 * @return 返回创建是否成功
 				 */
-				virtual bool CreateRtpSenderStream(uint32_t ssrc) = 0;
+				virtual bool CreateRtpSenderStream(uint32_t ssrc, std::string target_ip,
+				                                   int port, bool dynamic_addr)
+				    = 0;
 
 				/**
 				 * @brief 删除发送流
@@ -50,7 +62,9 @@ namespace RTCApi {
 				 * @details 可以创建对应的文本流、音频流
 				 * @return 返回删除是否成功
 				 */
-				virtual bool CreateRtpReceiverStream(uint32_t ssrc) = 0;
+				virtual bool CreateRtpReceiverStream(uint32_t ssrc, std::string target_ip,
+				                                     int port, bool dynamic_addr)
+				    = 0;
 
 				/**
 				 * @brief 删除接收流
@@ -59,7 +73,20 @@ namespace RTCApi {
 				 */
 				virtual bool DeleteRtpReceiverStream(uint32_t ssrc) = 0;
 
-				virtual void OnSendPacket(uint32_t ssrc, uint8_t* data, uint32_t len) = 0;
+				/**
+				 * @brief 发送音频帧
+				 * @details 内部根据帧大小进行拆分
+				 * @return 无
+				 */
+				virtual void OnSendAudio(uint32_t ssrc, uint8_t* data, uint32_t len) = 0;
+
+				/**
+				 * @brief 发送文本数据
+				 * @details 内部根据文本大小进行拆分
+				 * @return 无
+				 */
+				virtual void OnSendText(uint8_t* data, uint32_t len) = 0;
+				virtual void OnSendText(std::string data) = 0;
 		};
 } // namespace RTCInterface
 

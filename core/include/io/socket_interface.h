@@ -11,6 +11,7 @@
 #define SOCKET_INTERFACE_H
 #include <atomic>
 #include <set>
+#include <mutex>
 
 #include "spdlog/spdlog.h"
 

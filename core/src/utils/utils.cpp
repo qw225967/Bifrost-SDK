@@ -13,12 +13,11 @@
 
 #include "spdlog/spdlog.h"
 #include "uv.h"
-#include "ws_util.h"
 
 namespace RTCUtils {
 
 		int NetTools::GetFamily(const std::string& ip) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				if (ip.size() >= INET6_ADDRSTRLEN) {
 						return AF_UNSPEC;
@@ -39,7 +38,7 @@ namespace RTCUtils {
 		bool NetTools::GetAddressInfo(const struct sockaddr* addr,
 		                              std::string& ip,
 		                              uint16_t& port) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				char ipBuffer[INET6_ADDRSTRLEN] = { 0 };
 
@@ -53,7 +52,7 @@ namespace RTCUtils {
 						    ipBuffer,
 						    sizeof(ipBuffer));
 						if (err) {
-								SPDLOG_ERROR("uv_inet_ntop() failed: {}", uv_strerror(err));
+								// SPDLOG_ERROR("uv_inet_ntop() failed: {}", uv_strerror(err));
 								return false;
 						}
 
@@ -70,7 +69,7 @@ namespace RTCUtils {
 						    ipBuffer,
 						    sizeof(ipBuffer));
 						if (err) {
-								SPDLOG_ERROR("uv_inet_ntop() failed: {}", uv_strerror(err));
+								// SPDLOG_ERROR("uv_inet_ntop() failed: {}", uv_strerror(err));
 								return false;
 						}
 
@@ -80,8 +79,8 @@ namespace RTCUtils {
 				}
 				default:
 				{
-						SPDLOG_ERROR("unknown network family: {}",
-						             static_cast<int>(addr->sa_family));
+						// SPDLOG_ERROR("unknown network family: {}",
+						//           static_cast<int>(addr->sa_family));
 						return false;
 				}
 				}
@@ -91,26 +90,23 @@ namespace RTCUtils {
 				return true;
 		}
 
-		char* NetTools::ParseHttpHeads(const uv_buf_t* buf, const char* key_name) {
-				char *key = nullptr, *end = nullptr;
-				char* data = strstr(buf->base, "\r\n\r\n");
-				if (data) {
-						*data = 0;
-						// 是否有 Sec-WebSocket-Key
-						key = strstr(buf->base, key_name);
-						if (key) {
-								key += strlen(key_name) + 1;
-								while (isspace(*key)) {
-										key++;
-								}
-								end = strchr(key, '\r');
-								if (end) {
-										*end = 0;
-								}
-								return key;
-						}
+		std::string NetTools::ParseHttpHeads(const uv_buf_t* buf) {
+				std::string respone(buf->base);
+				auto start_index = respone.find("sec-websocket-accept:");
+				auto end_index   = respone.find("\r\n\r\n");
+
+				if (start_index == std::string::npos) {
+						start_index = respone.find("Sec-WebSocket-Accept:");
 				}
-				return nullptr;
+
+				if (start_index != std::string::npos && end_index != std::string::npos) {
+						start_index += 21;
+						end_index;
+				} else {
+						return {};
+				}
+				// 跳过websocket标记，并截取尾部
+				return respone.substr(start_index, end_index - start_index);
 		}
 
 		void NetTools::TwCloseClient(uv_stream_t* uv_stream,
@@ -118,26 +114,6 @@ namespace RTCUtils {
 				// 关闭连接回调
 				if (on_close) {
 						on_close(uv_stream);
-				}
-				if (!uv_is_closing((uv_handle_t*)uv_stream)) {
-						uv_close((uv_handle_t*)uv_stream, AfterUvCloseClient);
-				} else {
-				}
-		}
-
-		void NetTools::AfterUvCloseClient(uv_handle_t* client) {
-				if (client->data) {
-						websocket_handle* hd       = (websocket_handle*)client->data;
-						endpoint_type endpointType = hd->endpoint_type;
-						membuf_uninit(&hd->proto_buf);
-						membuf_uninit(&hd->merge_buf);
-						free(hd);
-						client->data = nullptr;
-						if (uv_is_closing((uv_handle_t*)client)) {
-						}
-						if (endpointType == ENDPOINT_SERVER) {
-								free(client);
-						}
 				}
 		}
 } // namespace RTCUtils

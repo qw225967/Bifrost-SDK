@@ -17,6 +17,8 @@
 #include <functional> // std::function
 #include <iostream>
 #include <memory> // std::addressof()
+#include <cstring>
+#include "utils/cpp11_adaptor.h"
 #ifdef _WIN32
 #include <winsock2.h>
 // https://stackoverflow.com/a/27443191/2085408

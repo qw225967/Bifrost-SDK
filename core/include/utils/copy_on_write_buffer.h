@@ -19,6 +19,7 @@
 #include <type_traits>
 #include <utility>
 
+#include "cpp11_adaptor.h"
 #include "buffer.h"
 #include "ref_counted_object.h"
 #include "scoped_refptr.h"
@@ -70,9 +71,9 @@ namespace RTCUtils {
 
 				// Construct a buffer from a vector like type.
 				template<typename VecT,
-				         typename ElemT = typename std::remove_pointer_t<
+				         typename ElemT = typename Cpp11Adaptor::remove_pointer_t<
 				             decltype(std::declval<VecT>().data())>,
-				         typename std::enable_if_t<
+				         typename Cpp11Adaptor::enable_if_t<
 				             !std::is_same<VecT, CopyOnWriteBuffer>::value
 				             && HasDataAndSize<VecT, ElemT>::value
 				             && internal::BufferCompat<uint8_t, ElemT>::value>* = nullptr>
@@ -214,9 +215,9 @@ namespace RTCUtils {
 				}
 
 				template<typename VecT,
-				         typename ElemT = typename std::remove_pointer_t<
+				         typename ElemT = typename Cpp11Adaptor::remove_pointer_t<
 				             decltype(std::declval<VecT>().data())>,
-				         typename std::enable_if_t<
+				         typename Cpp11Adaptor::enable_if_t<
 				             HasDataAndSize<VecT, ElemT>::value
 				             && internal::BufferCompat<uint8_t, ElemT>::value>* = nullptr>
 				void AppendData(const VecT& v) {

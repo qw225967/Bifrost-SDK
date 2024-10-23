@@ -11,7 +11,9 @@
 #define RTP_PACKET_H
 
 #include "rtc/rtc_common.h"
+
 #define MS_LITTLE_ENDIAN 1
+// #define MS_BIG_ENDIAN 1
 namespace RTC {
 		// 网络传输最大 MTU
 		constexpr size_t kMtuSize{ 1500u };
@@ -38,6 +40,13 @@ namespace RTC {
 						uint16_t sequence_number;
 						uint32_t timestamp;
 						uint32_t ssrc;
+				};
+
+		private:
+				/* Struct for RTP header extension. */
+				struct HeaderExtension {
+						uint32_t length; // Size of value in multiples of 4 bytes.
+						uint8_t value[1];
 				};
 
 		public:
@@ -83,23 +92,27 @@ namespace RTC {
 				}
 
 				[[nodiscard]] uint16_t GetSequenceNumber() const {
-						return uint16_t{ ntohs(this->header_->sequence_number) };
+						// return uint16_t{ ntohs(this->header_->sequence_number) };
+						return uint32_t{ this->header_->sequence_number };
 				}
 
 				[[nodiscard]] uint32_t GetTimestamp() const {
-						return uint32_t{ ntohl(this->header_->timestamp) };
+						// return uint32_t{ ntohl(this->header_->timestamp) };
+						return uint32_t{ this->header_->timestamp };
 				}
 
 				[[nodiscard]] uint32_t GetSsrc() const {
-						return uint32_t{ ntohl(this->header_->ssrc) };
+						// return uint32_t{ ntohl(this->header_->ssrc) };
+						auto ssrc_temp = uint32_t{ ntohl(this->header_->ssrc) };
+						return uint32_t{ this->header_->ssrc };
 				}
 
 				[[nodiscard]] uint8_t* GetPayload() const {
-					return this->payload_;
+						return this->payload_;
 				}
 
 				[[nodiscard]] uint32_t GetPayloadLength() const {
-					return this->payload_length_;
+						return this->payload_length_;
 				}
 
 				// 设置函数
@@ -112,7 +125,8 @@ namespace RTC {
 				}
 
 				void SetTimestamp(uint32_t timestamp) {
-						this->header_->timestamp = uint32_t{ htonl(timestamp) };
+						// this->header_->timestamp = uint32_t{ htonl(timestamp) };
+						this->header_->timestamp = uint32_t{ timestamp };
 				}
 
 				bool HasMarker() const {
@@ -128,11 +142,13 @@ namespace RTC {
 				}
 
 				void SetSequenceNumber(uint16_t seq) {
-						this->header_->sequence_number = uint16_t{ htons(seq) };
+						// this->header_->sequence_number = uint16_t{ htons(seq) };
+						this->header_->sequence_number = uint16_t{ seq };
 				}
 
 				void SetSsrc(uint32_t ssrc) {
-						this->header_->ssrc = uint32_t{ htonl(ssrc) };
+						// this->header_->ssrc = uint32_t{ htonl(ssrc) };
+						this->header_->ssrc = uint32_t{ ssrc };
 				}
 
 				void CopyPayload(uint8_t* payload, size_t len) {
@@ -143,6 +159,8 @@ namespace RTC {
 		private:
 				// 头部指针
 				Header* header_{ nullptr };
+				// 拓展头指针
+				HeaderExtension* header_extension_{nullptr};
 				// payload 指针
 				uint8_t* payload_{ nullptr };
 
@@ -153,9 +171,10 @@ namespace RTC {
 				uint32_t ssrc_{ 0 };
 				uint32_t timestamp_{ 0 };
 				uint32_t payload_length_{ 0 };
+				uint8_t payload_padding_{0u};
 		};
 
 		typedef std::shared_ptr<RtpPacket> RtpPacketPtr;
-}
+} // namespace RTC
 
-#endif //RTP_PACKET_H
+#endif // RTP_PACKET_H

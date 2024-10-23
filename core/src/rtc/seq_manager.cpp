@@ -43,12 +43,12 @@ namespace RTC {
 		template<typename T, uint8_t N>
 		SeqManager<T, N>::SeqManager(T initialOutput)
 		    : initial_output_(initialOutput) {
-				SPDLOG_TRACE("SeqManager constructor");
+				// SPDLOG_TRACE("SeqManager constructor");
 		}
 
 		template<typename T, uint8_t N>
 		void SeqManager<T, N>::Sync(T input) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				// Update base.
 				this->base_ = (this->max_output_ - input) & MaxValue;
@@ -62,7 +62,7 @@ namespace RTC {
 
 		template<typename T, uint8_t N>
 		void SeqManager<T, N>::Drop(T input) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				// Mark as dropped if 'input' is higher than anyone already processed.
 				if (SeqManager<T, N>::IsSeqHigherThan(input, this->max_input_)) {
@@ -78,7 +78,7 @@ namespace RTC {
 
 		template<typename T, uint8_t N>
 		bool SeqManager<T, N>::Input(T input, T& output) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				auto base = this->base_;
 
@@ -106,7 +106,7 @@ namespace RTC {
 				// This input was dropped.
 				else if (this->dropped_.find(input) != this->dropped_.end())
 				{
-						SPDLOG_DEBUG("trying to send a dropped input");
+						// SPDLOG_DEBUG("trying to send a dropped input");
 
 						return false;
 				}
@@ -162,7 +162,7 @@ namespace RTC {
 		 */
 		template<typename T, uint8_t N>
 		void SeqManager<T, N>::ClearDropped() {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				// Cleanup dropped values.
 				if (this->dropped_.empty()) {

@@ -20,7 +20,7 @@ namespace CoreIO {
 		static void OnAlloc(uv_handle_t* uv_handle,
 		                    size_t suggested_size,
 		                    uv_buf_t* buf) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				if (auto* socket = static_cast<UdpSocket*>(uv_handle->data)) {
 						socket->OnUvRecvAlloc(suggested_size, buf);
@@ -32,7 +32,7 @@ namespace CoreIO {
 		                   const uv_buf_t* buf,
 		                   const struct sockaddr* addr,
 		                   unsigned int flags) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				if (auto* socket = static_cast<UdpSocket*>(uv_udp->data)) {
 						socket->OnUvRecv(n_read, buf, addr, flags);
@@ -40,7 +40,7 @@ namespace CoreIO {
 		}
 
 		static void OnSend(uv_udp_send_t* uv_udp, int status) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				auto* send_data = static_cast<UdpSocket::UvSendData*>(uv_udp->data);
 				auto* handle    = uv_udp->handle;
@@ -52,7 +52,7 @@ namespace CoreIO {
 		}
 
 		static void OnCloseUdp(uv_handle_t* uv_handle) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				delete reinterpret_cast<uv_udp_t*>(uv_handle);
 		}
@@ -63,11 +63,11 @@ namespace CoreIO {
 		                     uint16_t port)
 		    : network_thread_(std::move(network_thread)), type_(type), ip_(ip),
 		      port_(port), read_buffer_(new uint8_t[kReadBufferSize]) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 		}
 
 		UdpSocket::~UdpSocket() {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				if (!closed_.load()) {
 						Close();
@@ -75,7 +75,7 @@ namespace CoreIO {
 		}
 
 		bool UdpSocket::Init() {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				uv_handle_ = new uv_udp_t();
 				uv_udp_init_ex(network_thread_->GetLoop(), uv_handle_, UV_UDP_RECVMMSG);
@@ -98,7 +98,7 @@ namespace CoreIO {
 								    port_,
 								    reinterpret_cast<struct sockaddr_in*>(&bind_addr));
 								if (err != 0) {
-										SPDLOG_ERROR("uv_ip4_addr() failed: {}", uv_strerror(err));
+										// SPDLOG_ERROR("uv_ip4_addr() failed: {}", uv_strerror(err));
 										return false;
 								}
 								break;
@@ -110,7 +110,7 @@ namespace CoreIO {
 								    port_,
 								    reinterpret_cast<struct sockaddr_in6*>(&bind_addr));
 								if (err != 0) {
-										SPDLOG_ERROR("uv_ip6_addr() failed: {}", uv_strerror(err));
+										// SPDLOG_ERROR("uv_ip6_addr() failed: {}", uv_strerror(err));
 										return false;
 								}
 								flags |= UV_UDP_IPV6ONLY;
@@ -118,7 +118,7 @@ namespace CoreIO {
 						}
 						default:
 						{
-								SPDLOG_ERROR("unknown IP family");
+								// SPDLOG_ERROR("unknown IP family");
 								return false;
 						}
 						}
@@ -128,10 +128,10 @@ namespace CoreIO {
 						    reinterpret_cast<const struct sockaddr*>(&bind_addr),
 						    flags);
 						if (err != 0) {
-								SPDLOG_ERROR("uv_udp_bind() failed, ip: {}, port: {}, err: {}",
-								             ip_,
-								             port_,
-								             uv_strerror(err));
+								// SPDLOG_ERROR("uv_udp_bind() failed, ip: {}, port: {}, err: {}",
+								//            ip_,
+								//            port_,
+								//           uv_strerror(err));
 								return false;
 						}
 				}
@@ -147,13 +147,13 @@ namespace CoreIO {
 		}
 
 		bool UdpSocket::InitInvoke() {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				return network_thread_->Post<bool>([&]() -> bool { return Init(); }).get();
 		}
 
 		void UdpSocket::Close() {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				if (closed_.load()) {
 						return;
@@ -164,7 +164,7 @@ namespace CoreIO {
 
 				int err = uv_udp_recv_stop(uv_handle_);
 				if (err != 0) {
-						SPDLOG_ERROR("uv_udp_recv_stop() failed: {}", uv_strerror(err));
+						// SPDLOG_ERROR("uv_udp_recv_stop() failed: {}", uv_strerror(err));
 						return;
 				}
 
@@ -175,14 +175,14 @@ namespace CoreIO {
 		}
 
 		void UdpSocket::CloseInvoke() {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				network_thread_->Post<void>([&]() { Close(); }).get();
 		}
 
 		void UdpSocket::Send(RTCUtils::CopyOnWriteBuffer buf,
 		                     const struct sockaddr* addr) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				if (closed_.load() || buf.size() == 0) {
 						return;
@@ -195,13 +195,13 @@ namespace CoreIO {
 				if (sent == static_cast<int>(buf.size())) {
 						return;
 				} else if (sent >= 0) {
-						SPDLOG_WARN("datagram truncated (just {} of {} bytes were sent",
-						            sent,
-						            buf.size());
+						// SPDLOG_WARN("datagram truncated (just {} of {} bytes were sent",
+						//         sent,
+						//         buf.size());
 						return;
 				} else if (sent != UV_EAGAIN) {
-						SPDLOG_WARN("uv_udp_try_send() failed, trying uv_udp_send(): {}",
-						            uv_strerror(sent));
+						// SPDLOG_WARN("uv_udp_try_send() failed, trying uv_udp_send(): {}",
+						//        uv_strerror(sent));
 				}
 
 				auto* send_data      = new UvSendData(buf.size());
@@ -217,21 +217,21 @@ namespace CoreIO {
 				                      addr,
 				                      static_cast<uv_udp_send_cb>(OnSend));
 				if (err != 0) {
-						SPDLOG_WARN("uv_udp_send() failed: {}", uv_strerror(err));
+						// SPDLOG_WARN("uv_udp_send() failed: {}", uv_strerror(err));
 						delete send_data;
 				}
 		}
 
 		void UdpSocket::SendInvoke(RTCUtils::CopyOnWriteBuffer buf,
 		                           const struct sockaddr* addr) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				network_thread_->Post<void>(
 				    [&, data = std::move(buf)]() { Send(data, addr); }).get();
 		}
 
 		void UdpSocket::OnUvRecvAlloc(size_t, uv_buf_t* buf) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				buf->base = reinterpret_cast<char*>(read_buffer_);
 				buf->len  = kReadBufferSize;
@@ -241,17 +241,17 @@ namespace CoreIO {
 		                         const uv_buf_t* buf,
 		                         const struct sockaddr* addr,
 		                         unsigned int flags) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				if (n_read == 0) {
 						return;
 				}
 
 				if ((flags & UV_UDP_PARTIAL) != 0) {
-						SPDLOG_ERROR(
-						    "received datagram was truncated due to insufficient buffer, "
-						    "ignoring "
-						    "it");
+						// SPDLOG_ERROR(
+						//   "received datagram was truncated due to insufficient buffer, "
+						//  "ignoring "
+						//  "it");
 						return;
 				}
 
@@ -267,11 +267,11 @@ namespace CoreIO {
 								                     addr);
 						}
 				} else {
-						SPDLOG_ERROR("read error: {}", uv_strerror(n_read));
+						// SPDLOG_ERROR("read error: {}", uv_strerror(n_read));
 				}
 		}
 
 		void UdpSocket::OnUvSend(int status) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 		}
 } // namespace CoreIO

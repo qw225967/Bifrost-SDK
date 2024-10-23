@@ -12,6 +12,7 @@
 
 #include "rtc_common.h"
 #include "rtc/rtp_packet.h"
+#include <vector>
 
 namespace RTC {
 		// It is considered that the time source increases monotonically.

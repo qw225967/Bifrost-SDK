@@ -15,6 +15,7 @@
 #include <array>
 #include <iterator>
 #include <type_traits>
+#include "cpp11_adaptor.h"
 
 #include "type_traits.h"
 
@@ -295,19 +296,19 @@ namespace RTCUtils {
 				}
 
 				std::reverse_iterator<T*> rbegin() const {
-						return std::make_reverse_iterator(end());
+						return Cpp11Adaptor::make_reverse_iterator(end());
 				}
 
 				std::reverse_iterator<T*> rend() const {
-						return std::make_reverse_iterator(begin());
+						return Cpp11Adaptor::make_reverse_iterator(begin());
 				}
 
 				std::reverse_iterator<const T*> crbegin() const {
-						return std::make_reverse_iterator(cend());
+						return Cpp11Adaptor::make_reverse_iterator(cend());
 				}
 
 				std::reverse_iterator<const T*> crend() const {
-						return std::make_reverse_iterator(cbegin());
+						return Cpp11Adaptor::make_reverse_iterator(cbegin());
 				}
 
 				ArrayView<T> subview(size_t offset, size_t size) const {

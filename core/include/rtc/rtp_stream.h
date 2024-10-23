@@ -56,6 +56,20 @@ namespace RTC {
 				[[nodiscard]] uint8_t GetPayloadType() const {
 						return params_.payload_type;
 				}
+				[[nodiscard]] uint32_t GetClockRate() const {
+						return this->params_.clock_rate;
+				}
+				[[nodiscard]] struct sockaddr_storage GetUdpRemoteTargetAddr() const {
+						return this->udp_remote_addr_;
+				}
+
+				void SetUdpRemoteTargetAddr(const struct sockaddr_storage& udp_remote_addr) {
+						this->udp_remote_addr_ = udp_remote_addr;
+				}
+
+				void SetNextRtpStream(const std::shared_ptr<RtpStream>& rtp_stream) {
+						this->next_rtp_stream_ = rtp_stream;
+				}
 
 				bool ReceiveStreamPacket(RtpPacketPtr& rtp_packet);
 
@@ -66,12 +80,17 @@ namespace RTC {
 				void PacketRetransmitted(RtpPacketPtr& rtp_packet);
 
 		protected:
+				// 数据流转流
+				std::shared_ptr<RtpStream> next_rtp_stream_{ nullptr };
+
 				// 回调函数
 				RTC::RtpStream::Listener* listener_{ nullptr };
 				// 参数
 				Params params_;
 				// 网络线程
 				std::shared_ptr<CoreIO::NetworkThread> thread_;
+				// 目标地址
+				struct sockaddr_storage udp_remote_addr_;
 
 				// 当前最新序号
 				uint16_t max_seq_{ 0u };
@@ -89,6 +108,14 @@ namespace RTC {
 				size_t packets_discarded_{ 0u };
 				// 对应链路的rtt
 				float rtt_{ 0.0f };
+				// 丢包总数
+				uint32_t packets_lost_{ 0u };
+				// 最新sr中的 NTP 时间戳 (in ms).
+				uint64_t last_sender_report_ntp_ms_{ 0u };
+				// 最新sr中的 rtp 时间戳.
+				uint32_t last_sender_report_ts_{ 0u };
+			  // 丢包拥塞判断因子
+				uint8_t fraction_lost_{ 0u };
 
 		private:
 				bool started_{ false };

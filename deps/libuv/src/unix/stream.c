@@ -1019,7 +1019,7 @@ static int uv__stream_recv_cmsg(uv_stream_t* stream, struct msghdr* msg) {
 
 static void uv__read(uv_stream_t* stream) {
   uv_buf_t buf;
-  ssize_t n_read;
+  ssize_t nread;
   struct msghdr msg;
   union uv__cmsg cmsg;
   int count;
@@ -1056,9 +1056,9 @@ static void uv__read(uv_stream_t* stream) {
 
     if (!is_ipc) {
       do {
-        n_read = read(uv__stream_fd(stream), buf.base, buf.len);
+        nread = read(uv__stream_fd(stream), buf.base, buf.len);
       }
-      while (n_read < 0 && errno == EINTR);
+      while (nread < 0 && errno == EINTR);
     } else {
       /* ipc uses recvmsg */
       msg.msg_flags = 0;
@@ -1071,12 +1071,12 @@ static void uv__read(uv_stream_t* stream) {
       msg.msg_control = &cmsg.hdr;
 
       do {
-        n_read = uv__recvmsg(uv__stream_fd(stream), &msg, 0);
+        nread = uv__recvmsg(uv__stream_fd(stream), &msg, 0);
       }
-      while (n_read < 0 && errno == EINTR);
+      while (nread < 0 && errno == EINTR);
     }
 
-    if (n_read < 0) {
+    if (nread < 0) {
       /* Error */
       if (errno == EAGAIN || errno == EWOULDBLOCK) {
         /* Wait for the next one. */
@@ -1102,7 +1102,7 @@ static void uv__read(uv_stream_t* stream) {
         }
       }
       return;
-    } else if (n_read == 0) {
+    } else if (nread == 0) {
       uv__stream_eof(stream, &buf);
       return;
     } else {
@@ -1120,30 +1120,30 @@ static void uv__read(uv_stream_t* stream) {
 #if defined(__MVS__)
       if (is_ipc && msg.msg_controllen > 0) {
         uv_buf_t blankbuf;
-        int n_read;
+        int nread;
         struct iovec *old;
 
         blankbuf.base = 0;
         blankbuf.len = 0;
         old = msg.msg_iov;
         msg.msg_iov = (struct iovec*) &blankbuf;
-        n_read = 0;
+        nread = 0;
         do {
-          n_read = uv__recvmsg(uv__stream_fd(stream), &msg, 0);
+          nread = uv__recvmsg(uv__stream_fd(stream), &msg, 0);
           err = uv__stream_recv_cmsg(stream, &msg);
           if (err != 0) {
             stream->read_cb(stream, err, &buf);
             msg.msg_iov = old;
             return;
           }
-        } while (n_read == 0 && msg.msg_controllen > 0);
+        } while (nread == 0 && msg.msg_controllen > 0);
         msg.msg_iov = old;
       }
 #endif
-      stream->read_cb(stream, n_read, &buf);
+      stream->read_cb(stream, nread, &buf);
 
       /* Return if we didn't fill the buffer, there is no more data to read. */
-      if (n_read < buflen) {
+      if (nread < buflen) {
         stream->flags |= UV_HANDLE_READ_PARTIAL;
         return;
       }

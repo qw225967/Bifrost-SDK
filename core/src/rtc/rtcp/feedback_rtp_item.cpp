@@ -8,7 +8,6 @@
  *******************************************************/
 
 #include "rtc/rtcp/feedback_rtp_item.h"
-
 #include "rtc/rtcp/feedback_item.h"
 #include "rtc/rtcp/nack_packet.h"
 
@@ -22,9 +21,9 @@ namespace RTC {
 				std::unique_ptr<FeedbackRtpItemsPacket<Item>> FeedbackRtpItemsPacket<
 				    Item>::Parse(const uint8_t* data, size_t len) {
 						if (len < sizeof(CommonHeader) + sizeof(Header)) {
-								SPDLOG_ERROR(
-								    "[feedback rtp items] not enough space for Feedback packet, "
-								    "discarded");
+								// SPDLOG_ERROR(
+								//   "[feedback rtp items] not enough space for Feedback packet, "
+								//  "discarded");
 
 								return nullptr;
 						}
@@ -34,7 +33,7 @@ namespace RTC {
 						    reinterpret_cast<const CommonHeader*>(data));
 
 						auto packet
-						    = std::make_unique<FeedbackRtpItemsPacket<Item>>(commonHeader);
+						    = Cpp11Adaptor::make_unique<FeedbackRtpItemsPacket<Item>>(commonHeader);
 
 						size_t offset = sizeof(CommonHeader) + sizeof(Header);
 

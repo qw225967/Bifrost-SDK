@@ -36,32 +36,22 @@ namespace RTCUtils {
 
 				TimerHandle& operator=(const TimerHandle&) = delete;
 
+				// 非跨线程定时器函数
 				bool Init();
-
-				bool InitInvoke();
-
 				bool Start(uint64_t timeout, uint64_t repeat = 0);
-
-				bool StartInvoke(uint64_t timeout, uint64_t repeat = 0);
-
 				void Stop();
-
-				void StopInvoke();
-
 				void Reset();
-
-				void ResetInvoke();
-
 				void Restart();
-
-				void RestartInvoke();
-
 				void Close();
-
-				void CloseInvoke();
-
 				bool IsActive() const;
 
+				// 跨线程定时器函数
+				bool InitInvoke();
+				bool StartInvoke(uint64_t timeout, uint64_t repeat = 0);
+				void StopInvoke();
+				void ResetInvoke();
+				void RestartInvoke();
+				void CloseInvoke();
 				bool IsActiveInvoke() const;
 
 		public:
@@ -72,7 +62,7 @@ namespace RTCUtils {
 				std::shared_ptr<CoreIO::NetworkThread> thread_{ nullptr };
 				uv_timer_t* uv_handle_{ nullptr };
 
-				std::atomic<bool> close_{ false };
+				std::atomic<bool> is_close_{ false };
 				uint64_t timeout_{ 0u };
 				uint64_t repeat_{ 0u };
 		};

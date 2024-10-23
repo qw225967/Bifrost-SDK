@@ -21,9 +21,9 @@ namespace RTC {
 
 						// 包大小必须大于头部大小
 						if (len < sizeof(Header)) {
-								SPDLOG_ERROR(
-								    "[receive report] not enough space for receiver report, "
-								    "packet discarded");
+								// SPDLOG_ERROR(
+								//   "[receive report] not enough space for receiver report, "
+								//  "packet discarded");
 
 								return nullptr;
 						}
@@ -52,15 +52,15 @@ namespace RTC {
 
 						// 除了有通用头外，receiver report还会带有自己的ssrc，确认不存在直接返回
 						if (len < sizeof(CommonHeader) + 4u /* ssrc */) {
-								SPDLOG_ERROR(
-								    "[receive report] not enough space for receiver report "
-								    "packet, packet discarded");
+								// SPDLOG_ERROR(
+								//   "[receive report] not enough space for receiver report "
+								//  "packet, packet discarded");
 
 								return nullptr;
 						}
 
 						std::unique_ptr<ReceiverReportPacket> packet
-						    = std::make_unique<ReceiverReportPacket>(header);
+						    = Cpp11Adaptor::make_unique<ReceiverReportPacket>(header);
 
 						uint32_t ssrc = RTCUtils::Byte::Get4Bytes(
 						    reinterpret_cast<uint8_t*>(header), sizeof(CommonHeader));

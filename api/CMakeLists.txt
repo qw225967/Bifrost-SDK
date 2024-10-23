@@ -11,3 +11,4 @@ target_include_directories(ApiLib PUBLIC
 
 # 定义库的接口
 target_compile_definitions(ApiLib PUBLIC APILIB_DEFINE)
+target_link_libraries(ApiLib CoreLib)

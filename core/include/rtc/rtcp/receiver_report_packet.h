@@ -40,6 +40,7 @@
 
 #include "rtcp_packet.h"
 #include "utils/utils.h"
+#include <vector>
 
 namespace RTC {
 		namespace RTCP {
@@ -180,6 +181,14 @@ namespace RTC {
 						}
 						void AddReport(std::shared_ptr<ReceiverReport> report) {
 								this->reports_.push_back(report);
+						}
+						void RemoveReport(std::shared_ptr<ReceiverReport> report) {
+								auto it = std::find(this->reports_.begin(),
+								                    this->reports_.end(), report);
+
+								if (it != this->reports_.end()) {
+										this->reports_.erase(it);
+								}
 						}
 						Iterator Begin() {
 								return this->reports_.begin();

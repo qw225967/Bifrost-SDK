@@ -14,7 +14,7 @@
 
 namespace RTC {
 		void RateCalculator::Update(size_t size, uint64_t now_ms) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				// Ignore too old data. Should never happen.
 				if (now_ms < this->oldest_item_start_time_) {
@@ -63,7 +63,7 @@ namespace RTC {
 		}
 
 		uint32_t RateCalculator::GetRate(uint64_t now_ms) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				if (now_ms == this->last_time_) {
 						return this->last_rate_;
@@ -81,7 +81,7 @@ namespace RTC {
 		}
 
 		inline void RateCalculator::RemoveOldData(uint64_t now_ms) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				// No item set.
 				if (this->newest_item_index_ < 0 || this->oldest_item_index_ < 0) {
@@ -119,7 +119,7 @@ namespace RTC {
 		}
 
 		void RtpDataCounter::Update(const RtpPacketPtr& rtp_packet) {
-				const uint64_t nowMs = RTCUtils::Time::GetMilliseconds();
+				const uint64_t nowMs = RTCUtils::Time::GetTimeMs();
 
 				this->packets++;
 				this->rate.Update(rtp_packet->GetSize(), nowMs);

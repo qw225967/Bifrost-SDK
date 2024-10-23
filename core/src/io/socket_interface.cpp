@@ -14,7 +14,7 @@
 namespace CoreIO {
 		bool SocketInterface::AddDispatcher(
 		    const std::shared_ptr<PacketDispatcherInterface>& dispatcher) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				std::unique_lock<std::mutex> lock(dispatchers_mutex_);
 				bool inserted;
@@ -28,7 +28,7 @@ namespace CoreIO {
 
 		void SocketInterface::RemoveDispatcher(
 		    const std::shared_ptr<PacketDispatcherInterface>& dispatcher) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				std::unique_lock<std::mutex> lock(dispatchers_mutex_);
 				dispatchers_.erase(dispatcher);

@@ -6,8 +6,6 @@ add_library(CoreLib STATIC
         src/io/udp_socket.cpp
         src/io/socket_interface.cpp
         src/io/packet_dispatcher_interface.cpp
-        src/io/websocket_client.cpp
-        src/io/websocket_server.cpp
 
         # rtc
         src/rtc/rtc_transport.cpp
@@ -28,6 +26,7 @@ add_library(CoreLib STATIC
         src/rtc/rtcp/feedback_packet.cpp
         src/rtc/rtcp/sender_report_packet.cpp
         src/rtc/rtcp/receiver_report_packet.cpp
+        src/rtc/rtcp/compound_packet.cpp
 
         # utils
         src/utils/utils.cpp
@@ -36,7 +35,6 @@ add_library(CoreLib STATIC
 
         # 添加头文件
         #io
-        include/io/websocket_server.h
         include/rtc/rtcp/rtcp_packet.h
         include/rtc/rtc_common.h
 
@@ -68,12 +66,25 @@ add_library(CoreLib STATIC
         include/utils/ref_counter.h
         include/utils/scoped_refptr.h
         include/utils/type_traits.h
+        include/rtc/rtcp/compound_packet.h
+        include/io/net_io_factory.h
+        src/io/net_io_factory.cpp
+        include/io/tcp_buffer.h
+        include/utils/cpp11_adaptor.h
+        include/rtc/callback_queue_thread.h
+        src/rtc/callback_queue_thread.cpp
 )
 
 # 设置库的属性
 target_include_directories(CoreLib PUBLIC
         ${PROJECT_SOURCE_DIR}/core/include
+        ${PROJECT_SOURCE_DIR}/deps/cpp_websocket
+        ${PROJECT_SOURCE_DIR}/deps/cpp_websocket/net
+        ${PROJECT_SOURCE_DIR}/deps/cpp_websocket/net/http
+        ${PROJECT_SOURCE_DIR}/deps/cpp_websocket/net/tcp
+        ${PROJECT_SOURCE_DIR}/deps/cpp_websocket/utils
 )
 
 # 定义库的接口
 target_compile_definitions(CoreLib PUBLIC CORELIB_DEFINE)
+target_link_libraries(CoreLib uv cpp_websocket)

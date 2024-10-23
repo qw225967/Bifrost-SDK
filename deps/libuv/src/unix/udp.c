@@ -152,7 +152,7 @@ static int uv__udp_recvmmsg(uv_udp_t* handle, uv_buf_t* buf) {
   struct sockaddr_in6 peers[20];
   struct iovec iov[ARRAY_SIZE(peers)];
   struct mmsghdr msgs[ARRAY_SIZE(peers)];
-  ssize_t n_read;
+  ssize_t nread;
   uv_buf_t chunk_buf;
   size_t chunks;
   int flags;
@@ -176,17 +176,17 @@ static int uv__udp_recvmmsg(uv_udp_t* handle, uv_buf_t* buf) {
   }
 
   do
-    n_read = recvmmsg(handle->io_watcher.fd, msgs, chunks, 0, NULL);
-  while (n_read == -1 && errno == EINTR);
+    nread = recvmmsg(handle->io_watcher.fd, msgs, chunks, 0, NULL);
+  while (nread == -1 && errno == EINTR);
 
-  if (n_read < 1) {
-    if (n_read == 0 || errno == EAGAIN || errno == EWOULDBLOCK)
+  if (nread < 1) {
+    if (nread == 0 || errno == EAGAIN || errno == EWOULDBLOCK)
       handle->recv_cb(handle, 0, buf, NULL, 0);
     else
       handle->recv_cb(handle, UV__ERR(errno), buf, NULL, 0);
   } else {
     /* pass each chunk to the application */
-    for (k = 0; k < (size_t) n_read && handle->recv_cb != NULL; k++) {
+    for (k = 0; k < (size_t) nread && handle->recv_cb != NULL; k++) {
       flags = UV_UDP_MMSG_CHUNK;
       if (msgs[k].msg_hdr.msg_flags & MSG_TRUNC)
         flags |= UV_UDP_PARTIAL;
@@ -203,7 +203,7 @@ static int uv__udp_recvmmsg(uv_udp_t* handle, uv_buf_t* buf) {
     if (handle->recv_cb != NULL)
       handle->recv_cb(handle, 0, buf, NULL, UV_UDP_MMSG_FREE);
   }
-  return n_read;
+  return nread;
 #else  /* __linux__ || ____FreeBSD__ */
   return UV_ENOSYS;
 #endif  /* __linux__ || ____FreeBSD__ */
@@ -212,7 +212,7 @@ static int uv__udp_recvmmsg(uv_udp_t* handle, uv_buf_t* buf) {
 static void uv__udp_recvmsg(uv_udp_t* handle) {
   struct sockaddr_storage peer;
   struct msghdr h;
-  ssize_t n_read;
+  ssize_t nread;
   uv_buf_t buf;
   int flags;
   int count;
@@ -235,9 +235,9 @@ static void uv__udp_recvmsg(uv_udp_t* handle) {
     assert(buf.base != NULL);
 
     if (uv_udp_using_recvmmsg(handle)) {
-      n_read = uv__udp_recvmmsg(handle, &buf);
-      if (n_read > 0)
-        count -= n_read;
+      nread = uv__udp_recvmmsg(handle, &buf);
+      if (nread > 0)
+        count -= nread;
       continue;
     }
 
@@ -249,11 +249,11 @@ static void uv__udp_recvmsg(uv_udp_t* handle) {
     h.msg_iovlen = 1;
 
     do {
-      n_read = recvmsg(handle->io_watcher.fd, &h, 0);
+      nread = recvmsg(handle->io_watcher.fd, &h, 0);
     }
-    while (n_read == -1 && errno == EINTR);
+    while (nread == -1 && errno == EINTR);
 
-    if (n_read == -1) {
+    if (nread == -1) {
       if (errno == EAGAIN || errno == EWOULDBLOCK)
         handle->recv_cb(handle, 0, &buf, NULL, 0);
       else
@@ -264,12 +264,12 @@ static void uv__udp_recvmsg(uv_udp_t* handle) {
       if (h.msg_flags & MSG_TRUNC)
         flags |= UV_UDP_PARTIAL;
 
-      handle->recv_cb(handle, n_read, &buf, (const struct sockaddr*) &peer, flags);
+      handle->recv_cb(handle, nread, &buf, (const struct sockaddr*) &peer, flags);
     }
     count--;
   }
   /* recv_cb callback may decide to pause or close the handle */
-  while (n_read != -1
+  while (nread != -1
       && count > 0
       && handle->io_watcher.fd != -1
       && handle->recv_cb != NULL);

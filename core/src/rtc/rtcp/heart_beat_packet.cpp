@@ -19,7 +19,7 @@ namespace RTCP {
 
 		std::unique_ptr<HeartbeatPacket> HeartbeatPacket::Parse(const uint8_t* data,
 		                                                        size_t len) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				if (!IsHeartbeatPacket(data, len)) {
 						return nullptr;
@@ -42,7 +42,7 @@ namespace RTCP {
 				uint32_t ssrc = RTCUtils::Byte::Get4Bytes(data, 8);
 				uint64_t time = RTCUtils::Byte::Get8Bytes(data, 12);
 
-				return std::make_unique<HeartbeatPacket>(version, ssrc, time, type,
+				return Cpp11Adaptor::make_unique<HeartbeatPacket>(version, ssrc, time, type,
 				                                         network, protocol);
 		}
 
@@ -51,7 +51,7 @@ namespace RTCP {
 		                                 Protocol protocol, bool persistent)
 		    : version_(version), ssrc_(ssrc), time_(time), type_(type),
 		      network_(network), protocol_(protocol), persistent_(persistent) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				if (persistent_) {
 						packet_.EnsureCapacity(kPacketLength);
@@ -62,7 +62,7 @@ namespace RTCP {
 		}
 
 		void HeartbeatPacket::SetTime(uint64_t time) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				time_ = time;
 				if (persistent_) {
@@ -72,7 +72,7 @@ namespace RTCP {
 		}
 
 		RTCUtils::CopyOnWriteBuffer HeartbeatPacket::GetPacket() {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				if (persistent_) {
 						return packet_;
@@ -82,7 +82,7 @@ namespace RTCP {
 		}
 
 		bool HeartbeatPacket::Create(uint8_t* packet, size_t len) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				if (len < kPacketLength) {
 						return false;

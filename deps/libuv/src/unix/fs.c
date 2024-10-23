@@ -789,7 +789,7 @@ static ssize_t uv__fs_sendfile_emul(uv_fs_t* req) {
   int use_pread;
   off_t offset;
   ssize_t nsent;
-  ssize_t n_read;
+  ssize_t nread;
   ssize_t nwritten;
   size_t buflen;
   size_t len;
@@ -836,15 +836,15 @@ static ssize_t uv__fs_sendfile_emul(uv_fs_t* req) {
 
     do
       if (use_pread)
-        n_read = pread(in_fd, buf, buflen, offset);
+        nread = pread(in_fd, buf, buflen, offset);
       else
-        n_read = read(in_fd, buf, buflen);
-    while (n_read == -1 && errno == EINTR);
+        nread = read(in_fd, buf, buflen);
+    while (nread == -1 && errno == EINTR);
 
-    if (n_read == 0)
+    if (nread == 0)
       goto out;
 
-    if (n_read == -1) {
+    if (nread == -1) {
       if (use_pread && nsent == 0 && (errno == EIO || errno == ESPIPE)) {
         use_pread = 0;
         continue;
@@ -856,9 +856,9 @@ static ssize_t uv__fs_sendfile_emul(uv_fs_t* req) {
       goto out;
     }
 
-    for (nwritten = 0; nwritten < n_read; ) {
+    for (nwritten = 0; nwritten < nread; ) {
       do
-        n = write(out_fd, buf + nwritten, n_read - nwritten);
+        n = write(out_fd, buf + nwritten, nread - nwritten);
       while (n == -1 && errno == EINTR);
 
       if (n != -1) {
@@ -886,8 +886,8 @@ static ssize_t uv__fs_sendfile_emul(uv_fs_t* req) {
       }
     }
 
-    offset += n_read;
-    nsent += n_read;
+    offset += nread;
+    nsent += nread;
   }
 
 out:

@@ -322,7 +322,7 @@ typedef void (*uv_alloc_cb)(uv_handle_t* handle,
                             size_t suggested_size,
                             uv_buf_t* buf);
 typedef void (*uv_read_cb)(uv_stream_t* stream,
-                           ssize_t n_read,
+                           ssize_t nread,
                            const uv_buf_t* buf);
 typedef void (*uv_write_cb)(uv_write_t* req, int status);
 typedef void (*uv_connect_cb)(uv_connect_t* req, int status);
@@ -660,7 +660,7 @@ enum uv_udp_flags {
   /*
    * Indicates that the buffer provided has been fully utilized by recvmmsg and
    * that it should now be freed by the recv_cb callback. When this flag is set
-   * in uv_udp_recv_cb, n_read will always be 0 and addr will always be NULL.
+   * in uv_udp_recv_cb, nread will always be 0 and addr will always be NULL.
    */
   UV_UDP_MMSG_FREE = 16,
   /*
@@ -679,7 +679,7 @@ enum uv_udp_flags {
 
 typedef void (*uv_udp_send_cb)(uv_udp_send_t* req, int status);
 typedef void (*uv_udp_recv_cb)(uv_udp_t* handle,
-                               ssize_t n_read,
+                               ssize_t nread,
                                const uv_buf_t* buf,
                                const struct sockaddr* addr,
                                unsigned flags);

@@ -22,9 +22,9 @@ namespace RTC {
 
 						// Packet size must be >= header size.
 						if (len < sizeof(Header)) {
-								SPDLOG_ERROR(
-								    "[send report] not enough space for sender report, packet "
-								    "discarded");
+								// SPDLOG_ERROR(
+								//    "[send report] not enough space for sender report, packet "
+								//  "discarded");
 
 								return nullptr;
 						}
@@ -47,7 +47,7 @@ namespace RTC {
 						auto* header = const_cast<CommonHeader*>(
 						    reinterpret_cast<const CommonHeader*>(data));
 
-						auto packet   = std::make_unique<SenderReportPacket>(header);
+						auto packet   = Cpp11Adaptor::make_unique<SenderReportPacket>(header);
 						size_t offset = sizeof(RtcpPacket::CommonHeader);
 
 						if (auto report = SenderReport::Parse(data + offset, len - offset)) {

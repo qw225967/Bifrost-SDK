@@ -24,13 +24,13 @@ namespace RTC {
 
 		RtpStreamSender::RtpStreamSender(
 		    Listener* listener, Params& params,
-		    const std::shared_ptr<CoreIO::NetworkThread>& thread)
-		    : RtpStream(listener, params, thread) {
-				SPDLOG_TRACE();
+		    const std::shared_ptr<CoreIO::NetworkThread>& thread, bool dynamic_addr)
+		    : RtpStream(listener, params, thread), is_dynamic_addr_(dynamic_addr) {
+				// SPDLOG_TRACE();
 
 				if (this->params_.use_nack) {
 						this->retransmission_buffer_
-						    = std::make_unique<RTC::RtpRetransmissionBuffer>(
+						    = Cpp11Adaptor::make_unique<RTC::RtpRetransmissionBuffer>(
 						        kRetransmissionBufferMaxItems,
 						        kMaxRetransmissionDelayForAudioMs, params.clock_rate);
 				}
@@ -39,7 +39,7 @@ namespace RTC {
 		RtpStreamSender::~RtpStreamSender() = default;
 
 		bool RtpStreamSender::ReceivePacket(RtpPacketPtr rtp_packet) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				// Call the parent method.
 				if (!RtpStream::ReceiveStreamPacket(rtp_packet)) {
@@ -54,18 +54,20 @@ namespace RTC {
 				// Increase transmission counter.
 				this->wait_transmission_counter_.Update(rtp_packet);
 
+				static_cast<RTC::RtpStreamSender::Listener*>(this->listener_)
+				    ->OnRtpStreamRetransmitRtpPacket(this, rtp_packet);
+
 				return true;
 		}
 
 		void RtpStreamSender::StorePacket(RtpPacketPtr& rtp_packet) const {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				if (rtp_packet->GetSize() > RTC::kMtuSize) {
-						SPDLOG_WARN("packet too big [ssrc:%" PRIu32 ", seq:%" PRIu16
-						            ", size:%zu]",
-						            rtp_packet->GetSsrc(),
-						            rtp_packet->GetSequenceNumber(),
-						            rtp_packet->GetSize());
+						// SPDLOG_WARN("packet too big [ssrc:{}, seq:{}, size:{}]",
+						//           rtp_packet->GetSsrc(),
+						//          rtp_packet->GetSequenceNumber(),
+						//          rtp_packet->GetSize());
 
 						return;
 				}
@@ -75,7 +77,7 @@ namespace RTC {
 
 		void RtpStreamSender::ReceiveNack(
 		    const std::shared_ptr<RTCP::FeedbackRtpNackPacket>& nack_packet) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				this->nack_count_++;
 
@@ -108,20 +110,20 @@ namespace RTC {
 
 		void RtpStreamSender::FillRetransmissionContainer(const uint16_t seq,
 		                                                  uint16_t bitmask) const {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				// Ensure the container's first element is 0.
 				kRetransmissionContainer[0] = nullptr;
 
 				// If NACK is not supported, exit.
 				if (!this->retransmission_buffer_) {
-						SPDLOG_WARN("NACK not supported");
+						// SPDLOG_WARN("NACK not supported");
 
 						return;
 				}
 
 				// Look for each requested packet.
-				const uint64_t now_ms = RTCUtils::Time::GetMilliseconds();
+				const uint64_t now_ms = RTCUtils::Time::GetTimeMs();
 				const uint16_t rtt
 				    = (this->rtt_ > 0.0f ? static_cast<uint16_t>(this->rtt_)
 				                         : kDefaultRtt);
@@ -159,11 +161,11 @@ namespace RTC {
 								           && now_ms - item->resent_at_ms <= static_cast<uint64_t>(
 								                  rtt)) // 小于一个rtt不会立即重传
 								{
-										SPDLOG_DEBUG(
-										    "ignoring retransmission for a packet already resent in"
-										    " the last RTT ms [seq:%" PRIu16 ", rtt:%" PRIu32 "]",
-										    packet->GetSequenceNumber(),
-										    rtt);
+										// SPDLOG_DEBUG(
+										//   "ignoring retransmission for a packet already resent in"
+										//  " the last RTT ms [seq:{}, rtt:{}]",
+										//  packet->GetSequenceNumber(),
+										//  rtt);
 								}
 								// Stored packet is valid for retransmission. Resend it.
 								else
@@ -198,5 +200,77 @@ namespace RTC {
 				}
 				// Set the next container element to null.
 				kRetransmissionContainer[container_idx] = nullptr;
+		}
+
+		void RtpStreamSender::ReceiveRtcpReceiverReport(
+		    const std::shared_ptr<RTCP::ReceiverReport>& report) {
+				// SPDLOG_TRACE();
+
+				/* Calculate RTT. */
+
+				// Get the NTP representation of the current timestamp.
+				const uint64_t now_ms = RTCUtils::Time::GetTimeMs();
+				auto ntp              = RTCUtils::Time::TimeMs2Ntp(now_ms);
+
+				// Get the compact NTP representation of the current timestamp.
+				uint32_t compact_ntp = (ntp.seconds & 0x0000FFFF) << 16;
+
+				compact_ntp |= (ntp.fractions & 0xFFFF0000) >> 16;
+
+				const uint32_t last_sr = report->GetLastSenderReport();
+				const uint32_t dlsr    = report->GetDelaySinceLastSenderReport();
+
+				// RTT in 1/2^16 second fractions.
+				uint32_t rtt{ 0 };
+
+				// If no Sender Report was received by the remote endpoint yet, ignore
+				// lastSr and dlsr values in the Receiver Report.
+				if (last_sr && dlsr && (compact_ntp > dlsr + last_sr)) {
+						rtt = compact_ntp - dlsr - last_sr;
+				}
+
+				// RTT in milliseconds.
+				this->rtt_ = static_cast<float>(rtt >> 16) * 1000;
+				this->rtt_ += (static_cast<float>(rtt & 0x0000FFFF) / 65536) * 1000;
+
+				// Avoid negative RTT value since it doesn't make sense.
+				if (this->rtt_ <= 0.0f) {
+						this->rtt_ = 0.0f;
+				}
+
+				this->packets_lost_  = report->GetTotalLost();
+				this->fraction_lost_ = report->GetFractionLost();
+
+				// SPDLOG_INFO("receive rtt:{}, packet_lost:{}, fraction_lost:{}",
+				//           this->rtt_, this->packets_lost_, this->fraction_lost_);
+		}
+
+		std::shared_ptr<RTCP::SenderReport> RtpStreamSender::GetRtcpSenderReport(
+		    uint64_t now_ms) {
+				// SPDLOG_TRACE();
+
+				// if (this->wait_transmission_counter_.GetPacketCount() == 0u) {
+				// 		return nullptr;
+				// }
+
+				auto ntp    = RTCUtils::Time::TimeMs2Ntp(now_ms);
+				auto report = std::make_shared<RTC::RTCP::SenderReport>();
+
+				// Calculate TS difference between now and maxPacketMs.
+				auto diff_ms = now_ms - this->max_packet_ms_;
+				auto diff_ts = diff_ms * GetClockRate() / 1000;
+
+				report->SetSsrc(GetSsrc());
+				report->SetPacketCount(this->wait_transmission_counter_.GetPacketCount());
+				report->SetOctetCount(this->wait_transmission_counter_.GetBytes());
+				report->SetNtpSec(ntp.seconds);
+				report->SetNtpFrac(ntp.fractions);
+				report->SetRtpTs(this->max_packet_ts_ + diff_ts);
+
+				// Update info about last Sender Report.
+				this->last_sender_report_ntp_ms_ = now_ms;
+				this->last_sender_report_ts_     = this->max_packet_ts_ + diff_ts;
+
+				return report;
 		}
 } // namespace RTC

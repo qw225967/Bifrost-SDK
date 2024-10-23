@@ -18,10 +18,10 @@
  * @note 其销毁方法是membuf_uninit()
  */
 void membuf_init(membuf_t* buf, uint initial_buffer_size) {
-    memset(buf, 0, sizeof(membuf_t));
-    buf->data =
-        initial_buffer_size > 0 ? (uchar*)calloc(1, initial_buffer_size) : NULL;
-    buf->buffer_size = initial_buffer_size;
+		memset(buf, 0, sizeof(membuf_t));
+		buf->data = initial_buffer_size > 0 ? (uchar*)calloc(1, initial_buffer_size)
+		                                    : NULL;
+		buf->buffer_size = initial_buffer_size;
 }
 
 /**
@@ -30,8 +30,10 @@ void membuf_init(membuf_t* buf, uint initial_buffer_size) {
  * @see membuf_init()
  */
 void membuf_uninit(membuf_t* buf) {
-    if (buf->data) free(buf->data);
-    memset(buf, 0, sizeof(membuf_t));
+		if (buf->data) {
+				free(buf->data);
+		}
+		memset(buf, 0, sizeof(membuf_t));
 }
 
 /**
@@ -40,19 +42,21 @@ void membuf_uninit(membuf_t* buf) {
  * @param maxSize   保留的缓冲区长度
  */
 void membuf_clear(membuf_t* buf, size_t maxSize) {
-    if (buf->data && buf->size) {
-        if (maxSize > 1 && buf->buffer_size > maxSize) {
-            uchar* p = (uchar*)realloc(buf->data, maxSize);
-            // 防止realloc分配失败，或返回的地址一样
-            assert(p);
-            if (p != buf->data) buf->data = p;
-            buf->size = 0;
-            buf->buffer_size = maxSize;
-        } else {
-            buf->size = 0;
-        }
-        memset(buf->data, 0, buf->buffer_size);
-    }
+		if (buf->data && buf->size) {
+				if (maxSize > 1 && buf->buffer_size > maxSize) {
+						uchar* p = (uchar*)realloc(buf->data, maxSize);
+						// 防止realloc分配失败，或返回的地址一样
+						assert(p);
+						if (p != buf->data) {
+								buf->data = p;
+						}
+						buf->size        = 0;
+						buf->buffer_size = maxSize;
+				} else {
+						buf->size = 0;
+				}
+				memset(buf->data, 0, buf->buffer_size);
+		}
 }
 
 /**
@@ -61,22 +65,26 @@ void membuf_clear(membuf_t* buf, size_t maxSize) {
  * @param extra_size   需要确保的用于保存数据尺寸
  */
 void membuf_reserve(membuf_t* buf, size_t extra_size) {
-    if (extra_size > buf->buffer_size - buf->size) {
-        // calculate new buffer size
-        uint new_buffer_size =
-            buf->buffer_size == 0 ? extra_size : buf->buffer_size << 1;
-        uint new_data_size = buf->size + extra_size;
-        while (new_buffer_size < new_data_size) new_buffer_size <<= 1;
+		if (extra_size > buf->buffer_size - buf->size) {
+				// calculate new buffer size
+				uint new_buffer_size
+				    = buf->buffer_size == 0 ? extra_size : buf->buffer_size << 1;
+				uint new_data_size = buf->size + extra_size;
+				while (new_buffer_size < new_data_size) {
+						new_buffer_size <<= 1;
+				}
 
-        // malloc/realloc new buffer
-        uchar* p =
-            (uchar*)realloc(buf->data, new_buffer_size);  // realloc new buffer
-        // 防止realloc分配失败，或返回的地址一样
-        assert(p);
-        if (p != buf->data) buf->data = p;
-        memset((buf->data + buf->size), 0, new_buffer_size - buf->size);
-        buf->buffer_size = new_buffer_size;
-    }
+				// malloc/realloc new buffer
+				uchar* p
+				    = (uchar*)realloc(buf->data, new_buffer_size); // realloc new buffer
+				// 防止realloc分配失败，或返回的地址一样
+				assert(p);
+				if (p != buf->data) {
+						buf->data = p;
+				}
+				memset((buf->data + buf->size), 0, new_buffer_size - buf->size);
+				buf->buffer_size = new_buffer_size;
+		}
 }
 
 /**
@@ -84,16 +92,18 @@ void membuf_reserve(membuf_t* buf, size_t extra_size) {
  * @param buf  指向缓冲区的指针
  */
 void membuf_trunc(membuf_t* buf) {
-    if (buf->buffer_size > (buf->size + 4) ||
-        buf->buffer_size < (buf->size + 4)) {
-        uchar* p =
-            (uchar*)realloc(buf->data, buf->size + 4);  // realloc new buffer
-        // 防止realloc分配失败，或返回的地址一样
-        assert(p);
-        if (p && p != buf->data) buf->data = p;
-        memset((buf->data + buf->size), 0, 4);
-        buf->buffer_size = buf->size + 4;
-    }
+		if (buf->buffer_size > (buf->size + 4) || buf->buffer_size < (buf->size + 4))
+		{
+				uchar* p
+				    = (uchar*)realloc(buf->data, buf->size + 4); // realloc new buffer
+				// 防止realloc分配失败，或返回的地址一样
+				assert(p);
+				if (p && p != buf->data) {
+						buf->data = p;
+				}
+				memset((buf->data + buf->size), 0, 4);
+				buf->buffer_size = buf->size + 4;
+		}
 }
 
 /**
@@ -103,12 +113,12 @@ void membuf_trunc(membuf_t* buf) {
  * @param size  需要追加的数据的长度
  */
 void membuf_append_data(membuf_t* buf, const void* data, size_t size) {
-    if (data == NULL || size == 0) {
-        return;
-    }
-    membuf_reserve(buf, size);
-    memmove((buf->data + buf->size), data, size);
-    buf->size += size;
+		if (data == NULL || size == 0) {
+				return;
+		}
+		membuf_reserve(buf, size);
+		memmove((buf->data + buf->size), data, size);
+		buf->size += size;
 }
 
 /**
@@ -119,16 +129,16 @@ void membuf_append_data(membuf_t* buf, const void* data, size_t size) {
  * @return 追加的字节数量
  */
 uint membuf_append_format(membuf_t* buf, const char* fmt, ...) {
-    assert(fmt);
-    va_list ap, ap2;
-    va_start(ap, fmt);
-    int size = vsnprintf(0, 0, fmt, ap) + 1;
-    va_end(ap);
-    membuf_reserve(buf, size);
-    va_start(ap2, fmt);
-    vsnprintf((char*)(buf->data + buf->size), size, fmt, ap2);
-    va_end(ap2);
-    return size;
+		assert(fmt);
+		va_list ap, ap2;
+		va_start(ap, fmt);
+		int size = vsnprintf(0, 0, fmt, ap) + 1;
+		va_end(ap);
+		membuf_reserve(buf, size);
+		va_start(ap2, fmt);
+		vsnprintf((char*)(buf->data + buf->size), size, fmt, ap2);
+		va_end(ap2);
+		return size;
 }
 
 /**
@@ -139,9 +149,9 @@ uint membuf_append_format(membuf_t* buf, const char* fmt, ...) {
  * @param size   需要插入的数据的长度
  */
 void membuf_insert(membuf_t* buf, uint offset, void* data, size_t size) {
-    assert(offset < buf->size);
-    membuf_reserve(buf, size);
-    memcpy((buf->data + offset + size), buf->data + offset, buf->size - offset);
+		assert(offset < buf->size);
+		membuf_reserve(buf, size);
+		memcpy((buf->data + offset + size), buf->data + offset, buf->size - offset);
     memcpy((buf->data + offset), data, size);
     buf->size += size;
 }

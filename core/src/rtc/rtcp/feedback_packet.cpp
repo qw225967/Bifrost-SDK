@@ -91,9 +91,9 @@ std::map<FeedbackPs::MessageType, std::string> FeedbackPacket<FeedbackPs>::type_
 				std::shared_ptr<FeedbackPacket<FeedbackPs>> FeedbackPacket<FeedbackPs>::Parse(
 				    const uint8_t* data, size_t len) {
 						if (len < sizeof(CommonHeader) + sizeof(FeedbackPacket::Header)) {
-								SPDLOG_ERROR(
-								    "[feedback packet] not enough space for Feedback packet, "
-								    "discarded");
+								// SPDLOG_ERROR(
+								//   "[feedback packet] not enough space for Feedback packet, "
+								//  "discarded");
 
 								return nullptr;
 						}
@@ -135,11 +135,11 @@ std::map<FeedbackPs::MessageType, std::string> FeedbackPacket<FeedbackPs>::type_
 						case FeedbackPs::MessageType::EXT:
 								break;
 
-						default:
-								SPDLOG_ERROR(
-								    "[feedback packet] unknown RTCP PS Feedback message type "
-								    "[packetType: {}]",
-								    static_cast<uint8_t>(common_header->count));
+						default:{}
+								// SPDLOG_ERROR(
+								//   "[feedback packet] unknown RTCP PS Feedback message type "
+								//   "[packetType: {}]",
+								//  static_cast<uint8_t>(common_header->count));
 						}
 
 						return nullptr;
@@ -174,9 +174,9 @@ std::map<FeedbackRtp::MessageType, std::string> FeedbackPacket<FeedbackRtp>::typ
 				std::shared_ptr<FeedbackPacket<FeedbackRtp>> FeedbackPacket<FeedbackRtp>::Parse(
 				    const uint8_t* data, size_t len) {
 						if (len < sizeof(CommonHeader) + sizeof(Header)) {
-								SPDLOG_ERROR(
-								    "[feedback packet] not enough space for Feedback packet, "
-								    "discarded");
+								// SPDLOG_ERROR(
+								//   "[feedback packet] not enough space for Feedback packet, "
+								//  "discarded");
 
 								return nullptr;
 						}
@@ -219,11 +219,11 @@ std::map<FeedbackRtp::MessageType, std::string> FeedbackPacket<FeedbackRtp>::typ
 								// packet = FeedbackRtpTransportPacket::Parse(data, len);
 								break;
 
-						default:
-								SPDLOG_ERROR(
-								    "[feedback packet] unknown RTCP RTP Feedback message type "
-								    "[packetType: {}]",
-								    static_cast<uint8_t>(common_header->count));
+						default:{}
+								// SPDLOG_ERROR(
+								//  "[feedback packet] unknown RTCP RTP Feedback message type "
+								//  "[packetType: {}]",
+								//  static_cast<uint8_t>(common_header->count));
 						}
 
 						return std::move(packet);

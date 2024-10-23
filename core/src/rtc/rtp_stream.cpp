@@ -26,7 +26,7 @@ namespace RTC {
 		RtpStream::~RtpStream() = default;
 
 		bool RtpStream::ReceiveStreamPacket(RtpPacketPtr& rtp_packet) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				const uint16_t seq = rtp_packet->GetSequenceNumber();
 
@@ -37,14 +37,14 @@ namespace RTC {
 						this->started_       = true;
 						this->max_seq_       = seq - 1;
 						this->max_packet_ts_ = rtp_packet->GetTimestamp();
-						this->max_packet_ms_ = RTCUtils::Time::GetMilliseconds();
+						this->max_packet_ms_ = RTCUtils::Time::GetTimeMs();
 				}
 
 				// If not a valid packet ignore it.
 				if (!UpdateSequence(rtp_packet)) {
-						SPDLOG_WARN("invalid packet [ssrc:%" PRIu32 ", seq:%" PRIu16 "]",
-						            rtp_packet->GetSsrc(),
-						            rtp_packet->GetSequenceNumber());
+						// SPDLOG_WARN("invalid packet [ssrc:{}, seq:{}]",
+						//          rtp_packet->GetSsrc(),
+						//           rtp_packet->GetSequenceNumber());
 
 						return false;
 				}
@@ -54,14 +54,14 @@ namespace RTC {
 				        rtp_packet->GetTimestamp(), this->max_packet_ts_))
 				{
 						this->max_packet_ts_ = rtp_packet->GetTimestamp();
-						this->max_packet_ms_ = RTCUtils::Time::GetMilliseconds();
+						this->max_packet_ms_ = RTCUtils::Time::GetTimeMs();
 				}
 
 				return true;
 		}
 
 		bool RtpStream::UpdateSequence(RtpPacketPtr& rtp_packet) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				const uint16_t seq    = rtp_packet->GetSequenceNumber();
 				const uint16_t udelta = seq - this->max_seq_;
@@ -89,23 +89,25 @@ namespace RTC {
 								// Two sequential packets. Assume that the other side restarted
 								// without telling us so just re-sync (i.e., pretend this was
 								// the first packet).
-								SPDLOG_WARN("too bad sequence number, re-syncing RTP [ssrc:%" PRIu32
-								            ", seq:%" PRIu16 "]",
-								            rtp_packet->GetSsrc(),
-								            rtp_packet->GetSequenceNumber());
+								// SPDLOG_WARN(
+								//   "too bad sequence number, re-syncing RTP"
+								//  " [ssrc:{}, seq:{}]",
+								//  rtp_packet->GetSsrc(),
+								//  rtp_packet->GetSequenceNumber());
 
 								InitSequence(seq);
 
 								this->max_packet_ts_ = rtp_packet->GetTimestamp();
-								this->max_packet_ms_ = RTCUtils::Time::GetMilliseconds();
+								this->max_packet_ms_ = RTCUtils::Time::GetTimeMs();
 
 								// 用于子类重置传输序号
 								// UserOnSequenceNumberReset();
 						} else {
-								SPDLOG_WARN("bad sequence number, ignoring packet [ssrc:%" PRIu32
-								            ", seq:%" PRIu16 "]",
-								            rtp_packet->GetSsrc(),
-								            rtp_packet->GetSequenceNumber());
+								// SPDLOG_WARN(
+								//   "bad sequence number, ignoring packet "
+								//  "[ssrc:{}, seq:{}]",
+								//  rtp_packet->GetSsrc(),
+								//  rtp_packet->GetSequenceNumber());
 
 								this->bad_seq_ = (seq + 1) & (kRtpSeqMod - 1);
 
@@ -125,7 +127,7 @@ namespace RTC {
 		}
 
 		inline void RtpStream::InitSequence(uint16_t seq) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				// Initialize/reset RTP counters.
 				this->base_seq_ = seq;

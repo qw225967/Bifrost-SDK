@@ -29,6 +29,9 @@ namespace RTC {
 						virtual void OnRtpStreamSendRtcpPacket(RtpStreamReceiver* rtp_stream,
 						                                       RTCP::RtcpPacketPtr rtcp_packet)
 						    = 0;
+						virtual void OnRtpStreamReceiveRtpPacket(RtpStreamReceiver* rtp_stream,
+						                                       RtpPacketPtr rtp_packet)
+						    = 0;
 				};
 
 		public:
@@ -47,7 +50,7 @@ namespace RTC {
 		public:
 				RtpStreamReceiver(Listener* listener, Params& params,
 				                  const std::shared_ptr<CoreIO::NetworkThread>& thread,
-				                  unsigned int send_nack_delay_ms);
+				                  unsigned int send_nack_delay_ms, bool dynamic_addr);
 				~RtpStreamReceiver() override;
 
 				// TimerHandle::Listener
@@ -64,11 +67,33 @@ namespace RTC {
 		public:
 				bool ReceivePacket(RtpPacketPtr& packet);
 				void ReceiveRtcpSenderReport(
-				    const std::shared_ptr<RTCP::SenderReport>& report) {
+				    const std::shared_ptr<RTCP::SenderReport>& report);
+				std::shared_ptr<RTCP::ReceiverReport> GetRtcpReceiverReport();
+
+		private:
+				[[nodiscard]] uint32_t GetExpectedPackets() const {
+						return (this->cycles_ + this->max_seq_) - this->base_seq_ + 1;
 				}
 
 		private:
 				std::unique_ptr<RTC::NackGenerator> nack_generator_;
+
+				// 网络抖动
+				float jitter_{ 0 };
+				// 周期预期接包计算
+				uint32_t expected_prior_{ 0u };
+				// 周期实际接包计算
+				uint32_t received_prior_{ 0u };
+				// 上报丢包数
+				uint32_t reported_packet_lost_{ 0u };
+				// 最新接到sr的本机定时器的时间戳
+				uint64_t last_sr_received_{ 0u };
+				// 最新接收sr中记录的时间戳
+				uint32_t last_sr_timestamp_{ 0u };
+				// 传输计算
+				RtpDataCounter media_transmission_counter_;
+
+			  bool is_dynamic_addr_{ false };
 		};
 		typedef std::shared_ptr<RtpStreamReceiver> RtpStreamReceiverPtr;
 } // namespace RTC

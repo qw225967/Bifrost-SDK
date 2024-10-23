@@ -167,6 +167,15 @@ namespace RTC {
 						void AddReport(std::shared_ptr<SenderReport> report) {
 								this->reports_.push_back(report);
 						}
+
+						void RemoveReport(std::shared_ptr<SenderReport> report) {
+								auto it = std::find(
+								    this->reports_.begin(), this->reports_.end(), report);
+
+								if (it != this->reports_.end()) {
+										this->reports_.erase(it);
+								}
+						}
 						Iterator Begin() {
 								return this->reports_.begin();
 						}
@@ -180,7 +189,7 @@ namespace RTC {
 						}
 						size_t Serialize(uint8_t* buffer) override;
 						size_t GetCount() const override {
-								return 0;
+								return this->reports_.size();
 						}
 						size_t GetSize() const override {
 								size_t size = sizeof(CommonHeader);

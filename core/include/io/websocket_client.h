@@ -7,157 +7,189 @@
  * @description : TODO
  *******************************************************/
 
-#ifndef WEB_SOCKET_H
-#define WEB_SOCKET_H
-
-#include <stdint.h>
-
-#include <atomic>
-#include <functional>
-#include <memory>
-#include <set>
-#include <string>
+#ifndef WEBSOCKET_CLIENT_H
+#define WEBSOCKET_CLIENT_H
 
 #include "io/network_thread.h"
 #include "io/packet_dispatcher_interface.h"
 #include "io/socket_interface.h"
-#include "uv.h"
-#include "ws_common.h"
-#include "ws_util.h"
+#include "net/http/websocket/websocket_client.hpp"
+#include "net/http/websocket/websocket_pub.hpp"
 #include "utils/copy_on_write_buffer.h"
+#include "utils/cpp11_adaptor.h"
+#include "utils/utils.h"
+#include <spdlog/spdlog.h>
+
+#include <atomic>
+#include <future>
+#include <memory>
 
 namespace CoreIO {
-		/**
-		 * @brief  客户端的状态
-		 */
-		typedef enum WebsocketClientStatus {
-				HANDSHAKING, /// 握手中
-				WORKING,     /// 工作中
-		} WebsocketClientStatus;
 
-		class WebsocketClient : public SocketInterface {
+		using namespace cpp_streamer;
+
+		class WebsocketClient : public WebSocketConnectionCallBackI,
+		                        public TimerInterface,
+		                        public SocketInterface {
 		public:
-				class Listener {
-				public:
-						virtual void OnConnect(Protocol protocol) = 0;
+				WebsocketClient(std::shared_ptr<NetworkThread> networkThread)
+				    : TimerInterface(networkThread->GetLoop(), 0),
+				      network_thread_(networkThread) {
+						this->mem_buf_.membuf_init(128);
+				}
 
-						virtual void OnClose(Protocol protocol) = 0;
-				};
+				~WebsocketClient() {
+						this->mem_buf_.membuf_uninit();
+				}
 
-				struct UvWriteData {
-						explicit UvWriteData(size_t store_size) {
-								store = new uint8_t[store_size];
+				bool Init(const std::string& ip, uint16_t port,
+				          const std::string& subpath, bool ssl_enable) {
+						if (!closed_.load()) {
+								return false;
 						}
 
-						UvWriteData(const UvWriteData&) = delete;
+						std::cout << "------------- WebsocketClient::Init() 111" << std::endl;
+						ws_client_ = Cpp11Adaptor::make_unique<WebSocketClient>(
+						    network_thread_->GetLoop(), ip, port, subpath, ssl_enable, this);
+						std::cout << "------------- WebsocketClient::Init() 222" << std::endl;
 
-						~UvWriteData() {
-								delete[] store;
+						closed_.store(false);
+						return true;
+				}
+
+				// bool Connect(uint32_t timeout_ms = 300){
+				//     if(closed_.load()|| is_connected_.load() || !ws_client_){
+				//         return false;
+				//     }
+
+				//     ws_client_->AsyncConnect();
+
+				//     SetTimeout(timeout_ms);
+				//     StartTimer();
+
+				//     return true;
+				// }
+
+				std::future<bool> ConnectInvoke(uint32_t timeout_ms = 300) {
+						return network_thread_
+						    ->Post<std::future<bool>>([this,
+						                               timeout_ms]() -> std::future<bool> {
+								    SetTimeout(timeout_ms);
+								    StartTimer();
+
+								    if (!closed_.load() && !is_connected_.load() && ws_client_) {
+										    try {
+												    ws_client_->AsyncConnect();
+										    } catch (std::exception& e) {
+												    SPDLOG_INFO("--------------------: ", e.what());
+										    }
+								    }
+
+								    return connect_promise_.get_future();
+						    })
+						    .get();
+				}
+
+				void SendText(const std::string& text) {
+						if (!ws_client_ || !is_connected_.load()) {
+								return;
+						}
+						std::cout << "SendText" << std::endl;
+						ws_client_->AsyncWriteText(text);
+				}
+
+				void SendTextInvoke(const std::string& text) {
+						network_thread_->Post<void>([this, text] { SendText(text); });
+				}
+
+				void SendData(RTCUtils::CopyOnWriteBuffer data) {
+						if (!ws_client_ || !is_connected_.load()) {
+								return;
 						}
 
-						uv_write_t req;
-						uint8_t* store{ nullptr };
-				};
+						ws_client_->AsyncWriteData(data.data(), data.size());
+				}
+
+				void SendDataInvoke(RTCUtils::CopyOnWriteBuffer data) {
+						network_thread_->Post<void>([this, data] { SendData(data); });
+				}
 
 		public:
-				WebsocketClient(std::shared_ptr<NetworkThread> network_thread,
-				                const std::string& ip,
-				                uint16_t port);
-
-				~WebsocketClient();
-
-				WebsocketClient(const WebsocketClient&) = delete;
-
-				WebsocketClient& operator=(const WebsocketClient&) = delete;
-
-				void AddListener(WebsocketClient::Listener* listener);
-
-				void RemoveListener(WebsocketClient::Listener* listener);
-
-				bool GetConnected() {
-						return connected_.load();
+				void OnTimer() override {
+						SPDLOG_WARN("websocket connect timeout");
+						StopTimer();
+						if (!is_connected_.load()) {
+								connect_promise_.set_value(false);
+						}
+				}
+				void OnConnection() override {
+						SPDLOG_INFO("websocket is connected ...");
+						is_connected_.store(true);
+						StopTimer();
+						connect_future_ready_ = true;
+						connect_promise_.set_value(true);
 				}
 
-				std::string GetClientKey() {
-						return client_key_;
+				void OnClose(int code, const std::string& desc) override {
+						is_connected_.store(false);
+						StopTimer();
+						if (!connect_future_ready_) {
+								connect_promise_.set_value(false);
+								connect_future_ready_ = true;
+						}
+
+						SPDLOG_INFO("websocket is closed, code:{}, desc:{}, ----- {}", code,
+						            desc, uv_strerror(code));
 				}
 
-				void SetClientKey(const std::string& client_key) {
-						client_key_ = client_key;
+				void OnReadText(int code, const std::string& text) override {
+						if (code < 0) {
+								is_connected_.store(false);
+								SPDLOG_ERROR("websocket read text error: {}", code);
+								return;
+						}
+
+						SPDLOG_INFO("OnReadText: {}", text);
 				}
 
-				std::string GetUri() {
-						return uri_;
+				void OnReadData(int code, const uint8_t* data, size_t len) override {
+						if (code < 0) {
+								is_connected_.store(false);
+								SPDLOG_ERROR("websocket read data error: {}", code);
+								return;
+						}
+
+						this->mem_buf_.membuf_append_data(data, len);
+						if (len >= 4096) {
+						} else {
+								std::lock_guard<std::mutex> lock(dispatchers_mutex_);
+								for (auto& dispatcher : dispatchers_) {
+										dispatcher->Dispatch(this->mem_buf_.GetData(),
+										                     this->mem_buf_.GetLen(), this,
+										                     Protocol::WEBSOCKET);
+								}
+								this->mem_buf_.membuf_clear(0);
+						}
 				}
 
-				uint16_t GetPort() {
-						return port_;
+				void Close() {
+						closed_.store(true);
+						is_connected_.store(false);
 				}
-
-				std::string GetIp() {
-						return ip_;
-				}
-
-				WebsocketClientStatus GetWebsocketClientStatus() {
-						return status_;
-				}
-
-				void SetWebsocketClientStatus(WebsocketClientStatus status) {
-						status_ = status;
-				}
-
-				bool Init();
-
-				bool InitInvoke();
-
-				void Close();
-
-				void CloseInvoke();
-
-				void Send(RTCUtils::CopyOnWriteBuffer data1,
-				          RTCUtils::CopyOnWriteBuffer data2
-				          = RTCUtils::CopyOnWriteBuffer());
-
-				void SendInvoke(RTCUtils::CopyOnWriteBuffer data1,
-				                RTCUtils::CopyOnWriteBuffer data2
-				                = RTCUtils::CopyOnWriteBuffer());
-
-				void OnUvAlloc(size_t suggested_size, uv_buf_t* buf);
-
-				void OnUvConnect();
-
-				void OnUvError();
-
-				void OnUvRead(websocket_handle* handle,
-				              uv_stream_t* uv_stream,
-				              void* buffer,
-				              size_t buffer_len,
-				              uchar type);
-
-				void OnUvWrite(int status);
 
 		private:
-				std::shared_ptr<NetworkThread> network_thread_{ nullptr };
+				std::atomic<bool> is_connected_{ false };
+				std::atomic<bool> closed_{ true };
+				std::unique_ptr<WebSocketClient> ws_client_;
+				std::shared_ptr<NetworkThread> network_thread_;
+				std::promise<bool> connect_promise_;
+				std::future<bool> connect_future_;
+				bool connect_future_ready_{ false };
 
-				std::string ip_;
-				uint16_t port_;
-				std::string uri_;
-				std::string client_key_; /// 客户端的key
-
-				uv_tcp_t* uv_handle_{ nullptr };
-
-				uint8_t* read_buffer_{ nullptr };
-				size_t buffer_data_len_{ 0u };
-				uv_connect_t connect_req_;
-				struct sockaddr_storage remote_addr_;
-				bool has_error_{ false };
-				std::mutex listeners_mutex_;
-				std::set<Listener*> listeners_;
-				std::atomic<bool> connected_{ false };
-
-				WebsocketClientStatus status_; // 客户端状态
+				// RTP buf
+				RTCUtils::MemBuffer mem_buf_;
 		};
 
 } // namespace CoreIO
 
-#endif //WEB_SOCKET_H
+#endif

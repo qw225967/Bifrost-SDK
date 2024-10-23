@@ -11,27 +11,36 @@
 #define RTC_TRANSPORT_H
 
 #include "io/packet_dispatcher_interface.h"
-#include "rtp_stream_receiver.h"
-#include "rtp_stream_sender.h"
-#include "rtc/rtp_stream.h"
+#include "io/tcp_buffer.h"
+#include "rtc/rtp_stream_receiver.h"
+#include "rtc/rtp_stream_sender.h"
+#include "utils/time_handler.h"
+#include "utils/copy_on_write_buffer.h"
 
 namespace RTC {
 		class RtcTransport : public CoreIO::PacketDispatcherInterface,
 		                     public RtpStreamReceiver::Listener,
-		                     public RtpStreamSender::Listener {
+		                     public RtpStreamSender::Listener,
+		                     public RTCUtils::TimerHandle::Listener {
 		public:
 				enum class StreamType { StreamSender, StreamReceiver };
 
 				class Listener {
 				public:
 						virtual ~Listener() = default;
-						virtual void OnPacketReceived(uint8_t* data, uint32_t len) = 0;
+						virtual void OnPacketReceived(uint16_t seq,
+						                              RTCUtils::CopyOnWriteBuffer buffer)
+						    = 0;
 
-						virtual void OnPacketSent(uint8_t* data, uint32_t len) = 0;
+						virtual void OnPacketSent(uint8_t* data,
+						                          uint32_t len,
+						                          struct sockaddr_storage addr)
+						    = 0;
 				};
 
 		public:
-				explicit RtcTransport(Listener* listener, const std::shared_ptr<CoreIO::NetworkThread>& thread);
+				explicit RtcTransport(Listener* listener,
+				                      const std::shared_ptr<CoreIO::NetworkThread>& thread);
 				~RtcTransport() override;
 
 		public:
@@ -46,10 +55,21 @@ namespace RTC {
 				// RtpStreamSender
 				void OnRtpStreamRetransmitRtpPacket(RtpStreamSender* rtpStream,
 				                                    RtpPacketPtr rtp_packet) override {
+						this->listener_->OnPacketSent(
+						    const_cast<uint8_t*>(rtp_packet->GetData()),
+						    rtp_packet->GetSize(), rtpStream->GetUdpRemoteTargetAddr());
 				}
 				// RtpStreamReceiver
 				void OnRtpStreamSendRtcpPacket(RtpStreamReceiver* rtp_stream,
 				                               RTCP::RtcpPacketPtr rtcp_packet) override {
+				}
+
+				void OnRtpStreamReceiveRtpPacket(RtpStreamReceiver* rtp_stream,
+				                                 RtpPacketPtr rtp_packet) override {
+						this->listener_->OnPacketReceived(
+						    rtp_packet->GetSequenceNumber(),
+						    RTCUtils::CopyOnWriteBuffer(rtp_packet->GetPayload(),
+						                                rtp_packet->GetPayloadLength()));
 				}
 
 				// RtpStream
@@ -58,20 +78,28 @@ namespace RTC {
 				                      uint8_t previous_score) override {
 				}
 
+				// TimeHandler
+
+				void OnTimer(RTCUtils::TimerHandle* timer) override;
+
 		public:
 				// 创建流
-				void CreateRtpStream(uint32_t ssrc, StreamType stream_type);
+				void CreateRtpStream(uint32_t ssrc, StreamType stream_type,
+				                     std::string target_ip, int port, bool dynamic_addr);
 				// 删除流
 				void DeleteRtpStream(uint32_t ssrc);
 
-				// 发送数据
-				void OnsSendPacket(uint32_t ssrc, uint8_t* data, uint32_t len);
+				// 发送媒体数据
+				void OnSendPacket(uint32_t ssrc, uint8_t* data, uint32_t len);
 
 		private:
 				RtpStreamSenderPtr GetStreamSenderBySsrc(uint32_t ssrc);
 				RtpStreamReceiverPtr GetStreamReceiverBySsrc(uint32_t ssrc);
-				void ReceiveRtcpPacket(RTCP::RtcpPacketPtr& rtcp_packet);
-				void ReceiveRtpPacket(RtpPacketPtr& rtp_packet);
+				void ReceiveRtcpPacket(RTCP::RtcpPacketPtr& rtcp_packet,
+				                       const struct sockaddr* addr);
+				void ReceiveRtpPacket(RtpPacketPtr& rtp_packet,
+				                      const struct sockaddr* addr);
+				void SendRtcpPacket();
 
 		private:
 				// 记录网络线程对象
@@ -82,9 +110,14 @@ namespace RTC {
 				std::unordered_map<uint32_t, RtpStreamSenderPtr> rtp_send_streams_;
 				std::unordered_map<uint32_t, RtpStreamReceiverPtr> rtp_receive_streams_;
 
-				Listener* listener_{nullptr};
-				uint16_t test_seq_{0u};
+				// rtcp 发送定时器
+				RTCUtils::TimerHandle* rtcp_send_timer_;
+
+				Listener* listener_{ nullptr };
+				uint16_t test_seq_{ 0u };
 				uint32_t timestamp_{ 2000u };
+
+				CoreIO::Buffer tcp_buffer_;
 		};
 } // namespace RTC
 

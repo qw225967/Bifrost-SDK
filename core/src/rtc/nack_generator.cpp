@@ -30,21 +30,22 @@ namespace RTC {
 		                             unsigned int send_nack_delay_ms)
 		    : listener_(listener), send_nack_delay_ms_(send_nack_delay_ms),
 		      timer_(new RTCUtils::TimerHandle(this, thread)), rtt_(kDefaultRtt) {
-				this->timer_->Init();
-				SPDLOG_TRACE();
+				 this->timer_->InitInvoke();
+				// SPDLOG_TRACE();
 		}
 
 		NackGenerator::~NackGenerator() {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				// Close the timer.
+				this->timer_->CloseInvoke();
 				delete this->timer_;
 		}
 
 		// Returns true if this is a found nacked packet. False otherwise.
 		bool NackGenerator::ReceivePacket(const RtpPacketPtr& rtp_packet,
 		                                  const bool is_recovered) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				const uint16_t seq      = rtp_packet->GetSequenceNumber();
 				const bool is_key_frame = true;
@@ -72,11 +73,11 @@ namespace RTC {
 
 						// It was a nacked packet.
 						if (it != this->nack_list_.end()) {
-								SPDLOG_DEBUG("NACKed packet received [ssrc:%" PRIu32
-								             ", seq:%" PRIu16 ", recovered:%s]",
-								             packet->GetSsrc(),
-								             packet->GetSequenceNumber(),
-								             is_recovered ? "true" : "false");
+								// SPDLOG_DEBUG("NACKed packet received [ssrc:%" PRIu32
+								//             ", seq:%" PRIu16 ", recovered:%s]",
+								//             packet->GetSsrc(),
+								//             packet->GetSequenceNumber(),
+								//             is_recovered ? "true" : "false");
 
 								auto retries = it->second.retries_;
 
@@ -87,11 +88,11 @@ namespace RTC {
 
 						// Out of order packet or already handled NACKed packet.
 						if (!is_recovered) {
-								SPDLOG_DEBUG(
-								    "ignoring older packet not present in the NACK list "
-								    "[ssrc:%" PRIu32 ", seq:%" PRIu16 "]",
-								    packet->GetSsrc(),
-								    packet->GetSequenceNumber());
+								// SPDLOG_DEBUG(
+								//    "ignoring older packet not present in the NACK list "
+								//    "[ssrc:%" PRIu32 ", seq:%" PRIu16 "]",
+								//    packet->GetSsrc(),
+								//    packet->GetSequenceNumber());
 						}
 
 						return false;
@@ -141,16 +142,16 @@ namespace RTC {
 
 				// This is important. Otherwise the running timer (filter:TIME) would be
 				// interrupted and NACKs would never been sent more than once for each seq.
-				if (!this->timer_->IsActive()) {
-						MayRunTimer();
-				}
+				// if (!this->timer_->IsActiveInvoke()) {
+				// 		MayRunTimer();
+				// }
 
 				return false;
 		}
 
 		void NackGenerator::AddPacketsToNackList(uint16_t seq_start,
 		                                         uint16_t seq_end) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				// Remove old packets.
 				auto it = this->nack_list_.lower_bound(seq_end - kMaxPacketAge);
@@ -176,10 +177,10 @@ namespace RTC {
 						if (static_cast<uint16_t>(this->nack_list_.size()) + num_new_nacks
 						    > kMaxNackPackets)
 						{
-								SPDLOG_WARN(
-								    "NACK list full, clearing it and requesting a key frame"
-								    " [seqEnd:%" PRIu16 "]",
-								    seq_end);
+								// SPDLOG_WARN(
+								//    "NACK list full, clearing it and requesting a key frame"
+								//    " [seqEnd:%" PRIu16 "]",
+								//    seq_end);
 
 								this->nack_list_.clear();
 								this->listener_->OnNackGeneratorKeyFrameRequired();
@@ -197,7 +198,7 @@ namespace RTC {
 						this->nack_list_.emplace(
 						    std::make_pair(seq,
 						                   NackInfo{
-						                       RTCUtils::Time::GetMilliseconds(),
+						                       RTCUtils::Time::GetTimeMs(),
 						                       seq,
 						                       seq,
 						                   }));
@@ -205,7 +206,7 @@ namespace RTC {
 		}
 
 		bool NackGenerator::RemoveNackItemsUntilKeyFrame() {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				while (!this->key_frame_list_.empty()) {
 						auto it
@@ -229,9 +230,9 @@ namespace RTC {
 		}
 
 		std::vector<uint16_t> NackGenerator::GetNackBatch(NackFilter filter) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
-				const uint64_t now_ms = RTCUtils::Time::GetMilliseconds();
+				const uint64_t now_ms = RTCUtils::Time::GetTimeMs();
 				std::vector<uint16_t> nackBatch;
 
 				auto it = this->nack_list_.begin();
@@ -263,10 +264,10 @@ namespace RTC {
 								nack_info.sent_at_ms_ = now_ms;
 
 								if (nack_info.retries_ >= kMaxNackRetries) {
-										SPDLOG_WARN(
-										    "sequence number removed from the NACK list due to max retries "
-										    "[filter:seq, seq:%" PRIu16 "]",
-										    seq);
+										// SPDLOG_WARN(
+										//   "sequence number removed from the NACK list due to max retries "
+										//   "[filter:seq, seq:%" PRIu16 "]",
+										//  seq);
 
 										it = this->nack_list_.erase(it);
 								} else {
@@ -286,10 +287,10 @@ namespace RTC {
 								nack_info.sent_at_ms_ = now_ms;
 
 								if (nack_info.retries_ >= kMaxNackRetries) {
-										SPDLOG_WARN(
-										    "sequence number removed from the NACK list due to max retries "
-										    "[filter:time, seq:%" PRIu16 "]",
-										    seq);
+										// SPDLOG_WARN(
+										//    "sequence number removed from the NACK list due to max retries "
+										//  "[filter:time, seq:%" PRIu16 "]",
+										//  seq);
 
 										it = this->nack_list_.erase(it);
 								} else {
@@ -324,7 +325,7 @@ namespace RTC {
 		}
 
 		void NackGenerator::Reset() {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				this->nack_list_.clear();
 				this->key_frame_list_.clear();
@@ -335,14 +336,14 @@ namespace RTC {
 
 		inline void NackGenerator::MayRunTimer() const {
 				if (this->nack_list_.empty()) {
-						this->timer_->Stop();
+						this->timer_->StopInvoke();
 				} else {
-						this->timer_->Start(kTimerInterval);
+						this->timer_->StartInvoke(kTimerInterval);
 				}
 		}
 
 		inline void NackGenerator::OnTimer(RTCUtils::TimerHandle* /*timer*/) {
-				SPDLOG_TRACE();
+				// SPDLOG_TRACE();
 
 				const std::vector<uint16_t> nack_batch = GetNackBatch(NackFilter::TIME);
 
@@ -350,6 +351,6 @@ namespace RTC {
 						this->listener_->OnNackGeneratorNackRequired(nack_batch);
 				}
 
-				MayRunTimer();
+				// MayRunTimer();
 		}
 } // namespace RTC
