@@ -20,10 +20,7 @@ add_subdirectory( deps/spdlog )
 #add_subdirectory( deps/websocket )
 
 # 添加可执行文件
-add_executable(demo_test main.cpp
-        api/rtc_interface.h
-        api/rtc_factory.h
-        api/rtc_factory.cpp)
+add_executable(demo_test main.cpp)
 
 add_definitions(-D MS_LITTLE_ENDIAN)
 add_definitions(-D SPDLOG_COMPILED_LIB)

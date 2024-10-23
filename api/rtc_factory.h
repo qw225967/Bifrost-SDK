@@ -25,7 +25,6 @@ namespace RTCApi {
 
 		public:
 				// RtcInterface
-
 				bool CreateRtpSenderStream(uint32_t ssrc) override;
 
 				bool DeleteRtpSenderStream(uint32_t ssrc) override;
