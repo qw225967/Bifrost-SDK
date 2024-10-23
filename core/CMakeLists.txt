@@ -6,8 +6,8 @@ add_library(CoreLib STATIC
         src/io/udp_socket.cpp
         src/io/socket_interface.cpp
         src/io/packet_dispatcher_interface.cpp
-        src/io/websocket_client.cpp
-        src/io/websocket_server.cpp
+#        src/io/websocket_client.cpp
+#        src/io/websocket_server.cpp
 
         # rtc
         src/rtc/rtc_transport.cpp
@@ -36,7 +36,7 @@ add_library(CoreLib STATIC
 
         # 添加头文件
         #io
-        include/io/websocket_server.h
+#        include/io/websocket_server.h
         include/rtc/rtcp/rtcp_packet.h
         include/rtc/rtc_common.h
 

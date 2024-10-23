@@ -9,7 +9,7 @@ include_directories(
         core/include
         deps/spdlog/include
         deps/libuv/include
-        deps/websocket/include
+#        deps/websocket/include
 )
 
 # 包含core子目录
@@ -17,7 +17,7 @@ add_subdirectory( core )
 add_subdirectory( api )
 add_subdirectory( deps/libuv )
 add_subdirectory( deps/spdlog )
-add_subdirectory( deps/websocket )
+#add_subdirectory( deps/websocket )
 
 # 添加可执行文件
 add_executable(demo_test main.cpp
@@ -41,5 +41,5 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         ${PROJECT_SOURCE_DIR}/core/include
         ${PROJECT_SOURCE_DIR}/deps/libuv/include
         ${PROJECT_SOURCE_DIR}/deps/spdlog/include
-        ${PROJECT_SOURCE_DIR}/deps/websocket/include
+#        ${PROJECT_SOURCE_DIR}/deps/websocket/include
 )
