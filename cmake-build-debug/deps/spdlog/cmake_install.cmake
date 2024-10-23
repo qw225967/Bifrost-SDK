@@ -1,4 +1,4 @@
-# Install script for directory: /Users/frankie/CLionProjects/demo-test/deps/spdlog
+# Install script for directory: /Users/frankie/code/github/Bifrost-SDK/deps/spdlog
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

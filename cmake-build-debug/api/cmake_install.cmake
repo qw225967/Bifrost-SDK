@@ -1,4 +1,4 @@
-# Install script for directory: /Users/frankie/CLionProjects/demo-test/api
+# Install script for directory: /Users/frankie/code/github/Bifrost-SDK/api
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

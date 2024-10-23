@@ -1,4 +1,4 @@
-# Install script for directory: /Users/frankie/CLionProjects/demo-test/deps/websocket
+# Install script for directory: /Users/frankie/code/github/Bifrost-SDK/deps/websocket
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

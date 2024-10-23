@@ -164,7 +164,7 @@ rule CXX_STATIC_LIBRARY_LINKER__WebsocketLib_Debug
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake --regenerate-during-build -S/Users/frankie/CLionProjects/demo-test -B/Users/frankie/CLionProjects/demo-test/cmake-build-debug
+  command = /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake --regenerate-during-build -S/Users/frankie/code/github/Bifrost-SDK -B/Users/frankie/code/github/Bifrost-SDK/cmake-build-debug
   description = Re-running CMake...
   generator = 1
 

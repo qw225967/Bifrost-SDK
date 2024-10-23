@@ -1,4 +1,4 @@
-# Install script for directory: /Users/frankie/CLionProjects/demo-test
+# Install script for directory: /Users/frankie/code/github/Bifrost-SDK
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,27 +39,27 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/frankie/CLionProjects/demo-test/cmake-build-debug/core/cmake_install.cmake")
+  include("/Users/frankie/code/github/Bifrost-SDK/cmake-build-debug/core/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/frankie/CLionProjects/demo-test/cmake-build-debug/api/cmake_install.cmake")
+  include("/Users/frankie/code/github/Bifrost-SDK/cmake-build-debug/api/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/frankie/CLionProjects/demo-test/cmake-build-debug/deps/libuv/cmake_install.cmake")
+  include("/Users/frankie/code/github/Bifrost-SDK/cmake-build-debug/deps/libuv/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/frankie/CLionProjects/demo-test/cmake-build-debug/deps/spdlog/cmake_install.cmake")
+  include("/Users/frankie/code/github/Bifrost-SDK/cmake-build-debug/deps/spdlog/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/frankie/CLionProjects/demo-test/cmake-build-debug/deps/websocket/cmake_install.cmake")
+  include("/Users/frankie/code/github/Bifrost-SDK/cmake-build-debug/deps/websocket/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -70,5 +70,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/frankie/CLionProjects/demo-test/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/frankie/code/github/Bifrost-SDK/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
