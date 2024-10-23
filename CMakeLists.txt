@@ -33,7 +33,7 @@ add_definitions(-D WEBRTC_POSIX)
 add_definitions("-g")
 
 # 链接core库和第三方库到可执行文件
-target_link_libraries(${PROJECT_NAME} ApiLib CoreLib uv spdlog WebsocketLib)
+target_link_libraries(${PROJECT_NAME} ApiLib CoreLib uv spdlog)
 
 # 包含core的头文件目录和第三方库的头文件目录
 target_include_directories(${PROJECT_NAME} PRIVATE

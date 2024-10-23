@@ -10,7 +10,13 @@
 #include "rtc_factory.h"
 
 namespace RTCApi {
-		RtcFactory::RtcFactory(DataCallBackObserver* listener) : listener_(listener) {
+		std::unique_ptr<RtcInterface> RtcFactory::CreateRtc(
+		    RtcInterface::DataCallBackObserver* listener) {
+				return std::make_unique<RtcFactory>(listener);
+		}
+
+		RtcFactory::RtcFactory(DataCallBackObserver* listener)
+		    : listener_(listener) {
 				this->network_thread_ = std::make_shared<CoreIO::NetworkThread>();
 				network_thread_->Start();
 

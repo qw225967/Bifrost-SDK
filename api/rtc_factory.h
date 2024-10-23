@@ -21,9 +21,7 @@ namespace RTCApi {
 		                         public RTC::RtcTransport::Listener {
 		public:
 				static std::unique_ptr<RtcInterface> CreateRtc(
-				    RtcInterface::DataCallBackObserver* listener) {
-						return std::make_unique<RtcFactory>(listener);
-				}
+				    RtcInterface::DataCallBackObserver* listener);
 
 		public:
 				// RtcInterface
