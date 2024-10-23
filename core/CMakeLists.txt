@@ -68,6 +68,7 @@ add_library(CoreLib STATIC
         include/utils/ref_counter.h
         include/utils/scoped_refptr.h
         include/utils/type_traits.h
+        include/utils/uv_time_adapter.h
 )
 
 # 设置库的属性

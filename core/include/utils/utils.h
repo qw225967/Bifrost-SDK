@@ -138,11 +138,24 @@ namespace RTCUtils {
 
 		class Time {
 		public:
-				static uint64_t GetMilliseconds() {
-						std::chrono::time_point<std::chrono::system_clock> nowMs
-						    = std::chrono::system_clock::now();
-
-						return nowMs.time_since_epoch().count();
+				static uint64_t GetTimeMs() {
+						return static_cast<uint64_t>(uv_hrtime() / 1000000u);
+				}
+				static uint64_t GetTimeUs() {
+						return static_cast<uint64_t>(uv_hrtime() / 1000u);
+				}
+				static uint64_t GetTimeNs() {
+						return uv_hrtime();
+				}
+				// Used within libwebrtc dependency which uses int64_t values for time
+				// representation.
+				static int64_t GetTimeMsInt64() {
+						return static_cast<int64_t>(Time::GetTimeMs());
+				}
+				// Used within libwebrtc dependency which uses int64_t values for time
+				// representation.
+				static int64_t GetTimeUsInt64() {
+						return static_cast<int64_t>(Time::GetTimeUs());
 				}
 		};
 

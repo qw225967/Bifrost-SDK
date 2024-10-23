@@ -56,8 +56,6 @@ build CMakeFiles/demo_test.dir/main.cpp.o: CXX_COMPILER__demo_test_unscanned_Deb
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/api
   OBJECT_DIR = CMakeFiles/demo_test.dir
   OBJECT_FILE_DIR = CMakeFiles/demo_test.dir
-  TARGET_COMPILE_PDB = CMakeFiles/demo_test.dir/
-  TARGET_PDB = demo_test.pdb
 
 build CMakeFiles/demo_test.dir/api/rtc_factory.cpp.o: CXX_COMPILER__demo_test_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/api/rtc_factory.cpp || cmake_object_order_depends_target_demo_test
   DEFINES = -DAPILIB_DEFINE -DCORELIB_DEFINE -DSPDLOG_COMPILED_LIB -DUSING_UV_SHARED=1 -DWEBSOCKETLIB_DEFINE
@@ -66,8 +64,6 @@ build CMakeFiles/demo_test.dir/api/rtc_factory.cpp.o: CXX_COMPILER__demo_test_un
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/api
   OBJECT_DIR = CMakeFiles/demo_test.dir
   OBJECT_FILE_DIR = CMakeFiles/demo_test.dir/api
-  TARGET_COMPILE_PDB = CMakeFiles/demo_test.dir/
-  TARGET_PDB = demo_test.pdb
 
 
 # =============================================================================
@@ -83,9 +79,8 @@ build demo_test: CXX_EXECUTABLE_LINKER__demo_test_Debug CMakeFiles/demo_test.dir
   OBJECT_DIR = CMakeFiles/demo_test.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = CMakeFiles/demo_test.dir/
   TARGET_FILE = demo_test
-  TARGET_PDB = demo_test.pdb
+  TARGET_PDB = demo_test.dbg
 
 
 #############################################
@@ -173,8 +168,6 @@ build core/CMakeFiles/CoreLib.dir/src/io/network_thread.cpp.o: CXX_COMPILER__Cor
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/io
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/io/udp_socket.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/io/udp_socket.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -183,8 +176,6 @@ build core/CMakeFiles/CoreLib.dir/src/io/udp_socket.cpp.o: CXX_COMPILER__CoreLib
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/io
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/io/socket_interface.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/io/socket_interface.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -193,8 +184,6 @@ build core/CMakeFiles/CoreLib.dir/src/io/socket_interface.cpp.o: CXX_COMPILER__C
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/io
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/io/packet_dispatcher_interface.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/io/packet_dispatcher_interface.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -203,8 +192,6 @@ build core/CMakeFiles/CoreLib.dir/src/io/packet_dispatcher_interface.cpp.o: CXX_
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/io
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/io/websocket_client.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/io/websocket_client.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -213,8 +200,6 @@ build core/CMakeFiles/CoreLib.dir/src/io/websocket_client.cpp.o: CXX_COMPILER__C
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/io
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/io/websocket_server.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/io/websocket_server.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -223,8 +208,6 @@ build core/CMakeFiles/CoreLib.dir/src/io/websocket_server.cpp.o: CXX_COMPILER__C
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/io
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/rtc_transport.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/rtc_transport.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -233,8 +216,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/rtc_transport.cpp.o: CXX_COMPILER__Cor
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/rtp_stream_receiver.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/rtp_stream_receiver.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -243,8 +224,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/rtp_stream_receiver.cpp.o: CXX_COMPILE
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/rtp_stream_sender.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/rtp_stream_sender.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -253,8 +232,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/rtp_stream_sender.cpp.o: CXX_COMPILER_
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/rtp_packet.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/rtp_packet.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -263,8 +240,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/rtp_packet.cpp.o: CXX_COMPILER__CoreLi
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/rtp_stream.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/rtp_stream.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -273,8 +248,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/rtp_stream.cpp.o: CXX_COMPILER__CoreLi
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/nack_generator.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/nack_generator.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -283,8 +256,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/nack_generator.cpp.o: CXX_COMPILER__Co
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/seq_manager.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/seq_manager.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -293,8 +264,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/seq_manager.cpp.o: CXX_COMPILER__CoreL
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/data_calculator.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/data_calculator.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -303,8 +272,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/data_calculator.cpp.o: CXX_COMPILER__C
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/rtp_retransmission_buffer.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/rtp_retransmission_buffer.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -313,8 +280,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/rtp_retransmission_buffer.cpp.o: CXX_C
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/rtcp/heart_beat_packet.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/rtcp/heart_beat_packet.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -323,8 +288,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/rtcp/heart_beat_packet.cpp.o: CXX_COMP
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc/rtcp
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/rtcp/rtcp_packet.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/rtcp/rtcp_packet.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -333,8 +296,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/rtcp/rtcp_packet.cpp.o: CXX_COMPILER__
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc/rtcp
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/rtcp/feedback_rtp_item.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/rtcp/feedback_rtp_item.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -343,8 +304,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/rtcp/feedback_rtp_item.cpp.o: CXX_COMP
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc/rtcp
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/rtcp/nack_packet.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/rtcp/nack_packet.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -353,8 +312,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/rtcp/nack_packet.cpp.o: CXX_COMPILER__
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc/rtcp
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/rtcp/feedback_packet.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/rtcp/feedback_packet.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -363,8 +320,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/rtcp/feedback_packet.cpp.o: CXX_COMPIL
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc/rtcp
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/rtcp/sender_report_packet.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/rtcp/sender_report_packet.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -373,8 +328,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/rtcp/sender_report_packet.cpp.o: CXX_C
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc/rtcp
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/rtc/rtcp/receiver_report_packet.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/rtc/rtcp/receiver_report_packet.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -383,8 +336,6 @@ build core/CMakeFiles/CoreLib.dir/src/rtc/rtcp/receiver_report_packet.cpp.o: CXX
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/rtc/rtcp
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/utils/utils.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/utils/utils.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -393,8 +344,6 @@ build core/CMakeFiles/CoreLib.dir/src/utils/utils.cpp.o: CXX_COMPILER__CoreLib_u
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/utils
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/utils/copy_on_write_buffer.cc.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/utils/copy_on_write_buffer.cc || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -403,8 +352,6 @@ build core/CMakeFiles/CoreLib.dir/src/utils/copy_on_write_buffer.cc.o: CXX_COMPI
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/utils
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 build core/CMakeFiles/CoreLib.dir/src/utils/timer_handler.cpp.o: CXX_COMPILER__CoreLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/core/src/utils/timer_handler.cpp || cmake_object_order_depends_target_CoreLib
   DEFINES = -DCORELIB_DEFINE
@@ -413,8 +360,6 @@ build core/CMakeFiles/CoreLib.dir/src/utils/timer_handler.cpp.o: CXX_COMPILER__C
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   OBJECT_FILE_DIR = core/CMakeFiles/CoreLib.dir/src/utils
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
-  TARGET_PDB = core/libCoreLib.pdb
 
 
 # =============================================================================
@@ -430,9 +375,8 @@ build core/libCoreLib.a: CXX_STATIC_LIBRARY_LINKER__CoreLib_Debug core/CMakeFile
   OBJECT_DIR = core/CMakeFiles/CoreLib.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = core/CMakeFiles/CoreLib.dir/CoreLib.pdb
   TARGET_FILE = core/libCoreLib.a
-  TARGET_PDB = core/libCoreLib.pdb
+  TARGET_PDB = CoreLib.a.dbg
 
 
 #############################################
@@ -520,8 +464,6 @@ build api/CMakeFiles/ApiLib.dir/rtc_factory.cpp.o: CXX_COMPILER__ApiLib_unscanne
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/api
   OBJECT_DIR = api/CMakeFiles/ApiLib.dir
   OBJECT_FILE_DIR = api/CMakeFiles/ApiLib.dir
-  TARGET_COMPILE_PDB = api/CMakeFiles/ApiLib.dir/ApiLib.pdb
-  TARGET_PDB = api/libApiLib.pdb
 
 
 # =============================================================================
@@ -537,9 +479,8 @@ build api/libApiLib.a: CXX_STATIC_LIBRARY_LINKER__ApiLib_Debug api/CMakeFiles/Ap
   OBJECT_DIR = api/CMakeFiles/ApiLib.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = api/CMakeFiles/ApiLib.dir/ApiLib.pdb
   TARGET_FILE = api/libApiLib.a
-  TARGET_PDB = api/libApiLib.pdb
+  TARGET_PDB = ApiLib.a.dbg
 
 
 #############################################
@@ -795,8 +736,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/fs-poll.c.o: C_COMPILER__uv_unscanned_Deb
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/idna.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/idna.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -805,8 +744,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/idna.c.o: C_COMPILER__uv_unscanned_Debug 
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/inet.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/inet.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -815,8 +752,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/inet.c.o: C_COMPILER__uv_unscanned_Debug 
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/random.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/random.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -825,8 +760,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/random.c.o: C_COMPILER__uv_unscanned_Debu
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/strscpy.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/strscpy.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -835,8 +768,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/strscpy.c.o: C_COMPILER__uv_unscanned_Deb
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/strtok.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/strtok.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -845,8 +776,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/strtok.c.o: C_COMPILER__uv_unscanned_Debu
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/thread-common.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/thread-common.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -855,8 +784,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/thread-common.c.o: C_COMPILER__uv_unscann
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/threadpool.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/threadpool.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -865,8 +792,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/threadpool.c.o: C_COMPILER__uv_unscanned_
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/timer.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/timer.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -875,8 +800,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/timer.c.o: C_COMPILER__uv_unscanned_Debug
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/uv-common.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/uv-common.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -885,8 +808,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/uv-common.c.o: C_COMPILER__uv_unscanned_D
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/uv-data-getter-setters.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/uv-data-getter-setters.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -895,8 +816,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/uv-data-getter-setters.c.o: C_COMPILER__u
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/version.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/version.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -905,8 +824,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/version.c.o: C_COMPILER__uv_unscanned_Deb
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/async.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/async.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -915,8 +832,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/async.c.o: C_COMPILER__uv_unscanned_
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/core.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/core.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -925,8 +840,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/core.c.o: C_COMPILER__uv_unscanned_D
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/dl.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/dl.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -935,8 +848,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/dl.c.o: C_COMPILER__uv_unscanned_Deb
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/fs.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/fs.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -945,8 +856,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/fs.c.o: C_COMPILER__uv_unscanned_Deb
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/getaddrinfo.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/getaddrinfo.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -955,8 +864,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/getaddrinfo.c.o: C_COMPILER__uv_unsc
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/getnameinfo.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/getnameinfo.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -965,8 +872,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/getnameinfo.c.o: C_COMPILER__uv_unsc
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/loop-watcher.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/loop-watcher.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -975,8 +880,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/loop-watcher.c.o: C_COMPILER__uv_uns
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/loop.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/loop.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -985,8 +888,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/loop.c.o: C_COMPILER__uv_unscanned_D
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/pipe.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/pipe.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -995,8 +896,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/pipe.c.o: C_COMPILER__uv_unscanned_D
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/poll.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/poll.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1005,8 +904,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/poll.c.o: C_COMPILER__uv_unscanned_D
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/process.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/process.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1015,8 +912,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/process.c.o: C_COMPILER__uv_unscanne
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/random-devurandom.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/random-devurandom.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1025,8 +920,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/random-devurandom.c.o: C_COMPILER__u
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/signal.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/signal.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1035,8 +928,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/signal.c.o: C_COMPILER__uv_unscanned
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/stream.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/stream.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1045,8 +936,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/stream.c.o: C_COMPILER__uv_unscanned
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/tcp.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/tcp.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1055,8 +944,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/tcp.c.o: C_COMPILER__uv_unscanned_De
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/thread.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/thread.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1065,8 +952,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/thread.c.o: C_COMPILER__uv_unscanned
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/tty.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/tty.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1075,8 +960,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/tty.c.o: C_COMPILER__uv_unscanned_De
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/udp.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/udp.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1085,8 +968,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/udp.c.o: C_COMPILER__uv_unscanned_De
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/proctitle.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/proctitle.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1095,8 +976,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/proctitle.c.o: C_COMPILER__uv_unscan
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/bsd-ifaddrs.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/bsd-ifaddrs.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1105,8 +984,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/bsd-ifaddrs.c.o: C_COMPILER__uv_unsc
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/kqueue.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/kqueue.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1115,8 +992,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/kqueue.c.o: C_COMPILER__uv_unscanned
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/random-getentropy.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/random-getentropy.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1125,8 +1000,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/random-getentropy.c.o: C_COMPILER__u
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/darwin-proctitle.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/darwin-proctitle.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1135,8 +1008,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/darwin-proctitle.c.o: C_COMPILER__uv
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/darwin.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/darwin.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1145,8 +1016,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/darwin.c.o: C_COMPILER__uv_unscanned
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv.dir/src/unix/fsevents.c.o: C_COMPILER__uv_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/fsevents.c || cmake_object_order_depends_target_uv
   DEFINES = -DBUILDING_UV_SHARED=1 -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -Duv_EXPORTS
@@ -1155,8 +1024,6 @@ build deps/libuv/CMakeFiles/uv.dir/src/unix/fsevents.c.o: C_COMPILER__uv_unscann
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 
 # =============================================================================
@@ -1177,9 +1044,8 @@ build deps/libuv/libuv.1.0.0.dylib: C_SHARED_LIBRARY_LINKER__uv_Debug deps/libuv
   PRE_LINK = :
   SONAME = libuv.1.dylib
   SONAME_FLAG = -install_name
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv.dir/
   TARGET_FILE = deps/libuv/libuv.1.0.0.dylib
-  TARGET_PDB = deps/libuv/libuv.pdb
+  TARGET_PDB = uv.dylib.dbg
 
 
 #############################################
@@ -1204,8 +1070,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/fs-poll.c.o: C_COMPILER__uv_a_unscanned
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/idna.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/idna.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1214,8 +1078,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/idna.c.o: C_COMPILER__uv_a_unscanned_De
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/inet.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/inet.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1224,8 +1086,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/inet.c.o: C_COMPILER__uv_a_unscanned_De
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/random.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/random.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1234,8 +1094,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/random.c.o: C_COMPILER__uv_a_unscanned_
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/strscpy.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/strscpy.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1244,8 +1102,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/strscpy.c.o: C_COMPILER__uv_a_unscanned
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/strtok.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/strtok.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1254,8 +1110,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/strtok.c.o: C_COMPILER__uv_a_unscanned_
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/thread-common.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/thread-common.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1264,8 +1118,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/thread-common.c.o: C_COMPILER__uv_a_uns
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/threadpool.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/threadpool.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1274,8 +1126,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/threadpool.c.o: C_COMPILER__uv_a_unscan
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/timer.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/timer.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1284,8 +1134,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/timer.c.o: C_COMPILER__uv_a_unscanned_D
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/uv-common.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/uv-common.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1294,8 +1142,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/uv-common.c.o: C_COMPILER__uv_a_unscann
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/uv-data-getter-setters.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/uv-data-getter-setters.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1304,8 +1150,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/uv-data-getter-setters.c.o: C_COMPILER_
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/version.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/version.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1314,8 +1158,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/version.c.o: C_COMPILER__uv_a_unscanned
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/async.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/async.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1324,8 +1166,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/async.c.o: C_COMPILER__uv_a_unscan
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/core.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/core.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1334,8 +1174,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/core.c.o: C_COMPILER__uv_a_unscann
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/dl.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/dl.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1344,8 +1182,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/dl.c.o: C_COMPILER__uv_a_unscanned
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/fs.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/fs.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1354,8 +1190,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/fs.c.o: C_COMPILER__uv_a_unscanned
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/getaddrinfo.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/getaddrinfo.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1364,8 +1198,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/getaddrinfo.c.o: C_COMPILER__uv_a_
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/getnameinfo.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/getnameinfo.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1374,8 +1206,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/getnameinfo.c.o: C_COMPILER__uv_a_
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/loop-watcher.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/loop-watcher.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1384,8 +1214,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/loop-watcher.c.o: C_COMPILER__uv_a
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/loop.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/loop.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1394,8 +1222,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/loop.c.o: C_COMPILER__uv_a_unscann
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/pipe.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/pipe.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1404,8 +1230,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/pipe.c.o: C_COMPILER__uv_a_unscann
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/poll.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/poll.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1414,8 +1238,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/poll.c.o: C_COMPILER__uv_a_unscann
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/process.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/process.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1424,8 +1246,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/process.c.o: C_COMPILER__uv_a_unsc
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/random-devurandom.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/random-devurandom.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1434,8 +1254,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/random-devurandom.c.o: C_COMPILER_
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/signal.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/signal.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1444,8 +1262,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/signal.c.o: C_COMPILER__uv_a_unsca
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/stream.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/stream.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1454,8 +1270,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/stream.c.o: C_COMPILER__uv_a_unsca
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/tcp.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/tcp.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1464,8 +1278,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/tcp.c.o: C_COMPILER__uv_a_unscanne
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/thread.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/thread.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1474,8 +1286,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/thread.c.o: C_COMPILER__uv_a_unsca
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/tty.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/tty.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1484,8 +1294,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/tty.c.o: C_COMPILER__uv_a_unscanne
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/udp.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/udp.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1494,8 +1302,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/udp.c.o: C_COMPILER__uv_a_unscanne
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/proctitle.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/proctitle.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1504,8 +1310,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/proctitle.c.o: C_COMPILER__uv_a_un
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/bsd-ifaddrs.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/bsd-ifaddrs.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1514,8 +1318,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/bsd-ifaddrs.c.o: C_COMPILER__uv_a_
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/kqueue.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/kqueue.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1524,8 +1326,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/kqueue.c.o: C_COMPILER__uv_a_unsca
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/random-getentropy.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/random-getentropy.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1534,8 +1334,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/random-getentropy.c.o: C_COMPILER_
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/darwin-proctitle.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/darwin-proctitle.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1544,8 +1342,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/darwin-proctitle.c.o: C_COMPILER__
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/darwin.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/darwin.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1554,8 +1350,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/darwin.c.o: C_COMPILER__uv_a_unsca
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 build deps/libuv/CMakeFiles/uv_a.dir/src/unix/fsevents.c.o: C_COMPILER__uv_a_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/libuv/src/unix/fsevents.c || cmake_object_order_depends_target_uv_a
   DEFINES = -D_DARWIN_UNLIMITED_SELECT=1 -D_DARWIN_USE_64_BIT_INODE=1 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
@@ -1564,8 +1358,6 @@ build deps/libuv/CMakeFiles/uv_a.dir/src/unix/fsevents.c.o: C_COMPILER__uv_a_uns
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/src
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   OBJECT_FILE_DIR = deps/libuv/CMakeFiles/uv_a.dir/src/unix
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
-  TARGET_PDB = deps/libuv/libuv.pdb
 
 
 # =============================================================================
@@ -1581,9 +1373,8 @@ build deps/libuv/libuv.a: C_STATIC_LIBRARY_LINKER__uv_a_Debug deps/libuv/CMakeFi
   OBJECT_DIR = deps/libuv/CMakeFiles/uv_a.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = deps/libuv/CMakeFiles/uv_a.dir/uv_a.pdb
   TARGET_FILE = deps/libuv/libuv.a
-  TARGET_PDB = deps/libuv/libuv.pdb
+  TARGET_PDB = uv.a.dbg
 
 
 #############################################
@@ -1895,8 +1686,6 @@ build deps/spdlog/CMakeFiles/spdlog.dir/src/spdlog.cpp.o: CXX_COMPILER__spdlog_u
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = deps/spdlog/CMakeFiles/spdlog.dir
   OBJECT_FILE_DIR = deps/spdlog/CMakeFiles/spdlog.dir/src
-  TARGET_COMPILE_PDB = deps/spdlog/CMakeFiles/spdlog.dir/spdlog.pdb
-  TARGET_PDB = deps/spdlog/libspdlogd.pdb
 
 build deps/spdlog/CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o: CXX_COMPILER__spdlog_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/src/stdout_sinks.cpp || cmake_object_order_depends_target_spdlog
   DEFINES = -DSPDLOG_COMPILED_LIB
@@ -1905,8 +1694,6 @@ build deps/spdlog/CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o: CXX_COMPILER__sp
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = deps/spdlog/CMakeFiles/spdlog.dir
   OBJECT_FILE_DIR = deps/spdlog/CMakeFiles/spdlog.dir/src
-  TARGET_COMPILE_PDB = deps/spdlog/CMakeFiles/spdlog.dir/spdlog.pdb
-  TARGET_PDB = deps/spdlog/libspdlogd.pdb
 
 build deps/spdlog/CMakeFiles/spdlog.dir/src/color_sinks.cpp.o: CXX_COMPILER__spdlog_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/src/color_sinks.cpp || cmake_object_order_depends_target_spdlog
   DEFINES = -DSPDLOG_COMPILED_LIB
@@ -1915,8 +1702,6 @@ build deps/spdlog/CMakeFiles/spdlog.dir/src/color_sinks.cpp.o: CXX_COMPILER__spd
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = deps/spdlog/CMakeFiles/spdlog.dir
   OBJECT_FILE_DIR = deps/spdlog/CMakeFiles/spdlog.dir/src
-  TARGET_COMPILE_PDB = deps/spdlog/CMakeFiles/spdlog.dir/spdlog.pdb
-  TARGET_PDB = deps/spdlog/libspdlogd.pdb
 
 build deps/spdlog/CMakeFiles/spdlog.dir/src/file_sinks.cpp.o: CXX_COMPILER__spdlog_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/src/file_sinks.cpp || cmake_object_order_depends_target_spdlog
   DEFINES = -DSPDLOG_COMPILED_LIB
@@ -1925,8 +1710,6 @@ build deps/spdlog/CMakeFiles/spdlog.dir/src/file_sinks.cpp.o: CXX_COMPILER__spdl
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = deps/spdlog/CMakeFiles/spdlog.dir
   OBJECT_FILE_DIR = deps/spdlog/CMakeFiles/spdlog.dir/src
-  TARGET_COMPILE_PDB = deps/spdlog/CMakeFiles/spdlog.dir/spdlog.pdb
-  TARGET_PDB = deps/spdlog/libspdlogd.pdb
 
 build deps/spdlog/CMakeFiles/spdlog.dir/src/async.cpp.o: CXX_COMPILER__spdlog_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/src/async.cpp || cmake_object_order_depends_target_spdlog
   DEFINES = -DSPDLOG_COMPILED_LIB
@@ -1935,8 +1718,6 @@ build deps/spdlog/CMakeFiles/spdlog.dir/src/async.cpp.o: CXX_COMPILER__spdlog_un
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = deps/spdlog/CMakeFiles/spdlog.dir
   OBJECT_FILE_DIR = deps/spdlog/CMakeFiles/spdlog.dir/src
-  TARGET_COMPILE_PDB = deps/spdlog/CMakeFiles/spdlog.dir/spdlog.pdb
-  TARGET_PDB = deps/spdlog/libspdlogd.pdb
 
 build deps/spdlog/CMakeFiles/spdlog.dir/src/cfg.cpp.o: CXX_COMPILER__spdlog_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/src/cfg.cpp || cmake_object_order_depends_target_spdlog
   DEFINES = -DSPDLOG_COMPILED_LIB
@@ -1945,8 +1726,6 @@ build deps/spdlog/CMakeFiles/spdlog.dir/src/cfg.cpp.o: CXX_COMPILER__spdlog_unsc
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = deps/spdlog/CMakeFiles/spdlog.dir
   OBJECT_FILE_DIR = deps/spdlog/CMakeFiles/spdlog.dir/src
-  TARGET_COMPILE_PDB = deps/spdlog/CMakeFiles/spdlog.dir/spdlog.pdb
-  TARGET_PDB = deps/spdlog/libspdlogd.pdb
 
 build deps/spdlog/CMakeFiles/spdlog.dir/src/bundled_fmtlib_format.cpp.o: CXX_COMPILER__spdlog_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/src/bundled_fmtlib_format.cpp || cmake_object_order_depends_target_spdlog
   DEFINES = -DSPDLOG_COMPILED_LIB
@@ -1955,8 +1734,6 @@ build deps/spdlog/CMakeFiles/spdlog.dir/src/bundled_fmtlib_format.cpp.o: CXX_COM
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = deps/spdlog/CMakeFiles/spdlog.dir
   OBJECT_FILE_DIR = deps/spdlog/CMakeFiles/spdlog.dir/src
-  TARGET_COMPILE_PDB = deps/spdlog/CMakeFiles/spdlog.dir/spdlog.pdb
-  TARGET_PDB = deps/spdlog/libspdlogd.pdb
 
 
 # =============================================================================
@@ -1972,9 +1749,8 @@ build deps/spdlog/libspdlogd.a: CXX_STATIC_LIBRARY_LINKER__spdlog_Debug deps/spd
   OBJECT_DIR = deps/spdlog/CMakeFiles/spdlog.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = deps/spdlog/CMakeFiles/spdlog.dir/spdlog.pdb
   TARGET_FILE = deps/spdlog/libspdlogd.a
-  TARGET_PDB = deps/spdlog/libspdlogd.pdb
+  TARGET_PDB = spdlogd.a.dbg
 
 
 #############################################
@@ -2062,8 +1838,6 @@ build deps/websocket/CMakeFiles/WebsocketLib.dir/src/ws_common.cpp.o: CXX_COMPIL
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = deps/websocket/CMakeFiles/WebsocketLib.dir
   OBJECT_FILE_DIR = deps/websocket/CMakeFiles/WebsocketLib.dir/src
-  TARGET_COMPILE_PDB = deps/websocket/CMakeFiles/WebsocketLib.dir/WebsocketLib.pdb
-  TARGET_PDB = deps/websocket/libWebsocketLib.pdb
 
 build deps/websocket/CMakeFiles/WebsocketLib.dir/src/ws_util.cpp.o: CXX_COMPILER__WebsocketLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/websocket/src/ws_util.cpp || cmake_object_order_depends_target_WebsocketLib
   DEFINES = -DWEBSOCKETLIB_DEFINE
@@ -2072,8 +1846,6 @@ build deps/websocket/CMakeFiles/WebsocketLib.dir/src/ws_util.cpp.o: CXX_COMPILER
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = deps/websocket/CMakeFiles/WebsocketLib.dir
   OBJECT_FILE_DIR = deps/websocket/CMakeFiles/WebsocketLib.dir/src
-  TARGET_COMPILE_PDB = deps/websocket/CMakeFiles/WebsocketLib.dir/WebsocketLib.pdb
-  TARGET_PDB = deps/websocket/libWebsocketLib.pdb
 
 build deps/websocket/CMakeFiles/WebsocketLib.dir/src/ws_encode.cpp.o: CXX_COMPILER__WebsocketLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/websocket/src/ws_encode.cpp || cmake_object_order_depends_target_WebsocketLib
   DEFINES = -DWEBSOCKETLIB_DEFINE
@@ -2082,8 +1854,6 @@ build deps/websocket/CMakeFiles/WebsocketLib.dir/src/ws_encode.cpp.o: CXX_COMPIL
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = deps/websocket/CMakeFiles/WebsocketLib.dir
   OBJECT_FILE_DIR = deps/websocket/CMakeFiles/WebsocketLib.dir/src
-  TARGET_COMPILE_PDB = deps/websocket/CMakeFiles/WebsocketLib.dir/WebsocketLib.pdb
-  TARGET_PDB = deps/websocket/libWebsocketLib.pdb
 
 build deps/websocket/CMakeFiles/WebsocketLib.dir/src/ws_sha1.cpp.o: CXX_COMPILER__WebsocketLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/websocket/src/ws_sha1.cpp || cmake_object_order_depends_target_WebsocketLib
   DEFINES = -DWEBSOCKETLIB_DEFINE
@@ -2092,8 +1862,6 @@ build deps/websocket/CMakeFiles/WebsocketLib.dir/src/ws_sha1.cpp.o: CXX_COMPILER
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = deps/websocket/CMakeFiles/WebsocketLib.dir
   OBJECT_FILE_DIR = deps/websocket/CMakeFiles/WebsocketLib.dir/src
-  TARGET_COMPILE_PDB = deps/websocket/CMakeFiles/WebsocketLib.dir/WebsocketLib.pdb
-  TARGET_PDB = deps/websocket/libWebsocketLib.pdb
 
 build deps/websocket/CMakeFiles/WebsocketLib.dir/src/ws_membuf.cpp.o: CXX_COMPILER__WebsocketLib_unscanned_Debug /Users/frankie/code/github/Bifrost-SDK/deps/websocket/src/ws_membuf.cpp || cmake_object_order_depends_target_WebsocketLib
   DEFINES = -DWEBSOCKETLIB_DEFINE
@@ -2102,8 +1870,6 @@ build deps/websocket/CMakeFiles/WebsocketLib.dir/src/ws_membuf.cpp.o: CXX_COMPIL
   INCLUDES = -I/Users/frankie/code/github/Bifrost-SDK/core/include -I/Users/frankie/code/github/Bifrost-SDK/deps/spdlog/include -I/Users/frankie/code/github/Bifrost-SDK/deps/libuv/include -I/Users/frankie/code/github/Bifrost-SDK/deps/websocket/include
   OBJECT_DIR = deps/websocket/CMakeFiles/WebsocketLib.dir
   OBJECT_FILE_DIR = deps/websocket/CMakeFiles/WebsocketLib.dir/src
-  TARGET_COMPILE_PDB = deps/websocket/CMakeFiles/WebsocketLib.dir/WebsocketLib.pdb
-  TARGET_PDB = deps/websocket/libWebsocketLib.pdb
 
 
 # =============================================================================
@@ -2119,9 +1885,8 @@ build deps/websocket/libWebsocketLib.a: CXX_STATIC_LIBRARY_LINKER__WebsocketLib_
   OBJECT_DIR = deps/websocket/CMakeFiles/WebsocketLib.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = deps/websocket/CMakeFiles/WebsocketLib.dir/WebsocketLib.pdb
   TARGET_FILE = deps/websocket/libWebsocketLib.a
-  TARGET_PDB = deps/websocket/libWebsocketLib.pdb
+  TARGET_PDB = WebsocketLib.a.dbg
 
 
 #############################################
@@ -2323,14 +2088,14 @@ build deps/websocket/all: phony deps/websocket/libWebsocketLib.a
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCCompiler.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCCompilerABI.c /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCXXCompiler.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCompilerIdDetection.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDependentOption.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDetermineCompileFeatures.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDetermineSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeFindBinUtils.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakePackageConfigHelpers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeParseImplicitIncludeInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeParseImplicitLinkInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeParseLibraryArchitecture.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeSystem.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeTestCompilerCommon.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CTest.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CTestTargets.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CTestUseLaunchers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckCCompilerFlag.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckIncludeFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckLibraryExists.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/ADSP-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/ARMCC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/ARMClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/AppleClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Borland-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Clang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Cray-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/CrayClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/GHS-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/GNU-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/HP-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/IAR-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Intel-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/LCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/MSVC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/NVHPC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/OrangeC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/PGI-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/PathScale-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/SCO-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/TI-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/TIClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Tasking-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Watcom-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/XL-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/zOS-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/DartConfiguration.tcl.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindThreads.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/GNUInstallDirs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CheckCompilerFlag.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CheckFlagCommonConfig.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/FeatureTesting.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Darwin-Determine-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/UnixPaths.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/WriteBasicConfigVersionFile.cmake /Users/frankie/code/github/Bifrost-SDK/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/api/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/core/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/deps/libuv/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/deps/libuv/libuv-static.pc.in /Users/frankie/code/github/Bifrost-SDK/deps/libuv/libuv.pc.in /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/cmake/ide.cmake /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/cmake/utils.cmake /Users/frankie/code/github/Bifrost-SDK/deps/websocket/CMakeLists.txt CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDependentOption.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakePackageConfigHelpers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CTest.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CTestTargets.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CTestUseLaunchers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckCCompilerFlag.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckIncludeFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckLibraryExists.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/DartConfiguration.tcl.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindThreads.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/GNUInstallDirs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CheckCompilerFlag.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CheckFlagCommonConfig.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/UnixPaths.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/WriteBasicConfigVersionFile.cmake /Users/frankie/code/github/Bifrost-SDK/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/api/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/core/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/deps/libuv/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/deps/libuv/libuv-static.pc.in /Users/frankie/code/github/Bifrost-SDK/deps/libuv/libuv.pc.in /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/cmake/ide.cmake /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/cmake/utils.cmake /Users/frankie/code/github/Bifrost-SDK/deps/websocket/CMakeLists.txt CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCCompiler.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCCompilerABI.c /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCXXCompiler.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCXXCompilerABI.cpp /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCompilerIdDetection.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDependentOption.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDetermineCCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDetermineCXXCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDetermineCompileFeatures.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDetermineCompilerABI.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDetermineCompilerId.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDetermineSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeFindBinUtils.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakePackageConfigHelpers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeParseImplicitIncludeInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeParseImplicitLinkInfo.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeParseLibraryArchitecture.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeSystem.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeTestCCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeTestCXXCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeTestCompilerCommon.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CTest.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CTestTargets.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CTestUseLaunchers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckCCompilerFlag.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckIncludeFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckLibraryExists.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/ADSP-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/ARMCC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/ARMClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/AppleClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Borland-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Clang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Cray-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/CrayClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/GHS-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/GNU-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/HP-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/IAR-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Intel-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/LCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/MSVC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/NVHPC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/OrangeC-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/PGI-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/PathScale-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/SCO-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/TI-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/TIClang-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Tasking-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Watcom-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/XL-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/zOS-C-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/DartConfiguration.tcl.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindThreads.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/GNUInstallDirs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CMakeDetermineLinkerId.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CheckCompilerFlag.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CheckFlagCommonConfig.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/FeatureTesting.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Darwin-Determine-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/UnixPaths.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/WriteBasicConfigVersionFile.cmake /Users/frankie/code/github/Bifrost-SDK/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/api/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/core/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/deps/libuv/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/deps/libuv/libuv-static.pc.in /Users/frankie/code/github/Bifrost-SDK/deps/libuv/libuv.pc.in /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/cmake/ide.cmake /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/cmake/utils.cmake /Users/frankie/code/github/Bifrost-SDK/deps/websocket/CMakeLists.txt CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake: phony
+build /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeDependentOption.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakePackageConfigHelpers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CTest.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CTestTargets.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CTestUseLaunchers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckCCompilerFlag.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckCSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckIncludeFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/CheckLibraryExists.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/DartConfiguration.tcl.in /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/FindThreads.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/GNUInstallDirs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CheckCompilerFlag.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CheckFlagCommonConfig.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Internal/CheckSourceCompiles.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/Platform/UnixPaths.cmake /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.29/Modules/WriteBasicConfigVersionFile.cmake /Users/frankie/code/github/Bifrost-SDK/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/api/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/core/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/deps/libuv/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/deps/libuv/libuv-static.pc.in /Users/frankie/code/github/Bifrost-SDK/deps/libuv/libuv.pc.in /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/CMakeLists.txt /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/cmake/ide.cmake /Users/frankie/code/github/Bifrost-SDK/deps/spdlog/cmake/utils.cmake /Users/frankie/code/github/Bifrost-SDK/deps/websocket/CMakeLists.txt CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeCXXCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake: phony
 
 
 #############################################
