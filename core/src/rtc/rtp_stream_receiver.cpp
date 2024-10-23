@@ -74,9 +74,78 @@ namespace RTC {
 						}
 				}
 
+				this->media_transmission_counter_.Update(rtp_packet);
+
 				std::string data_str((char*)rtp_packet->GetPayload());
 
 				SPDLOG_INFO("receive data: {}", data_str);
 				return true;
+		}
+
+		std::shared_ptr<RTCP::ReceiverReport> RtpStreamReceiver::GetRtcpReceiverReport() {
+				SPDLOG_TRACE();
+				auto report = std::make_shared<RTCP::ReceiverReport>();
+
+				report->SetSsrc(GetSsrc());
+
+				const uint32_t prev_packets_lost = this->packets_lost_;
+
+				// Calculate Packets Expected and Lost.
+				auto expected = GetExpectedPackets();
+
+				if (expected > this->media_transmission_counter_.GetPacketCount()) {
+						this->packets_lost_
+						    = expected - this->media_transmission_counter_.GetPacketCount();
+				} else {
+						this->packets_lost_ = 0u;
+				}
+
+				// Calculate Fraction Lost.
+				const uint32_t expected_interval = expected - this->expected_prior_;
+
+				this->expected_prior_ = expected;
+
+				const uint32_t received_interval
+				    = this->media_transmission_counter_.GetPacketCount()
+				      - this->received_prior_;
+
+				this->received_prior_
+				    = this->media_transmission_counter_.GetPacketCount();
+
+				const int32_t lostInterval = expected_interval - received_interval;
+
+				if (expected_interval == 0 || lostInterval <= 0) {
+						this->fraction_lost_ = 0;
+				} else {
+						this->fraction_lost_ = std::round(
+						    (static_cast<double>(lostInterval << 8) / expected_interval));
+				}
+
+				this->reported_packet_lost_ += (this->packets_lost_ - prev_packets_lost);
+
+				report->SetTotalLost(this->reported_packet_lost_);
+				report->SetFractionLost(this->fraction_lost_);
+
+				// Fill the rest of the report.
+				report->SetLastSeq(static_cast<uint32_t>(this->max_seq_) + this->cycles_);
+				report->SetJitter(this->jitter_);
+
+				if (this->last_sr_received_ != 0) {
+						// Get delay in milliseconds.
+						auto delayMs = static_cast<uint32_t>(RTCUtils::Time::GetTimeMs()
+						                                     - this->last_sr_received_);
+						// Express delay in units of 1/65536 seconds.
+						uint32_t dlsr = (delayMs / 1000) << 16;
+
+						dlsr |= uint32_t{ (delayMs % 1000) * 65536 / 1000 };
+
+						report->SetDelaySinceLastSenderReport(dlsr);
+						report->SetLastSenderReport(this->last_sr_timestamp_);
+				} else {
+						report->SetDelaySinceLastSenderReport(0);
+						report->SetLastSenderReport(0);
+				}
+
+				return report;
 		}
 } // namespace RTC

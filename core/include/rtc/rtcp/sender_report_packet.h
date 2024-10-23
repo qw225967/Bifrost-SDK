@@ -180,7 +180,7 @@ namespace RTC {
 						}
 						size_t Serialize(uint8_t* buffer) override;
 						size_t GetCount() const override {
-								return 0;
+								return this->reports_.size();
 						}
 						size_t GetSize() const override {
 								size_t size = sizeof(CommonHeader);

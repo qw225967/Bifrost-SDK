@@ -28,6 +28,7 @@ add_library(CoreLib STATIC
         src/rtc/rtcp/feedback_packet.cpp
         src/rtc/rtcp/sender_report_packet.cpp
         src/rtc/rtcp/receiver_report_packet.cpp
+        src/rtc/rtcp/compound_packet.cpp
 
         # utils
         src/utils/utils.cpp
@@ -68,6 +69,7 @@ add_library(CoreLib STATIC
         include/utils/ref_counter.h
         include/utils/scoped_refptr.h
         include/utils/type_traits.h
+        include/rtc/rtcp/compound_packet.h
 )
 
 # 设置库的属性

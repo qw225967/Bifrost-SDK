@@ -21,7 +21,8 @@ namespace RTCApi {
 		                         public RTC::RtcTransport::Listener {
 		public:
 				static std::unique_ptr<RtcInterface> CreateRtc(
-				    RtcInterface::DataCallBackObserver* listener);
+				    RtcInterface::DataCallBackObserver* listener, std::string target_ip,
+				    int port);
 
 		public:
 				// RtcInterface
@@ -33,20 +34,23 @@ namespace RTCApi {
 
 				bool DeleteRtpReceiverStream(uint32_t ssrc) override;
 
-				void OnSendPacket(uint32_t ssrc, uint8_t* data, uint32_t len) override;
+				void OnSendAudio(uint32_t ssrc, uint8_t* data, uint32_t len) override;
+
+				void OnSendText(uint32_t ssrc, uint8_t* data, uint32_t len) override;
 
 				// RtcTransport
 				void OnPacketReceived(uint8_t* data, uint32_t len) override;
 
-				void OnPacketSent(uint8_t* data, uint32_t len) override;
+				void OnPacketSent(uint8_t* data, uint32_t len,
+				                  struct sockaddr_storage addr) override;
 
 		public:
-				explicit RtcFactory(DataCallBackObserver* listener);
+				explicit RtcFactory(DataCallBackObserver* listener,
+				                    const std::string& target_ip, int port);
 				~RtcFactory() override;
 
 		private:
 				std::shared_ptr<CoreIO::UdpSocket> udp_socket_;
-				struct sockaddr_storage udp_remote_addr_ {};
 
 				std::shared_ptr<CoreIO::NetworkThread> network_thread_;
 

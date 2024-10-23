@@ -89,6 +89,11 @@ namespace RTC {
 				size_t packets_discarded_{ 0u };
 				// 对应链路的rtt
 				float rtt_{ 0.0f };
+				// 丢包总数
+				uint32_t packets_lost_ { 0u };
+
+			  // 丢包拥塞判断因子
+				uint8_t fraction_lost_{ 0u };
 
 		private:
 				bool started_{ false };

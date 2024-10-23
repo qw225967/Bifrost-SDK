@@ -59,7 +59,19 @@ namespace RTCApi {
 				 */
 				virtual bool DeleteRtpReceiverStream(uint32_t ssrc) = 0;
 
-				virtual void OnSendPacket(uint32_t ssrc, uint8_t* data, uint32_t len) = 0;
+				/**
+				 * @brief 发送音频帧
+				 * @details 内部根据帧大小进行拆分
+				 * @return 无
+				 */
+				virtual void OnSendAudio(uint32_t ssrc, uint8_t* data, uint32_t len) = 0;
+
+				/**
+				 * @brief 发送文本数据
+				 * @details 内部根据文本大小进行拆分
+				 * @return 无
+				 */
+				virtual void OnSendText(uint32_t ssrc, uint8_t* data, uint32_t len) = 0;
 		};
 } // namespace RTCInterface
 

@@ -21,7 +21,7 @@ int main() {
 
 		RtcTest test;
 
-		auto iface = RTCApi::RtcFactory::CreateRtc(&test);
+		auto iface = RTCApi::RtcFactory::CreateRtc(&test, "127.0.0.1", 9001);
 		iface->CreateRtpReceiverStream(123123);
 
 		sleep(100000);

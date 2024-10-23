@@ -11,37 +11,25 @@
 
 namespace RTCApi {
 		std::unique_ptr<RtcInterface> RtcFactory::CreateRtc(
-		    RtcInterface::DataCallBackObserver* listener) {
-				return std::make_unique<RtcFactory>(listener);
+		    RtcInterface::DataCallBackObserver* listener, std::string target_ip,
+		    int port) {
+				return std::make_unique<RtcFactory>(listener, target_ip, port);
 		}
 
-		RtcFactory::RtcFactory(DataCallBackObserver* listener)
+		RtcFactory::RtcFactory(DataCallBackObserver* listener,
+		                       const std::string& target_ip, int port)
 		    : listener_(listener) {
 				this->network_thread_ = std::make_shared<CoreIO::NetworkThread>();
 				network_thread_->Start();
 
 				this->udp_socket_ = std::make_shared<CoreIO::UdpSocket>(
-				    this->network_thread_, CoreIO::Type::SERVER, "0.0.0.0", 9001);
+				    this->network_thread_, CoreIO::Type::CLIENT, "0.0.0.0", 9001);
 				this->udp_socket_->InitInvoke();
 
-				this->rtc_transport_
-				    = std::make_shared<RTC::RtcTransport>(this, this->network_thread_);
+				this->rtc_transport_ = std::make_shared<RTC::RtcTransport>(
+				    this, this->network_thread_, target_ip, port);
 
 				this->udp_socket_->AddDispatcher(this->rtc_transport_);
-
-				std::string ip("127.0.0.1");
-				uint32_t port(9000);
-
-				struct sockaddr_storage server_addr;
-				int err
-				    = uv_ip4_addr(ip.c_str(), port,
-				                  reinterpret_cast<struct sockaddr_in*>(&server_addr));
-				if (err != 0) {
-						SPDLOG_ERROR("uv_ip4_addr() failed: {}", uv_strerror(err));
-						return;
-				}
-
-				this->udp_remote_addr_ = server_addr;
 		}
 
 		RtcFactory::~RtcFactory() = default;
@@ -68,7 +56,11 @@ namespace RTCApi {
 				return true;
 		}
 
-		void RtcFactory::OnSendPacket(uint32_t ssrc, uint8_t* data, uint32_t len) {
+		void RtcFactory::OnSendAudio(uint32_t ssrc, uint8_t* data, uint32_t len) {
+				this->rtc_transport_->OnsSendPacket(ssrc, data, len);
+		}
+
+		void RtcFactory::OnSendText(uint32_t ssrc, uint8_t* data, uint32_t len) {
 				this->rtc_transport_->OnsSendPacket(ssrc, data, len);
 		}
 
@@ -76,11 +68,11 @@ namespace RTCApi {
 				this->listener_->OnReceiveAudio(data, len);
 		}
 
-		void RtcFactory::OnPacketSent(uint8_t* data, uint32_t len) {
+		void RtcFactory::OnPacketSent(uint8_t* data, uint32_t len,
+		                              struct sockaddr_storage addr) {
 				if (udp_socket_) {
 						RTCUtils::CopyOnWriteBuffer buf(data, len);
-						udp_socket_->Send(std::move(buf),
-						                  (const struct sockaddr*)&this->udp_remote_addr_);
+						udp_socket_->Send(std::move(buf), (const struct sockaddr*)&addr);
 				}
 		}
 

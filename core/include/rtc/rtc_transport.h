@@ -11,14 +11,15 @@
 #define RTC_TRANSPORT_H
 
 #include "io/packet_dispatcher_interface.h"
-#include "rtp_stream_receiver.h"
-#include "rtp_stream_sender.h"
-#include "rtc/rtp_stream.h"
+#include "rtc/rtp_stream_receiver.h"
+#include "rtc/rtp_stream_sender.h"
+#include "utils/time_handler.h"
 
 namespace RTC {
 		class RtcTransport : public CoreIO::PacketDispatcherInterface,
 		                     public RtpStreamReceiver::Listener,
-		                     public RtpStreamSender::Listener {
+		                     public RtpStreamSender::Listener,
+		                     public RTCUtils::TimerHandle::Listener {
 		public:
 				enum class StreamType { StreamSender, StreamReceiver };
 
@@ -27,11 +28,16 @@ namespace RTC {
 						virtual ~Listener() = default;
 						virtual void OnPacketReceived(uint8_t* data, uint32_t len) = 0;
 
-						virtual void OnPacketSent(uint8_t* data, uint32_t len) = 0;
+						virtual void OnPacketSent(uint8_t* data,
+						                          uint32_t len,
+						                          struct sockaddr_storage addr)
+						    = 0;
 				};
 
 		public:
-				explicit RtcTransport(Listener* listener, const std::shared_ptr<CoreIO::NetworkThread>& thread);
+				explicit RtcTransport(Listener* listener,
+				                      const std::shared_ptr<CoreIO::NetworkThread>& thread,
+				                      const std::string& target_ip, int port);
 				~RtcTransport() override;
 
 		public:
@@ -58,6 +64,10 @@ namespace RTC {
 				                      uint8_t previous_score) override {
 				}
 
+				// TimeHandler
+
+				void OnTimer(RTCUtils::TimerHandle* timer) override;
+
 		public:
 				// 创建流
 				void CreateRtpStream(uint32_t ssrc, StreamType stream_type);
@@ -72,18 +82,23 @@ namespace RTC {
 				RtpStreamReceiverPtr GetStreamReceiverBySsrc(uint32_t ssrc);
 				void ReceiveRtcpPacket(RTCP::RtcpPacketPtr& rtcp_packet);
 				void ReceiveRtpPacket(RtpPacketPtr& rtp_packet);
+				void SendRtcpPacket();
 
 		private:
 				// 记录网络线程对象
 				std::shared_ptr<CoreIO::NetworkThread> thread_{ nullptr };
 				std::mutex thread_mutex_;
+				struct sockaddr_storage udp_remote_addr_;
 
 				// 记录流信息
 				std::unordered_map<uint32_t, RtpStreamSenderPtr> rtp_send_streams_;
 				std::unordered_map<uint32_t, RtpStreamReceiverPtr> rtp_receive_streams_;
 
-				Listener* listener_{nullptr};
-				uint16_t test_seq_{0u};
+			  // rtcp 发送定时器
+			  RTCUtils::TimerHandle* rtcp_send_timer_;
+
+				Listener* listener_{ nullptr };
+				uint16_t test_seq_{ 0u };
 				uint32_t timestamp_{ 2000u };
 		};
 } // namespace RTC

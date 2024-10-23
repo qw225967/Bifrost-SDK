@@ -8,6 +8,7 @@
  *******************************************************/
 
 #include "rtc/rtc_transport.h"
+#include "rtc/rtcp/compound_packet.h"
 #include "rtc/rtp_stream_receiver.h"
 #include "rtc/rtp_stream_sender.h"
 
@@ -16,6 +17,7 @@ namespace RTC {
 		static constexpr size_t KRtpMinHeaderLength  = 12;
 		static constexpr size_t kRtcpMinHeaderLength = 4;
 		static constexpr uint8_t kExpectedVersion    = 2;
+		static constexpr uint64_t kTimerRtcpInterval{ 1000u }; // ms
 
 		static bool IsRtp(const uint8_t* data, size_t len) {
 				return len >= KRtpMinHeaderLength && (data[0] > 127 && data[0] < 192)
@@ -29,10 +31,33 @@ namespace RTC {
 		}
 
 		RtcTransport::RtcTransport(Listener* listener,
-		                           const std::shared_ptr<CoreIO::NetworkThread>& thread)
-		    : listener_(listener), thread_(thread) {
+		                           const std::shared_ptr<CoreIO::NetworkThread>& thread,
+		                           const std::string& target_ip, int port)
+		    : listener_(listener), thread_(thread),
+		      rtcp_send_timer_(new RTCUtils::TimerHandle(this, thread)) {
+				// 1.初始化目标网络传输信息
+				struct sockaddr_storage server_addr;
+				int err
+				    = uv_ip4_addr(target_ip.c_str(), port,
+				                  reinterpret_cast<struct sockaddr_in*>(&server_addr));
+				if (err != 0) {
+						SPDLOG_ERROR("uv_ip4_addr() failed: {}", uv_strerror(err));
+						return;
+				}
+
+				this->udp_remote_addr_ = server_addr;
+
+				// 初始化定时器
+				this->rtcp_send_timer_->Init();
+				this->rtcp_send_timer_->Start(kTimerRtcpInterval);
+
+				// 立刻发送一个rr触发媒体流建联
+				this->SendRtcpPacket();
 		}
-		RtcTransport::~RtcTransport() = default;
+		RtcTransport::~RtcTransport() {
+				delete rtcp_send_timer_;
+				rtcp_send_timer_ = nullptr;
+		}
 
 		void RtcTransport::CreateRtpStream(const uint32_t ssrc,
 		                                   const StreamType stream_type) {
@@ -281,8 +306,39 @@ namespace RTC {
 
 				rtp_send_stream->ReceivePacket(rtp_packet);
 
-			  this->listener_->OnPacketSent(const_cast<uint8_t*>(rtp_packet->GetData()),
-			  	rtp_packet->GetSize());
+				this->listener_->OnPacketSent(
+				    const_cast<uint8_t*>(rtp_packet->GetData()), rtp_packet->GetSize(),
+				    this->udp_remote_addr_);
+		}
+
+		void RtcTransport::SendRtcpPacket() {
+				auto rtcp_packet
+				    = std::make_unique<RTCP::CompoundPacket>();
+
+				for (auto receive_ite = this->rtp_receive_streams_.begin();
+				     receive_ite != this->rtp_receive_streams_.end();
+				     ++receive_ite)
+				{
+						auto receive_report = receive_ite->second->GetRtcpReceiverReport();
+						if (receive_report) {
+								rtcp_packet->AddReceiverReport(receive_report);
+						}
+				}
+
+				uint8_t* data = new uint8_t[rtcp_packet->GetSize()];
+				rtcp_packet->Serialize(data);
+
+				this->listener_->OnPacketSent(
+				    const_cast<uint8_t*>(rtcp_packet->GetData()),
+				    rtcp_packet->GetSize(), this->udp_remote_addr_);
+
+				delete data;
+		}
+
+		void RtcTransport::OnTimer(RTCUtils::TimerHandle* timer) {
+				if (timer == this->rtcp_send_timer_) {
+						this->SendRtcpPacket();
+				}
 		}
 
 }
