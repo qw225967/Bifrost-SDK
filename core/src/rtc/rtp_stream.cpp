@@ -37,7 +37,7 @@ namespace RTC {
 						this->started_       = true;
 						this->max_seq_       = seq - 1;
 						this->max_packet_ts_ = rtp_packet->GetTimestamp();
-						this->max_packet_ms_ = RTCUtils::Time::GetMilliseconds();
+						this->max_packet_ms_ = RTCUtils::Time::GetTimeMs();
 				}
 
 				// If not a valid packet ignore it.
@@ -54,7 +54,7 @@ namespace RTC {
 				        rtp_packet->GetTimestamp(), this->max_packet_ts_))
 				{
 						this->max_packet_ts_ = rtp_packet->GetTimestamp();
-						this->max_packet_ms_ = RTCUtils::Time::GetMilliseconds();
+						this->max_packet_ms_ = RTCUtils::Time::GetTimeMs();
 				}
 
 				return true;
@@ -97,7 +97,7 @@ namespace RTC {
 								InitSequence(seq);
 
 								this->max_packet_ts_ = rtp_packet->GetTimestamp();
-								this->max_packet_ms_ = RTCUtils::Time::GetMilliseconds();
+								this->max_packet_ms_ = RTCUtils::Time::GetTimeMs();
 
 								// 用于子类重置传输序号
 								// UserOnSequenceNumberReset();

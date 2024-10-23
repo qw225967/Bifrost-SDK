@@ -121,7 +121,7 @@ namespace RTC {
 				}
 
 				// Look for each requested packet.
-				const uint64_t now_ms = RTCUtils::Time::GetMilliseconds();
+				const uint64_t now_ms = RTCUtils::Time::GetTimeMs();
 				const uint16_t rtt
 				    = (this->rtt_ > 0.0f ? static_cast<uint16_t>(this->rtt_)
 				                         : kDefaultRtt);

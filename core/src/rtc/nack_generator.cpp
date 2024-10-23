@@ -197,7 +197,7 @@ namespace RTC {
 						this->nack_list_.emplace(
 						    std::make_pair(seq,
 						                   NackInfo{
-						                       RTCUtils::Time::GetMilliseconds(),
+						                       RTCUtils::Time::GetTimeMs(),
 						                       seq,
 						                       seq,
 						                   }));
@@ -231,7 +231,7 @@ namespace RTC {
 		std::vector<uint16_t> NackGenerator::GetNackBatch(NackFilter filter) {
 				SPDLOG_TRACE();
 
-				const uint64_t now_ms = RTCUtils::Time::GetMilliseconds();
+				const uint64_t now_ms = RTCUtils::Time::GetTimeMs();
 				std::vector<uint16_t> nackBatch;
 
 				auto it = this->nack_list_.begin();

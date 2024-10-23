@@ -119,7 +119,7 @@ namespace RTC {
 		}
 
 		void RtpDataCounter::Update(const RtpPacketPtr& rtp_packet) {
-				const uint64_t nowMs = RTCUtils::Time::GetMilliseconds();
+				const uint64_t nowMs = RTCUtils::Time::GetTimeMs();
 
 				this->packets++;
 				this->rate.Update(rtp_packet->GetSize(), nowMs);
