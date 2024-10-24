@@ -256,7 +256,7 @@ namespace CoreIO {
 				}
 
 				if (n_read > 0) {
-						// SPDLOG_INFO("----------------- recv data: {}", buf->base);
+						SPDLOG_INFO("----------------- recv data: {}", buf->base);
 
 						std::unique_lock<std::mutex> lock(dispatchers_mutex_);
 						for (auto& dispatcher : dispatchers_) {

@@ -22,7 +22,7 @@ int main() {
 		RtcTest test;
 
 		auto iface_client1 = RTCApi::RtcFactory::CreateRtc(&test, "0.0.0.0", 9000);
-		iface_client1->CreateRtpSenderStream(123123, "127.0.0.1", 9001, true);
+		iface_client1->CreateRtpSenderStream(123123, "127.0.0.1", 7000, true);
 
 
 		sleep(100000);

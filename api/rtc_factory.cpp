@@ -23,7 +23,7 @@ namespace RTCApi {
 				network_thread_->Start();
 
 				this->udp_socket_ = std::make_shared<CoreIO::UdpSocket>(
-				    this->network_thread_, CoreIO::Type::CLIENT, local_ip, local_port);
+				    this->network_thread_, CoreIO::Type::SERVER, local_ip, local_port);
 				this->udp_socket_->InitInvoke();
 
 				this->rtc_transport_
