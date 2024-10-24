@@ -36,7 +36,9 @@ namespace RTCApi {
 				 * @details 可以创建对应的文本流、音频流
 				 * @return 返回创建是否成功
 				 */
-				virtual bool CreateRtpSenderStream(uint32_t ssrc) = 0;
+				virtual bool CreateRtpSenderStream(uint32_t ssrc, std::string target_ip,
+				                                   int port)
+				    = 0;
 
 				/**
 				 * @brief 删除发送流
@@ -50,7 +52,9 @@ namespace RTCApi {
 				 * @details 可以创建对应的文本流、音频流
 				 * @return 返回删除是否成功
 				 */
-				virtual bool CreateRtpReceiverStream(uint32_t ssrc) = 0;
+				virtual bool CreateRtpReceiverStream(uint32_t ssrc,
+				                                     std::string target_ip, int port)
+				    = 0;
 
 				/**
 				 * @brief 删除接收流

@@ -36,8 +36,7 @@ namespace RTC {
 
 		public:
 				explicit RtcTransport(Listener* listener,
-				                      const std::shared_ptr<CoreIO::NetworkThread>& thread,
-				                      const std::string& target_ip, int port);
+				                      const std::shared_ptr<CoreIO::NetworkThread>& thread);
 				~RtcTransport() override;
 
 		public:
@@ -52,6 +51,9 @@ namespace RTC {
 				// RtpStreamSender
 				void OnRtpStreamRetransmitRtpPacket(RtpStreamSender* rtpStream,
 				                                    RtpPacketPtr rtp_packet) override {
+						this->listener_->OnPacketSent(
+						    const_cast<uint8_t*>(rtp_packet->GetData()),
+						    rtp_packet->GetSize(), rtpStream->GetUdpRemoteTargetAddr());
 				}
 				// RtpStreamReceiver
 				void OnRtpStreamSendRtcpPacket(RtpStreamReceiver* rtp_stream,
@@ -70,9 +72,14 @@ namespace RTC {
 
 		public:
 				// 创建流
-				void CreateRtpStream(uint32_t ssrc, StreamType stream_type);
+				void CreateRtpStream(uint32_t ssrc, StreamType stream_type,
+				                     std::string target_ip, int port);
 				// 删除流
 				void DeleteRtpStream(uint32_t ssrc);
+
+				// 转发流拼接
+				void RouterAddStream(const std::shared_ptr<RtpStream>& input_stream,
+				                     const std::shared_ptr<RtpStream>& output_stream);
 
 				// 发送数据
 				void OnsSendPacket(uint32_t ssrc, uint8_t* data, uint32_t len);
@@ -80,22 +87,23 @@ namespace RTC {
 		private:
 				RtpStreamSenderPtr GetStreamSenderBySsrc(uint32_t ssrc);
 				RtpStreamReceiverPtr GetStreamReceiverBySsrc(uint32_t ssrc);
-				void ReceiveRtcpPacket(RTCP::RtcpPacketPtr& rtcp_packet);
-				void ReceiveRtpPacket(RtpPacketPtr& rtp_packet);
+				void ReceiveRtcpPacket(RTCP::RtcpPacketPtr& rtcp_packet,
+				                       const struct sockaddr* addr);
+				void ReceiveRtpPacket(RtpPacketPtr& rtp_packet,
+				                      const struct sockaddr* addr);
 				void SendRtcpPacket();
 
 		private:
 				// 记录网络线程对象
 				std::shared_ptr<CoreIO::NetworkThread> thread_{ nullptr };
 				std::mutex thread_mutex_;
-				struct sockaddr_storage udp_remote_addr_;
 
 				// 记录流信息
 				std::unordered_map<uint32_t, RtpStreamSenderPtr> rtp_send_streams_;
 				std::unordered_map<uint32_t, RtpStreamReceiverPtr> rtp_receive_streams_;
 
-			  // rtcp 发送定时器
-			  RTCUtils::TimerHandle* rtcp_send_timer_;
+				// rtcp 发送定时器
+				RTCUtils::TimerHandle* rtcp_send_timer_;
 
 				Listener* listener_{ nullptr };
 				uint16_t test_seq_{ 0u };

@@ -42,6 +42,8 @@ namespace RTC {
 				    const std::shared_ptr<RTCP::ReceiverReport>& report);
 				std::shared_ptr<RTCP::SenderReport> GetRtcpSenderReport(uint64_t now_ms);
 
+				void ReceiveInputPacket(RtpPacketPtr& rtp_packet) override;
+
 		private:
 				void StorePacket(RtpPacketPtr& rtp_packet) const;
 				void FillRetransmissionContainer(uint16_t seq, uint16_t bitmask) const;

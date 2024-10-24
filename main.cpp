@@ -21,8 +21,19 @@ int main() {
 
 		RtcTest test;
 
-		auto iface = RTCApi::RtcFactory::CreateRtc(&test, "101.42.42.53", 9001);
-		iface->CreateRtpReceiverStream(123123);
+		auto iface_client = RTCApi::RtcFactory::CreateRtc(&test, "0.0.0.0", 9000);
+		iface_client->CreateRtpReceiverStream(123123, "127.0.0.1", 9000);
+		iface_client->CreateRtpSenderStream(123123, "101.42.42.53", 9001);
+
+		char* data = "hello world";
+
+		for (int i = 0; i < 100000; i++) {
+				iface_client->OnSendAudio(123123, reinterpret_cast<uint8_t*>(data),
+				                   strlen(data));
+				SPDLOG_INFO("send packet");
+
+				usleep(100 * 1000);
+	}
 
 		sleep(100000);
 

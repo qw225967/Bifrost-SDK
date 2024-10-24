@@ -11,32 +11,33 @@
 
 namespace RTCApi {
 		std::unique_ptr<RtcInterface> RtcFactory::CreateRtc(
-		    RtcInterface::DataCallBackObserver* listener, std::string target_ip,
-		    int port) {
-				return std::make_unique<RtcFactory>(listener, target_ip, port);
+		    RtcInterface::DataCallBackObserver* listener,
+		    const std::string& local_ip, int local_port) {
+				return std::make_unique<RtcFactory>(listener, local_ip, local_port);
 		}
 
 		RtcFactory::RtcFactory(DataCallBackObserver* listener,
-		                       const std::string& target_ip, int port)
+		                       const std::string& local_ip, int local_port)
 		    : listener_(listener) {
 				this->network_thread_ = std::make_shared<CoreIO::NetworkThread>();
 				network_thread_->Start();
 
 				this->udp_socket_ = std::make_shared<CoreIO::UdpSocket>(
-				    this->network_thread_, CoreIO::Type::CLIENT, "0.0.0.0", 9001);
+				    this->network_thread_, CoreIO::Type::CLIENT, local_ip, local_port);
 				this->udp_socket_->InitInvoke();
 
-				this->rtc_transport_ = std::make_shared<RTC::RtcTransport>(
-				    this, this->network_thread_, target_ip, port);
+				this->rtc_transport_
+				    = std::make_shared<RTC::RtcTransport>(this, this->network_thread_);
 
 				this->udp_socket_->AddDispatcher(this->rtc_transport_);
 		}
 
 		RtcFactory::~RtcFactory() = default;
 
-		bool RtcFactory::CreateRtpSenderStream(uint32_t ssrc) {
+		bool RtcFactory::CreateRtpSenderStream(uint32_t ssrc, std::string target_ip,
+		                                       int port) {
 				this->rtc_transport_->CreateRtpStream(
-				    ssrc, RTC::RtcTransport::StreamType::StreamSender);
+				    ssrc, RTC::RtcTransport::StreamType::StreamSender, target_ip, port);
 				return true;
 		}
 
@@ -45,9 +46,10 @@ namespace RTCApi {
 				return true;
 		}
 
-		bool RtcFactory::CreateRtpReceiverStream(uint32_t ssrc) {
+		bool RtcFactory::CreateRtpReceiverStream(uint32_t ssrc,
+		                                         std::string target_ip, int port) {
 				this->rtc_transport_->CreateRtpStream(
-				    ssrc, RTC::RtcTransport::StreamType::StreamReceiver);
+				    ssrc, RTC::RtcTransport::StreamType::StreamReceiver, target_ip, port);
 				return true;
 		}
 
@@ -70,7 +72,7 @@ namespace RTCApi {
 
 		void RtcFactory::OnPacketSent(uint8_t* data, uint32_t len,
 		                              struct sockaddr_storage addr) {
-			  SPDLOG_INFO("RtcFactory::OnPacketSent()");
+				SPDLOG_INFO("RtcFactory::OnPacketSent()");
 				if (udp_socket_) {
 						RTCUtils::CopyOnWriteBuffer buf(data, len);
 						udp_socket_->Send(std::move(buf), (const struct sockaddr*)&addr);

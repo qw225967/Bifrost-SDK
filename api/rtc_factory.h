@@ -21,16 +21,18 @@ namespace RTCApi {
 		                         public RTC::RtcTransport::Listener {
 		public:
 				static std::unique_ptr<RtcInterface> CreateRtc(
-				    RtcInterface::DataCallBackObserver* listener, std::string target_ip,
-				    int port);
+				    RtcInterface::DataCallBackObserver* listener,
+				    const std::string& local_ip, int local_port);
 
 		public:
 				// RtcInterface
-				bool CreateRtpSenderStream(uint32_t ssrc) override;
+				bool CreateRtpSenderStream(uint32_t ssrc, std::string target_ip,
+				                           int port) override;
 
 				bool DeleteRtpSenderStream(uint32_t ssrc) override;
 
-				bool CreateRtpReceiverStream(uint32_t ssrc) override;
+				bool CreateRtpReceiverStream(uint32_t ssrc, std::string target_ip,
+				                             int port) override;
 
 				bool DeleteRtpReceiverStream(uint32_t ssrc) override;
 
@@ -46,7 +48,7 @@ namespace RTCApi {
 
 		public:
 				explicit RtcFactory(DataCallBackObserver* listener,
-				                    const std::string& target_ip, int port);
+				                    const std::string& local_ip, int local_port);
 				~RtcFactory() override;
 
 		private:

@@ -54,6 +54,9 @@ namespace RTC {
 				// Increase transmission counter.
 				this->wait_transmission_counter_.Update(rtp_packet);
 
+				static_cast<RTC::RtpStreamSender::Listener*>(this->listener_)
+				    ->OnRtpStreamRetransmitRtpPacket(this, rtp_packet);
+
 				return true;
 		}
 
@@ -246,9 +249,9 @@ namespace RTC {
 		    uint64_t now_ms) {
 				SPDLOG_TRACE();
 
-				if (this->wait_transmission_counter_.GetPacketCount() == 0u) {
-						return nullptr;
-				}
+				// if (this->wait_transmission_counter_.GetPacketCount() == 0u) {
+				// 		return nullptr;
+				// }
 
 				auto ntp    = RTCUtils::Time::TimeMs2Ntp(now_ms);
 				auto report = std::make_shared<RTC::RTCP::SenderReport>();
@@ -268,6 +271,11 @@ namespace RTC {
 				this->last_sender_report_ntp_ms_ = now_ms;
 				this->last_sender_report_ts_     = this->max_packet_ts_ + diff_ts;
 
-			return report;
+				return report;
+		}
+
+		void RtpStreamSender::ReceiveInputPacket(RtpPacketPtr& rtp_packet) {
+				static_cast<RTC::RtpStreamSender::Listener*>(this->listener_)
+				    ->OnRtpStreamRetransmitRtpPacket(this, rtp_packet);
 		}
 } // namespace RTC

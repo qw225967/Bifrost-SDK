@@ -76,9 +76,11 @@ namespace RTC {
 
 				this->media_transmission_counter_.Update(rtp_packet);
 
-				std::string data_str((char*)rtp_packet->GetPayload());
+				// std::string data_str((char*)rtp_packet->GetPayload());
 
-				SPDLOG_INFO("receive data: {}", data_str);
+			  this->ReceiveInputPacket(rtp_packet);
+
+				// SPDLOG_INFO("receive data: {}", data_str);
 				return true;
 		}
 
@@ -165,5 +167,10 @@ namespace RTC {
 
 				this->last_sender_report_ntp_ms_ = RTCUtils::Time::Ntp2TimeMs(ntp);
 				this->last_sender_report_ts_     = report->GetRtpTs();
+
+				SPDLOG_INFO(
+				    "receive last_sr_timestamp:{}, last_sender_report_ntp_ms:{}, last_sender_report_ts:{}",
+				    this->last_sr_timestamp_, this->last_sender_report_ntp_ms_,
+				    this->last_sender_report_ts_);
 		}
 } // namespace RTC
