@@ -17,7 +17,7 @@ namespace RTC {
 		static constexpr size_t KRtpMinHeaderLength  = 12;
 		static constexpr size_t kRtcpMinHeaderLength = 4;
 		static constexpr uint8_t kExpectedVersion    = 2;
-		static constexpr uint64_t kTimerRtcpInterval{ 1000u }; // ms
+		static constexpr uint64_t kTimerRtcpIntervalMs{ 1000u }; // ms
 
 		static bool IsRtp(const uint8_t* data, size_t len) {
 				return len >= KRtpMinHeaderLength && (data[0] > 127 && data[0] < 192)
@@ -48,13 +48,14 @@ namespace RTC {
 				this->udp_remote_addr_ = server_addr;
 
 				// 初始化定时器
-				this->rtcp_send_timer_->Init();
-				this->rtcp_send_timer_->Start(kTimerRtcpInterval);
+				this->rtcp_send_timer_->InitInvoke();
+				this->rtcp_send_timer_->StartInvoke(kTimerRtcpIntervalMs);
 
 				// 立刻发送一个rr触发媒体流建联
 				this->SendRtcpPacket();
 		}
 		RtcTransport::~RtcTransport() {
+				this->rtcp_send_timer_->StopInvoke();
 				delete rtcp_send_timer_;
 				rtcp_send_timer_ = nullptr;
 		}
@@ -312,8 +313,8 @@ namespace RTC {
 		}
 
 		void RtcTransport::SendRtcpPacket() {
-				auto rtcp_packet
-				    = std::make_unique<RTCP::CompoundPacket>();
+				std::unique_lock<std::mutex> lock(thread_mutex_);
+				auto rtcp_packet = std::make_unique<RTCP::CompoundPacket>();
 
 				for (auto receive_ite = this->rtp_receive_streams_.begin();
 				     receive_ite != this->rtp_receive_streams_.end();
@@ -336,9 +337,7 @@ namespace RTC {
 		}
 
 		void RtcTransport::OnTimer(RTCUtils::TimerHandle* timer) {
-				if (timer == this->rtcp_send_timer_) {
-						this->SendRtcpPacket();
-				}
+				this->SendRtcpPacket();
 		}
 
 }

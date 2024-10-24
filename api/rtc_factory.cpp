@@ -23,7 +23,7 @@ namespace RTCApi {
 				network_thread_->Start();
 
 				this->udp_socket_ = std::make_shared<CoreIO::UdpSocket>(
-				    this->network_thread_, CoreIO::Type::CLIENT, "0.0.0.0", 9001);
+				    this->network_thread_, CoreIO::Type::SERVER, "0.0.0.0", 9001);
 				this->udp_socket_->InitInvoke();
 
 				this->rtc_transport_ = std::make_shared<RTC::RtcTransport>(
@@ -70,6 +70,7 @@ namespace RTCApi {
 
 		void RtcFactory::OnPacketSent(uint8_t* data, uint32_t len,
 		                              struct sockaddr_storage addr) {
+			  SPDLOG_INFO("RtcFactory::OnPacketSent()");
 				if (udp_socket_) {
 						RTCUtils::CopyOnWriteBuffer buf(data, len);
 						udp_socket_->Send(std::move(buf), (const struct sockaddr*)&addr);

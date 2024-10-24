@@ -31,7 +31,7 @@ namespace RTCUtils {
 
 		TimerHandle::~TimerHandle() {
 				if (!close_.load()) {
-						Close();
+						CloseInvoke();
 				}
 		}
 
@@ -40,6 +40,8 @@ namespace RTCUtils {
 
 				uv_handle_       = new uv_timer_t;
 				uv_handle_->data = static_cast<void*>(this);
+				close_.store(false);
+
 
 				int err = uv_timer_init(thread_->GetLoop(), uv_handle_);
 				if (err != 0) {
@@ -202,7 +204,7 @@ namespace RTCUtils {
 
 		inline void TimerHandle::OnUvTimer() {
 				SPDLOG_TRACE();
-
+				SPDLOG_INFO("uv_timer");
 				listener_->OnTimer(this);
 		}
 }
