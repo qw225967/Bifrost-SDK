@@ -35,9 +35,10 @@ namespace RTCApi {
 		RtcFactory::~RtcFactory() = default;
 
 		bool RtcFactory::CreateRtpSenderStream(uint32_t ssrc, std::string target_ip,
-		                                       int port) {
+		                                       int port, bool dynamic_addr) {
 				this->rtc_transport_->CreateRtpStream(
-				    ssrc, RTC::RtcTransport::StreamType::StreamSender, target_ip, port);
+				    ssrc, RTC::RtcTransport::StreamType::StreamSender, target_ip, port,
+				    dynamic_addr);
 				return true;
 		}
 
@@ -46,10 +47,11 @@ namespace RTCApi {
 				return true;
 		}
 
-		bool RtcFactory::CreateRtpReceiverStream(uint32_t ssrc,
-		                                         std::string target_ip, int port) {
+		bool RtcFactory::CreateRtpReceiverStream(uint32_t ssrc, std::string target_ip,
+		                                         int port, bool dynamic_addr) {
 				this->rtc_transport_->CreateRtpStream(
-				    ssrc, RTC::RtcTransport::StreamType::StreamReceiver, target_ip, port);
+				    ssrc, RTC::RtcTransport::StreamType::StreamReceiver, target_ip,
+				    port, dynamic_addr);
 				return true;
 		}
 

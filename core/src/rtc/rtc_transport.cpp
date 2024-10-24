@@ -50,7 +50,8 @@ namespace RTC {
 
 		void RtcTransport::CreateRtpStream(const uint32_t ssrc,
 		                                   const StreamType stream_type,
-		                                   std::string target_ip, int port) {
+		                                   std::string target_ip, int port,
+		                                   bool dynamic_addr) {
 				std::unique_lock<std::mutex> lock(thread_mutex_);
 
 				// 初始化目标网络传输信息
@@ -78,7 +79,7 @@ namespace RTC {
 
 						// 创建接收流
 						RtpStreamReceiverPtr rtp_stream = std::make_shared<RtpStreamReceiver>(
-						    this, params, this->thread_, kSendNackDelay);
+						    this, params, this->thread_, kSendNackDelay, dynamic_addr);
 						rtp_stream->SetUdpRemoteTargetAddr(target_addr);
 
 						this->rtp_receive_streams_.emplace(ssrc, rtp_stream);
@@ -99,14 +100,10 @@ namespace RTC {
 
 						// 创建接收流
 						RtpStreamSenderPtr rtp_stream
-						    = std::make_shared<RtpStreamSender>(this, params, this->thread_);
+						    = std::make_shared<RtpStreamSender>(this, params, this->thread_, dynamic_addr);
 						rtp_stream->SetUdpRemoteTargetAddr(target_addr);
 
 						this->rtp_send_streams_.emplace(ssrc, rtp_stream);
-
-						// 临时测试 TODO:删除
-						auto input = this->rtp_receive_streams_.begin()->second;
-						RouterAddStream(input, rtp_stream);
 
 						break;
 				}
@@ -301,29 +298,16 @@ namespace RTC {
 				    = this->GetStreamSenderBySsrc(rtp_packet->GetSsrc()))
 				{
 						rtp_send_stream->ReceivePacket(rtp_packet);
-						// 更新addr地址
-						if (addr) {
-								rtp_send_stream->SetUdpRemoteTargetAddr(
-								    *(reinterpret_cast<const struct sockaddr_storage*>(addr)));
-						}
-				} else if (const auto rtp_receive_stream
-				           = this->GetStreamReceiverBySsrc(rtp_packet->GetSsrc()))
+				}
+				if (const auto rtp_receive_stream
+				    = this->GetStreamReceiverBySsrc(rtp_packet->GetSsrc()))
 				{
 						rtp_receive_stream->ReceivePacket(rtp_packet);
-						// 更新addr地址
-						if (addr) {
-								rtp_send_stream->SetUdpRemoteTargetAddr(
-								    *(reinterpret_cast<const struct sockaddr_storage*>(addr)));
-						}
 				}
 		}
 
 		void RtcTransport::OnsSendPacket(uint32_t ssrc, uint8_t* data, uint32_t len) {
-#ifdef  USE_ROUTER_TEST
-				const auto rtp_stream = this->GetStreamReceiverBySsrc(ssrc);
-#else
-			const auto rtp_stream = this->GetStreamSenderBySsrc(ssrc);
-#endif
+				const auto rtp_stream = this->GetStreamSenderBySsrc(ssrc);
 
 				if (!rtp_stream.get()) {
 						return;
@@ -379,12 +363,6 @@ namespace RTC {
 						    rtcp_packet->GetSize(),
 						    rtp_send_stream.second->GetUdpRemoteTargetAddr());
 				}
-		}
-
-		void RtcTransport::RouterAddStream(
-		    const std::shared_ptr<RtpStream>& input_stream,
-														 const std::shared_ptr<RtpStream>& output_stream) {
-				input_stream->SetNextRtpStream(output_stream);
 		}
 
 		void RtcTransport::OnTimer(RTCUtils::TimerHandle* timer) {

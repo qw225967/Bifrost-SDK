@@ -47,7 +47,7 @@ namespace RTC {
 		public:
 				RtpStreamReceiver(Listener* listener, Params& params,
 				                  const std::shared_ptr<CoreIO::NetworkThread>& thread,
-				                  unsigned int send_nack_delay_ms);
+				                  unsigned int send_nack_delay_ms, bool dynamic_addr);
 				~RtpStreamReceiver() override;
 
 				// TimerHandle::Listener
@@ -89,6 +89,8 @@ namespace RTC {
 				uint32_t last_sr_timestamp_{ 0u };
 				// 传输计算
 				RtpDataCounter media_transmission_counter_;
+
+			  bool is_dynamic_addr_{ false };
 		};
 		typedef std::shared_ptr<RtpStreamReceiver> RtpStreamReceiverPtr;
 } // namespace RTC

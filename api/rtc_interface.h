@@ -15,6 +15,14 @@
 namespace RTCApi {
 		class RtcInterface {
 		public:
+				/**
+				 * @brief 流目标类型
+				 * @details 流目标位client会发送rtcp，流目标是服务则是内部传输无需rtcp
+				 * @return 无
+				 */
+				enum class StreamTargetType { TargetClient, ServerClient };
+
+		public:
 				class DataCallBackObserver {
 				public:
 						virtual ~DataCallBackObserver() = default;
@@ -37,7 +45,7 @@ namespace RTCApi {
 				 * @return 返回创建是否成功
 				 */
 				virtual bool CreateRtpSenderStream(uint32_t ssrc, std::string target_ip,
-				                                   int port)
+				                                   int port, bool dynamic_addr)
 				    = 0;
 
 				/**
@@ -52,8 +60,8 @@ namespace RTCApi {
 				 * @details 可以创建对应的文本流、音频流
 				 * @return 返回删除是否成功
 				 */
-				virtual bool CreateRtpReceiverStream(uint32_t ssrc,
-				                                     std::string target_ip, int port)
+				virtual bool CreateRtpReceiverStream(uint32_t ssrc, std::string target_ip,
+				                                     int port, bool dynamic_addr)
 				    = 0;
 
 				/**

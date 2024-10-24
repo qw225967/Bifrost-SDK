@@ -27,12 +27,12 @@ namespace RTCApi {
 		public:
 				// RtcInterface
 				bool CreateRtpSenderStream(uint32_t ssrc, std::string target_ip,
-				                           int port) override;
+				                           int port, bool dynamic_addr) override;
 
 				bool DeleteRtpSenderStream(uint32_t ssrc) override;
 
 				bool CreateRtpReceiverStream(uint32_t ssrc, std::string target_ip,
-				                             int port) override;
+				                             int port, bool dynamic_addr) override;
 
 				bool DeleteRtpReceiverStream(uint32_t ssrc) override;
 

@@ -46,8 +46,8 @@ namespace RTC {
 		RtpStreamReceiver::RtpStreamReceiver(
 		    Listener* listener, Params& params,
 		    const std::shared_ptr<CoreIO::NetworkThread>& thread,
-		    unsigned int send_nack_delay_ms)
-		    : RtpStream(listener, params, thread) {
+		    unsigned int send_nack_delay_ms, bool dynamic_addr)
+		    : RtpStream(listener, params, thread), is_dynamic_addr_(dynamic_addr) {
 				if (params.use_nack) {
 						this->nack_generator_ = std::make_unique<NackGenerator>(
 						    this, thread, send_nack_delay_ms);
@@ -76,11 +76,6 @@ namespace RTC {
 
 				this->media_transmission_counter_.Update(rtp_packet);
 
-				// std::string data_str((char*)rtp_packet->GetPayload());
-
-			  this->ReceiveInputPacket(rtp_packet);
-
-				// SPDLOG_INFO("receive data: {}", data_str);
 				return true;
 		}
 

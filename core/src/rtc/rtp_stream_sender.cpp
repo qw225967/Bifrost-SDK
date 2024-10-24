@@ -24,8 +24,8 @@ namespace RTC {
 
 		RtpStreamSender::RtpStreamSender(
 		    Listener* listener, Params& params,
-		    const std::shared_ptr<CoreIO::NetworkThread>& thread)
-		    : RtpStream(listener, params, thread) {
+		    const std::shared_ptr<CoreIO::NetworkThread>& thread, bool dynamic_addr)
+		    : RtpStream(listener, params, thread), is_dynamic_addr_(dynamic_addr) {
 				SPDLOG_TRACE();
 
 				if (this->params_.use_nack) {
@@ -272,10 +272,5 @@ namespace RTC {
 				this->last_sender_report_ts_     = this->max_packet_ts_ + diff_ts;
 
 				return report;
-		}
-
-		void RtpStreamSender::ReceiveInputPacket(RtpPacketPtr& rtp_packet) {
-				static_cast<RTC::RtpStreamSender::Listener*>(this->listener_)
-				    ->OnRtpStreamRetransmitRtpPacket(this, rtp_packet);
 		}
 } // namespace RTC

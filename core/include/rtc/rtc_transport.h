@@ -73,13 +73,9 @@ namespace RTC {
 		public:
 				// 创建流
 				void CreateRtpStream(uint32_t ssrc, StreamType stream_type,
-				                     std::string target_ip, int port);
+				                     std::string target_ip, int port, bool dynamic_addr);
 				// 删除流
 				void DeleteRtpStream(uint32_t ssrc);
-
-				// 转发流拼接
-				void RouterAddStream(const std::shared_ptr<RtpStream>& input_stream,
-				                     const std::shared_ptr<RtpStream>& output_stream);
 
 				// 发送数据
 				void OnsSendPacket(uint32_t ssrc, uint8_t* data, uint32_t len);

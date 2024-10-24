@@ -73,12 +73,6 @@ namespace RTC {
 
 				bool ReceiveStreamPacket(RtpPacketPtr& rtp_packet);
 
-				virtual void ReceiveInputPacket(RtpPacketPtr& rtp_packet) {
-						if (next_rtp_stream_) {
-								next_rtp_stream_->ReceiveInputPacket(rtp_packet);
-						}
-				}
-
 		protected:
 				// 更新每次序号，验证序号正确性
 				bool UpdateSequence(RtpPacketPtr& rtp_packet);
