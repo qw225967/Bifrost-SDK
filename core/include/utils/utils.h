@@ -15,6 +15,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <cmath>
 
 namespace RTCUtils {
 
