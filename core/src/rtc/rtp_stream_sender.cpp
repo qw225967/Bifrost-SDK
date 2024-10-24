@@ -198,4 +198,46 @@ namespace RTC {
 				// Set the next container element to null.
 				kRetransmissionContainer[container_idx] = nullptr;
 		}
+
+		void RtpStreamSender::ReceiveRtcpReceiverReport(
+		    const std::shared_ptr<RTCP::ReceiverReport>& report) {
+				SPDLOG_TRACE();
+
+				/* Calculate RTT. */
+
+				// Get the NTP representation of the current timestamp.
+				const uint64_t now_ms = RTCUtils::Time::GetTimeMs();
+				auto ntp              = RTCUtils::Time::TimeMs2Ntp(now_ms);
+
+				// Get the compact NTP representation of the current timestamp.
+				uint32_t compact_ntp = (ntp.seconds & 0x0000FFFF) << 16;
+
+				compact_ntp |= (ntp.fractions & 0xFFFF0000) >> 16;
+
+				const uint32_t last_sr = report->GetLastSenderReport();
+				const uint32_t dlsr    = report->GetDelaySinceLastSenderReport();
+
+				// RTT in 1/2^16 second fractions.
+				uint32_t rtt{ 0 };
+
+				// If no Sender Report was received by the remote endpoint yet, ignore
+				// lastSr and dlsr values in the Receiver Report.
+				if (last_sr && dlsr && (compact_ntp > dlsr + last_sr)) {
+						rtt = compact_ntp - dlsr - last_sr;
+				}
+
+				// RTT in milliseconds.
+				this->rtt_ = static_cast<float>(rtt >> 16) * 1000;
+				this->rtt_ += (static_cast<float>(rtt & 0x0000FFFF) / 65536) * 1000;
+
+				// Avoid negative RTT value since it doesn't make sense.
+				if (this->rtt_ <= 0.0f) {
+						this->rtt_ = 0.0f;
+				}
+
+				this->packets_lost_  = report->GetTotalLost();
+				this->fraction_lost_ = report->GetFractionLost();
+
+				SPDLOG_INFO("receive rtt:{}", this->rtt_);
+		}
 } // namespace RTC

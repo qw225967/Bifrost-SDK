@@ -137,7 +137,35 @@ namespace RTCUtils {
 		};
 
 		class Time {
+				// Seconds from Jan 1, 1900 to Jan 1, 1970.
+				static constexpr uint32_t kUnixNtpOffset{ 0x83AA7E80 };
+				// NTP fractional unit.
+				static constexpr uint64_t kNtpFractionalUnit{ 1LL << 32 };
+
 		public:
+				struct Ntp {
+						uint32_t seconds;
+						uint32_t fractions;
+				};
+
+				static Time::Ntp TimeMs2Ntp(uint64_t ms) {
+						Time::Ntp ntp{}; // NOLINT(cppcoreguidelines-pro-type-member-init)
+
+						ntp.seconds   = ms / 1000;
+						ntp.fractions = static_cast<uint32_t>(
+						    (static_cast<double>(ms % 1000) / 1000) * kNtpFractionalUnit);
+
+						return ntp;
+				}
+
+				static uint64_t Ntp2TimeMs(Time::Ntp ntp) {
+						// clang-format off
+				return (
+					static_cast<uint64_t>(ntp.seconds) * 1000 +
+					static_cast<uint64_t>(std::round((static_cast<double>(ntp.fractions) * 1000) / kNtpFractionalUnit))
+				);
+						// clang-format on
+				}
 				static uint64_t GetTimeMs() {
 						return static_cast<uint64_t>(uv_hrtime() / 1000000u);
 				}

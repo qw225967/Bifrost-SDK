@@ -39,8 +39,7 @@ namespace RTC {
 				void ReceiveNack(
 				    const std::shared_ptr<RTCP::FeedbackRtpNackPacket>& nack_packet);
 				void ReceiveRtcpReceiverReport(
-				    const std::shared_ptr<RTCP::ReceiverReport>& report) {
-				}
+				    const std::shared_ptr<RTCP::ReceiverReport>& report);
 
 		private:
 				void StorePacket(RtpPacketPtr& rtp_packet) const;
