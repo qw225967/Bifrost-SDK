@@ -9,7 +9,7 @@ include_directories(
         core/include
         deps/spdlog/include
         deps/libuv/include
-        deps/websocket/include
+#        deps/websocket/include
 )
 
 # 包含core子目录
@@ -17,7 +17,7 @@ add_subdirectory( core )
 add_subdirectory( api )
 add_subdirectory( deps/libuv )
 add_subdirectory( deps/spdlog )
-add_subdirectory( deps/websocket )
+#add_subdirectory( deps/websocket )
 
 # 添加可执行文件
 add_executable(demo_test main.cpp)
@@ -31,7 +31,7 @@ add_definitions(-D WEBRTC_POSIX)
 add_definitions("-g")
 
 # 链接core库和第三方库到可执行文件
-target_link_libraries(${PROJECT_NAME} ApiLib CoreLib uv spdlog WebsocketLib)
+target_link_libraries(${PROJECT_NAME} ApiLib CoreLib uv spdlog)
 
 # 包含core的头文件目录和第三方库的头文件目录
 target_include_directories(${PROJECT_NAME} PRIVATE
@@ -39,5 +39,5 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         ${PROJECT_SOURCE_DIR}/core/include
         ${PROJECT_SOURCE_DIR}/deps/libuv/include
         ${PROJECT_SOURCE_DIR}/deps/spdlog/include
-        ${PROJECT_SOURCE_DIR}/deps/websocket/include
+#        ${PROJECT_SOURCE_DIR}/deps/websocket/include
 )
