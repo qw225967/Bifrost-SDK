@@ -42,22 +42,38 @@ namespace RTC {
 
 						if (this->receiver_report_packet_.GetCount() > 0u) {
 								offset += this->receiver_report_packet_.Serialize(this->header_
-								                                                 + offset);
+								                                                  + offset);
 						}
 				}
 
-				void CompoundPacket::AddSenderReport(
+				bool CompoundPacket::AddSenderReport(
 				    const std::shared_ptr<SenderReport>& report) {
 						SPDLOG_TRACE();
 
 						this->sender_report_packet_.AddReport(report);
+
+						if (GetSize() <= kMaxSize) {
+								return true;
+						}
+
+						this->sender_report_packet_.RemoveReport(report);
+
+						return false;
 				}
 
-				void CompoundPacket::AddReceiverReport(
+				bool CompoundPacket::AddReceiverReport(
 				    const std::shared_ptr<ReceiverReport>& report) {
 						SPDLOG_TRACE();
 
 						this->receiver_report_packet_.AddReport(report);
+
+						if (GetSize() <= kMaxSize) {
+								return true;
+						}
+
+						this->receiver_report_packet_.RemoveReport(report);
+
+						return false;
 				}
 		} // namespace RTCP
 } // namespace RTC

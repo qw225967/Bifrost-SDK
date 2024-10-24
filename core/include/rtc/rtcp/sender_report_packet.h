@@ -167,6 +167,15 @@ namespace RTC {
 						void AddReport(std::shared_ptr<SenderReport> report) {
 								this->reports_.push_back(report);
 						}
+
+						void RemoveReport(std::shared_ptr<SenderReport> report) {
+								auto it = std::find(
+								    this->reports_.begin(), this->reports_.end(), report);
+
+								if (it != this->reports_.end()) {
+										this->reports_.erase(it);
+								}
+						}
 						Iterator Begin() {
 								return this->reports_.begin();
 						}

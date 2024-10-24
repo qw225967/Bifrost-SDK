@@ -238,7 +238,8 @@ namespace RTC {
 				this->packets_lost_  = report->GetTotalLost();
 				this->fraction_lost_ = report->GetFractionLost();
 
-				SPDLOG_INFO("receive rtt:{}", this->rtt_);
+				SPDLOG_INFO("receive rtt:{}, packet_lost:{}, fraction_lost:{}",
+				            this->rtt_, this->packets_lost_, this->fraction_lost_);
 		}
 
 		std::shared_ptr<RTCP::SenderReport> RtpStreamSender::GetRtcpSenderReport(

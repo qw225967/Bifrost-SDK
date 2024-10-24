@@ -148,4 +148,22 @@ namespace RTC {
 
 				return report;
 		}
+
+		void RtpStreamReceiver::ReceiveRtcpSenderReport(
+		    const std::shared_ptr<RTCP::SenderReport>& report) {
+				SPDLOG_TRACE();
+
+				this->last_sr_received_  = RTCUtils::Time::GetTimeMs();
+				this->last_sr_timestamp_ = report->GetNtpSec() << 16;
+				this->last_sr_timestamp_ += report->GetNtpFrac() >> 16;
+
+				// Update info about last Sender Report.
+				RTCUtils::Time::Ntp ntp{}; // NOLINT(cppcoreguidelines-pro-type-member-init)
+
+				ntp.seconds   = report->GetNtpSec();
+				ntp.fractions = report->GetNtpFrac();
+
+				this->last_sender_report_ntp_ms_ = RTCUtils::Time::Ntp2TimeMs(ntp);
+				this->last_sender_report_ts_     = report->GetRtpTs();
+		}
 } // namespace RTC

@@ -64,8 +64,7 @@ namespace RTC {
 		public:
 				bool ReceivePacket(RtpPacketPtr& packet);
 				void ReceiveRtcpSenderReport(
-				    const std::shared_ptr<RTCP::SenderReport>& report) {
-				}
+				    const std::shared_ptr<RTCP::SenderReport>& report);
 				std::shared_ptr<RTCP::ReceiverReport> GetRtcpReceiverReport();
 
 		private:

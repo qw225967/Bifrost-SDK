@@ -27,7 +27,7 @@ namespace RTC {
 						//    SRTP_MAX_TRAILER_LEN+4 is the maximum number of octects that
 						//    will be added to an RTCP packet by srtp_protect_rtcp(). srtp.h:
 						//    SRTP_MAX_TRAILER_LEN (SRTP_MAX_TAG_LEN + SRTP_MAX_MKI_LEN)
-						constexpr static size_t MaxSize{ RTC::kMtuSize - 40u - 20u - 148u };
+						constexpr static size_t kMaxSize{ RTC::kMtuSize - 40u - 20u - 148u };
 
 				public:
 						CompoundPacket() = default;
@@ -43,8 +43,8 @@ namespace RTC {
 						[[nodiscard]] size_t GetReceiverReportCount() const {
 								return this->receiver_report_packet_.GetCount();
 						}
-						void AddSenderReport(const std::shared_ptr<SenderReport>& report);
-						void AddReceiverReport(const std::shared_ptr<ReceiverReport>& report);
+						bool AddSenderReport(const std::shared_ptr<SenderReport>& report);
+						bool AddReceiverReport(const std::shared_ptr<ReceiverReport>& report);
 						bool HasSenderReport() {
 								return this->sender_report_packet_.Begin()
 								       != this->sender_report_packet_.End();

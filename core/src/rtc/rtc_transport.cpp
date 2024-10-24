@@ -143,6 +143,13 @@ namespace RTC {
 						    = *(reinterpret_cast<const struct sockaddr_storage*>(addr));
 				}
 
+			  std::string ip;
+			  uint16_t port;
+
+			  RTCUtils::NetTools::GetAddressInfo(addr, ip, port);
+
+			  SPDLOG_INFO("show ip: {}, port:{}", ip, port);
+
 				switch (protocol) {
 				case CoreIO::Protocol::UDP:
 				{
@@ -209,6 +216,7 @@ namespace RTC {
 								auto& report = *it;
 								auto rtp_stream
 								    = this->GetStreamReceiverBySsrc(report->GetSsrc());
+							SPDLOG_INFO("SR receive ssrc: {}", report->GetSsrc());
 
 								if (!rtp_stream.get()) {
 										SPDLOG_DEBUG(
@@ -233,6 +241,7 @@ namespace RTC {
 						for (auto it = rr_packet->Begin(); it != rr_packet->End(); ++it) {
 								auto& report = *it;
 								auto rtp_stream = this->GetStreamSenderBySsrc(report->GetSsrc());
+							  SPDLOG_INFO("RR receive ssrc: {}", report->GetSsrc());
 
 								if (!rtp_stream.get()) {
 										SPDLOG_DEBUG(
