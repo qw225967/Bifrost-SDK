@@ -312,7 +312,7 @@ namespace RTC {
 		}
 
 		void RtcTransport::SendRtcpPacket() {
-				// std::unique_lock<std::mutex> lock(thread_mutex_);
+				std::unique_lock<std::mutex> lock(thread_mutex_);
 				auto rtcp_packet = std::make_unique<RTCP::CompoundPacket>();
 
 				for (auto& rtp_receive_stream : this->rtp_receive_streams_) {
