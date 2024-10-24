@@ -240,4 +240,33 @@ namespace RTC {
 
 				SPDLOG_INFO("receive rtt:{}", this->rtt_);
 		}
+
+		std::shared_ptr<RTCP::SenderReport> RtpStreamSender::GetRtcpSenderReport(
+		    uint64_t now_ms) {
+				SPDLOG_TRACE();
+
+				if (this->wait_transmission_counter_.GetPacketCount() == 0u) {
+						return nullptr;
+				}
+
+				auto ntp    = RTCUtils::Time::TimeMs2Ntp(now_ms);
+				auto report = std::make_shared<RTC::RTCP::SenderReport>();
+
+				// Calculate TS difference between now and maxPacketMs.
+				auto diff_ms = now_ms - this->max_packet_ms_;
+				auto diff_ts = diff_ms * GetClockRate() / 1000;
+
+				report->SetSsrc(GetSsrc());
+				report->SetPacketCount(this->wait_transmission_counter_.GetPacketCount());
+				report->SetOctetCount(this->wait_transmission_counter_.GetBytes());
+				report->SetNtpSec(ntp.seconds);
+				report->SetNtpFrac(ntp.fractions);
+				report->SetRtpTs(this->max_packet_ts_ + diff_ts);
+
+				// Update info about last Sender Report.
+				this->last_sender_report_ntp_ms_ = now_ms;
+				this->last_sender_report_ts_     = this->max_packet_ts_ + diff_ts;
+
+			return report;
+		}
 } // namespace RTC

@@ -109,7 +109,8 @@ namespace RTC {
 
 				default:
 				{
-						SPDLOG_WARN("Unknown stream type: {}", static_cast<uint8_t>(stream_type));
+						SPDLOG_WARN("Unknown stream type: {}",
+						            static_cast<uint8_t>(stream_type));
 				}
 				}
 		}
@@ -135,6 +136,12 @@ namespace RTC {
 		                            CoreIO::Protocol protocol,
 		                            const struct sockaddr* addr) {
 				SPDLOG_TRACE();
+
+				// 更新addr地址
+				if (addr) {
+						this->udp_remote_addr_
+						    = *(reinterpret_cast<const struct sockaddr_storage*>(addr));
+				}
 
 				switch (protocol) {
 				case CoreIO::Protocol::UDP:
@@ -323,6 +330,14 @@ namespace RTC {
 						}
 				}
 
+				for (auto& rtp_send_stream : this->rtp_send_streams_) {
+						auto send_report = rtp_send_stream.second->GetRtcpSenderReport(
+						    RTCUtils::Time::GetTimeMs());
+						if (send_report) {
+								rtcp_packet->AddSenderReport(send_report);
+						}
+				}
+
 				auto* data = new uint8_t[rtcp_packet->GetSize()];
 				rtcp_packet->Serialize(data);
 
@@ -334,7 +349,9 @@ namespace RTC {
 		}
 
 		void RtcTransport::OnTimer(RTCUtils::TimerHandle* timer) {
-				this->SendRtcpPacket();
+				if (timer == this->rtcp_send_timer_) {
+						this->SendRtcpPacket();
+				}
 		}
 
 }

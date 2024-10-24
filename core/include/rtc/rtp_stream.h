@@ -56,6 +56,9 @@ namespace RTC {
 				[[nodiscard]] uint8_t GetPayloadType() const {
 						return params_.payload_type;
 				}
+				uint32_t GetClockRate() const {
+						return this->params_.clock_rate;
+				}
 
 				bool ReceiveStreamPacket(RtpPacketPtr& rtp_packet);
 
@@ -90,8 +93,11 @@ namespace RTC {
 				// 对应链路的rtt
 				float rtt_{ 0.0f };
 				// 丢包总数
-				uint32_t packets_lost_ { 0u };
-
+				uint32_t packets_lost_{ 0u };
+				// 最新sr中的 NTP 时间戳 (in ms).
+				uint64_t last_sender_report_ntp_ms_{ 0u };
+				// 最新sr中的 rtp 时间戳.
+				uint32_t last_sender_report_ts_{ 0u };
 			  // 丢包拥塞判断因子
 				uint8_t fraction_lost_{ 0u };
 
