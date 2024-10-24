@@ -30,7 +30,7 @@ namespace RTC {
 		                             unsigned int send_nack_delay_ms)
 		    : listener_(listener), send_nack_delay_ms_(send_nack_delay_ms),
 		      timer_(new RTCUtils::TimerHandle(this, thread)), rtt_(kDefaultRtt) {
-				this->timer_->InitInvoke();
+				// this->timer_->InitInvoke();
 				SPDLOG_TRACE();
 		}
 
@@ -141,9 +141,9 @@ namespace RTC {
 
 				// This is important. Otherwise the running timer (filter:TIME) would be
 				// interrupted and NACKs would never been sent more than once for each seq.
-				if (!this->timer_->IsActiveInvoke()) {
-						MayRunTimer();
-				}
+				// if (!this->timer_->IsActiveInvoke()) {
+				// 		MayRunTimer();
+				// }
 
 				return false;
 		}
@@ -350,6 +350,6 @@ namespace RTC {
 						this->listener_->OnNackGeneratorNackRequired(nack_batch);
 				}
 
-				MayRunTimer();
+				// MayRunTimer();
 		}
 } // namespace RTC

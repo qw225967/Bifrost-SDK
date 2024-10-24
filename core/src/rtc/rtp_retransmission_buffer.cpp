@@ -69,14 +69,11 @@ namespace RTC {
 				const auto seq       = rtp_packet->GetSequenceNumber();
 				const auto timestamp = rtp_packet->GetTimestamp();
 
-				SPDLOG_DEBUG(
-				    "packet [seq:%" PRIu16 ", timestamp:%" PRIu32 "]", seq, timestamp);
+				SPDLOG_DEBUG("packet [seq:{}, timestamp:{}]", seq, timestamp);
 
 				// 1.当前缓存是空的直接插入新内容
 				if (this->buffer_.empty()) {
-						SPDLOG_DEBUG("buffer empty [seq:%" PRIu16 ", timestamp:%" PRIu32 "]",
-						             seq,
-						             timestamp);
+						SPDLOG_DEBUG("buffer empty [seq:{}, timestamp:{}]", seq, timestamp);
 
 						auto* item = new Item(rtp_packet, ssrc, seq, timestamp, 0, 0);
 
@@ -98,8 +95,8 @@ namespace RTC {
 				{
 						SPDLOG_WARN(
 						    "packet has lower seq but higher timestamp than newest "
-						    "packet in the buffer, emptying the buffer [ssrc:%" PRIu32
-						    ", seq:%" PRIu16 ", timestamp:%" PRIu32 "]",
+						    "packet in the buffer, emptying the buffer "
+						    "[ssrc:{}, seq:{}, timestamp:{}]",
 						    ssrc,
 						    seq,
 						    timestamp);
@@ -148,10 +145,7 @@ namespace RTC {
 				if (RTC::SeqManager<uint16_t>::IsSeqHigherThan(
 				        seq, newest_item->sequence_number))
 				{
-						SPDLOG_DEBUG("packet in order [seq:%" PRIu16 ", timestamp:%" PRIu32
-						             "]",
-						             seq,
-						             timestamp);
+						SPDLOG_DEBUG("packet in order [seq:{}, timestamp:{}]", seq, timestamp);
 
 						// Ensure that the timestamp of the packet is equal or higher than
 						// the timestamp of the newest stored packet.
@@ -190,13 +184,13 @@ namespace RTC {
 
 										Clear();
 								} else {
-										SPDLOG_DEBUG("calling RemoveOldest(%" PRIu16
-										             ") [bufferSize:%zu, numBlankSlots:%" PRIu16
-										             ", maxItems:%" PRIu16 "]",
-										             num_items_to_remove,
-										             this->buffer.size(),
-										             numBlankSlots,
-										             this->maxItems);
+										SPDLOG_DEBUG(
+										    "calling RemoveOldest(%" PRIu16
+										    ") [bufferSize:%zu, numBlankSlots:{}, maxItems:{}]",
+										    num_items_to_remove,
+										    this->buffer.size(),
+										    numBlankSlots,
+										    this->maxItems);
 
 										RemoveOldest(num_items_to_remove);
 								}
@@ -217,16 +211,17 @@ namespace RTC {
 				{
 						SPDLOG_DEBUG(
 						    "packet out of order and older than oldest packet in the buffer "
-						    "[seq:%" PRIu16 ", timestamp:%" PRIu32 "]",
+						    "[seq:{}, timestamp:{}]",
 						    seq,
 						    timestamp);
 
 						// 包太旧，超过时间限制了也不存储
 						if (IsTooOldTimestamp(timestamp, newest_item->timestamp)) {
-								SPDLOG_WARN("packet's timestamp too old, discarding it [seq:%" PRIu16
-								            ", timestamp:%" PRIu32 "]",
-								            seq,
-								            timestamp);
+								SPDLOG_WARN(
+								    "packet's timestamp too old, discarding it "
+								    "[seq:{}, timestamp:{}]",
+								    seq,
+								    timestamp);
 
 								return;
 						}
@@ -237,8 +232,8 @@ namespace RTC {
 						{
 								SPDLOG_WARN(
 								    "packet has lower seq but higher timestamp than oldest "
-								    "packet in the buffer,discarding it [ssrc:%" PRIu32
-								    ", seq:%" PRIu16 ", timestamp:%" PRIu32 "]",
+								    "packet in the buffer,discarding it "
+								    "[ssrc:{}, seq:{}, timestamp:{}]",
 								    ssrc,
 								    seq,
 								    timestamp);
@@ -255,7 +250,7 @@ namespace RTC {
 								SPDLOG_WARN(
 
 								    "discarding received old packet to not exceed max buffer size"
-								    " [ssrc:%" PRIu32 ", seq:%" PRIu16 ", timestamp:%" PRIu32 "]",
+								    " [ssrc:{}, seq:{}, timestamp:{}]",
 								    ssrc,
 								    seq,
 								    timestamp);
@@ -277,7 +272,7 @@ namespace RTC {
 				{
 						SPDLOG_DEBUG(
 						    "packet out of order and in between oldest and newest packets"
-						    " in the buffer [seq:%" PRIu16 ", timestamp:%" PRIu32 "]",
+						    " in the buffer [seq:{}, timestamp:{}]",
 						    seq,
 						    timestamp);
 
@@ -286,10 +281,11 @@ namespace RTC {
 						auto* item = Get(seq);
 
 						if (item) {
-								SPDLOG_DEBUG("packet already in the buffer, discarding [seq:%" PRIu16
-								             ", timestamp:%" PRIu32 "]",
-								             seq,
-								             timestamp);
+								SPDLOG_DEBUG(
+								    "packet already in the buffer, discarding "
+								    "[seq:, timestamp:{}]",
+								    seq,
+								    timestamp);
 
 								return;
 						}
@@ -312,8 +308,8 @@ namespace RTC {
 								} else {
 										SPDLOG_WARN(
 										    "packet timestamp is lower than timestamp of immediate "
-										    "older packet in the buffer,discarding it [ssrc:%" PRIu32
-										    ", seq:%" PRIu16 ", timestamp:%" PRIu32 "]",
+										    "older packet in the buffer,discarding it "
+										    "[ssrc:{}, seq:{}, timestamp:{}]",
 										    ssrc,
 										    seq,
 										    timestamp);
@@ -338,8 +334,8 @@ namespace RTC {
 										SPDLOG_WARN(
 
 										    "packet timestamp is higher than timestamp of immediate "
-										    "newer packet in the buffer,discarding it [ssrc:%" PRIu32
-										    ", seq:%" PRIu16 ", timestamp:%" PRIu32 "]",
+										    "newer packet in the buffer,discarding it "
+										    "[ssrc:{}, seq:{}, timestamp:{}]",
 										    ssrc,
 										    seq,
 										    timestamp);

@@ -30,7 +30,7 @@ namespace RTCUtils {
 		}
 
 		TimerHandle::~TimerHandle() {
-				if (!close_.load()) {
+				if (!is_close_.load()) {
 						CloseInvoke();
 				}
 		}
@@ -40,8 +40,7 @@ namespace RTCUtils {
 
 				uv_handle_       = new uv_timer_t;
 				uv_handle_->data = static_cast<void*>(this);
-				close_.store(false);
-
+				is_close_.store(false);
 
 				int err = uv_timer_init(thread_->GetLoop(), uv_handle_);
 				if (err != 0) {
@@ -63,7 +62,7 @@ namespace RTCUtils {
 		bool TimerHandle::Start(uint64_t timeout, uint64_t repeat) {
 				SPDLOG_TRACE();
 
-				if (close_.load()) {
+				if (is_close_.load()) {
 						SPDLOG_INFO("timer handle closed");
 						return false;
 				}
@@ -98,7 +97,7 @@ namespace RTCUtils {
 		void TimerHandle::Stop() {
 				SPDLOG_TRACE();
 
-				if (close_.load()) {
+				if (is_close_.load()) {
 						SPDLOG_ERROR("timer handle closed");
 				}
 
@@ -117,7 +116,7 @@ namespace RTCUtils {
 		void TimerHandle::Reset() {
 				SPDLOG_TRACE();
 
-				if (close_.load()) {
+				if (is_close_.load()) {
 						SPDLOG_ERROR("timer handle closed");
 				}
 
@@ -133,7 +132,6 @@ namespace RTCUtils {
 				    uv_handle_, reinterpret_cast<uv_timer_cb>(OnTimer), repeat_, repeat_);
 				if (err != 0) {
 						SPDLOG_ERROR("uv_timer_start() failed: {}", uv_strerror(err));
-						return;
 				}
 		}
 
@@ -146,7 +144,7 @@ namespace RTCUtils {
 		void TimerHandle::Restart() {
 				SPDLOG_TRACE();
 
-				if (close_.load()) {
+				if (is_close_.load()) {
 						SPDLOG_ERROR("timer handle closed");
 				}
 
@@ -183,11 +181,11 @@ namespace RTCUtils {
 		void TimerHandle::Close() {
 				SPDLOG_TRACE();
 
-				if (close_.load()) {
+				if (is_close_.load()) {
 						return;
 				}
 
-				close_.store(true);
+				is_close_.store(true);
 				uv_close(reinterpret_cast<uv_handle_t*>(uv_handle_),
 				         static_cast<uv_close_cb>(OnCloseTimer));
 		}
@@ -195,7 +193,7 @@ namespace RTCUtils {
 		void TimerHandle::CloseInvoke() {
 				SPDLOG_TRACE();
 
-				if (close_.load()) {
+				if (is_close_.load()) {
 						return;
 				}
 
@@ -204,7 +202,7 @@ namespace RTCUtils {
 
 		inline void TimerHandle::OnUvTimer() {
 				SPDLOG_TRACE();
-				SPDLOG_INFO("uv_timer");
+
 				listener_->OnTimer(this);
 		}
 }

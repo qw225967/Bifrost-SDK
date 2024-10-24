@@ -62,7 +62,7 @@ namespace RTCUtils {
 				std::shared_ptr<CoreIO::NetworkThread> thread_{ nullptr };
 				uv_timer_t* uv_handle_{ nullptr };
 
-				std::atomic<bool> close_{ false };
+				std::atomic<bool> is_close_{ false };
 				uint64_t timeout_{ 0u };
 				uint64_t repeat_{ 0u };
 		};

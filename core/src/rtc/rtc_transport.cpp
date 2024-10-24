@@ -49,7 +49,8 @@ namespace RTC {
 
 				// 初始化定时器
 				this->rtcp_send_timer_->InitInvoke();
-				this->rtcp_send_timer_->StartInvoke(kTimerRtcpIntervalMs);
+				this->rtcp_send_timer_->StartInvoke(kTimerRtcpIntervalMs,
+				                                    kTimerRtcpIntervalMs);
 
 				// 立刻发送一个rr触发媒体流建联
 				this->SendRtcpPacket();
@@ -108,7 +109,7 @@ namespace RTC {
 
 				default:
 				{
-						SPDLOG_WARN("Unknown stream type: {}", uint8_t(stream_type));
+						SPDLOG_WARN("Unknown stream type: {}", static_cast<uint8_t>(stream_type));
 				}
 				}
 		}
@@ -189,8 +190,6 @@ namespace RTC {
 		}
 
 		void RtcTransport::ReceiveRtcpPacket(RTCP::RtcpPacketPtr& rtcp_packet) {
-				std::unique_lock<std::mutex> lock(thread_mutex_);
-
 				auto rtcp_type = rtcp_packet->GetType();
 
 				switch (rtcp_type) {
@@ -207,7 +206,7 @@ namespace RTC {
 								if (!rtp_stream.get()) {
 										SPDLOG_DEBUG(
 										    "no Consumer found for received Sender Report "
-										    "[ssrc:%" PRIu32 "]",
+										    "[ssrc:{}]",
 										    report->GetSsrc());
 
 										continue;
@@ -231,7 +230,7 @@ namespace RTC {
 								if (!rtp_stream.get()) {
 										SPDLOG_DEBUG(
 										    "no Consumer found for received Receiver Report "
-										    "[ssrc:%" PRIu32 "]",
+										    "[ssrc:{}]",
 										    report->GetSsrc());
 
 										continue;
@@ -289,7 +288,7 @@ namespace RTC {
 		}
 
 		void RtcTransport::OnsSendPacket(uint32_t ssrc, uint8_t* data, uint32_t len) {
-				auto rtp_send_stream = this->GetStreamSenderBySsrc(ssrc);
+				const auto rtp_send_stream = this->GetStreamSenderBySsrc(ssrc);
 				if (!rtp_send_stream.get()) {
 						return;
 				}
@@ -313,20 +312,18 @@ namespace RTC {
 		}
 
 		void RtcTransport::SendRtcpPacket() {
-				std::unique_lock<std::mutex> lock(thread_mutex_);
+				// std::unique_lock<std::mutex> lock(thread_mutex_);
 				auto rtcp_packet = std::make_unique<RTCP::CompoundPacket>();
 
-				for (auto receive_ite = this->rtp_receive_streams_.begin();
-				     receive_ite != this->rtp_receive_streams_.end();
-				     ++receive_ite)
-				{
-						auto receive_report = receive_ite->second->GetRtcpReceiverReport();
+				for (auto& rtp_receive_stream : this->rtp_receive_streams_) {
+						auto receive_report
+						    = rtp_receive_stream.second->GetRtcpReceiverReport();
 						if (receive_report) {
 								rtcp_packet->AddReceiverReport(receive_report);
 						}
 				}
 
-				uint8_t* data = new uint8_t[rtcp_packet->GetSize()];
+				auto* data = new uint8_t[rtcp_packet->GetSize()];
 				rtcp_packet->Serialize(data);
 
 				this->listener_->OnPacketSent(

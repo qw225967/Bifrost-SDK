@@ -42,7 +42,7 @@ namespace RTC {
 
 				// If not a valid packet ignore it.
 				if (!UpdateSequence(rtp_packet)) {
-						SPDLOG_WARN("invalid packet [ssrc:%" PRIu32 ", seq:%" PRIu16 "]",
+						SPDLOG_WARN("invalid packet [ssrc:{}, seq:{}]",
 						            rtp_packet->GetSsrc(),
 						            rtp_packet->GetSequenceNumber());
 
@@ -89,10 +89,11 @@ namespace RTC {
 								// Two sequential packets. Assume that the other side restarted
 								// without telling us so just re-sync (i.e., pretend this was
 								// the first packet).
-								SPDLOG_WARN("too bad sequence number, re-syncing RTP [ssrc:%" PRIu32
-								            ", seq:%" PRIu16 "]",
-								            rtp_packet->GetSsrc(),
-								            rtp_packet->GetSequenceNumber());
+								SPDLOG_WARN(
+								    "too bad sequence number, re-syncing RTP"
+								    " [ssrc:{}, seq:{}]",
+								    rtp_packet->GetSsrc(),
+								    rtp_packet->GetSequenceNumber());
 
 								InitSequence(seq);
 
@@ -102,10 +103,11 @@ namespace RTC {
 								// 用于子类重置传输序号
 								// UserOnSequenceNumberReset();
 						} else {
-								SPDLOG_WARN("bad sequence number, ignoring packet [ssrc:%" PRIu32
-								            ", seq:%" PRIu16 "]",
-								            rtp_packet->GetSsrc(),
-								            rtp_packet->GetSequenceNumber());
+								SPDLOG_WARN(
+								    "bad sequence number, ignoring packet "
+								    "[ssrc:{}, seq:{}]",
+								    rtp_packet->GetSsrc(),
+								    rtp_packet->GetSequenceNumber());
 
 								this->bad_seq_ = (seq + 1) & (kRtpSeqMod - 1);
 

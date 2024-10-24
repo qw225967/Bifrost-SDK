@@ -61,8 +61,7 @@ namespace RTC {
 				SPDLOG_TRACE();
 
 				if (rtp_packet->GetSize() > RTC::kMtuSize) {
-						SPDLOG_WARN("packet too big [ssrc:%" PRIu32 ", seq:%" PRIu16
-						            ", size:%zu]",
+						SPDLOG_WARN("packet too big [ssrc:{}, seq:{}, size:{}]",
 						            rtp_packet->GetSsrc(),
 						            rtp_packet->GetSequenceNumber(),
 						            rtp_packet->GetSize());
@@ -161,7 +160,7 @@ namespace RTC {
 								{
 										SPDLOG_DEBUG(
 										    "ignoring retransmission for a packet already resent in"
-										    " the last RTT ms [seq:%" PRIu16 ", rtt:%" PRIu32 "]",
+										    " the last RTT ms [seq:{}, rtt:{}]",
 										    packet->GetSequenceNumber(),
 										    rtt);
 								}
