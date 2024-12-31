@@ -53,6 +53,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         ${PROJECT_SOURCE_DIR}/deps/cpp_websocket/net/http
         ${PROJECT_SOURCE_DIR}/deps/cpp_websocket/net/tcp
         ${PROJECT_SOURCE_DIR}/deps/cpp_websocket/utils
+        /opt/homebrew/Cellar/openssl@3/3.4.0/include
 )
 
 # 复制头文件到指定目录

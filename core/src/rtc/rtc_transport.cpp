@@ -12,6 +12,9 @@
 #include "rtc/rtp_stream_receiver.h"
 #include "rtc/rtp_stream_sender.h"
 #include "utils/copy_on_write_buffer.h"
+#include "utils/stringex.hpp"
+
+#include <stack>
 
 namespace RTC {
 		static constexpr unsigned int kSendNackDelay{ 10u }; // In ms.
@@ -179,11 +182,123 @@ namespace RTC {
 
 					break;
 				}
+				case CoreIO::Protocol::WEBSOCKET_TEXT:
+				{
+						if (socket->IsClosed()) {
+								return;
+						}
+						WebsocketEventResponse response;
+
+						this->ReadResponseJson(response, std::string((char*)data, len));
+						this->listener_->OnReceiveEvent();
+
+						break;
+				}
 				default:
 				{
 						// SPDLOG_WARN("Unknown protocol: {}", uint8_t(protocol));
 						break;
 				}
+				}
+		}
+
+		std::pair<size_t, size_t> RtcTransport::FindParentheses(std::string text) {
+				std::stack<std::pair<char, size_t>> parentheses;
+				size_t i = 0;
+
+				for (; i < text.size(); i++) {
+						if (text[i] == '{') {
+								parentheses.push(std::pair<char, size_t>(text[i], i));
+						}
+						if (text[i] == '}') {
+								if (parentheses.size() == 1) {
+										auto result = parentheses.top();
+										return std::pair<size_t, size_t>(result.second + 1, i);
+								}
+								parentheses.pop();
+						}
+				}
+		}
+
+		void RtcTransport::ReadResponseJson(WebsocketEventResponse& response, std::string text) {
+				auto json_str = text.substr(1, text.size() - 2);
+
+				// 解析头部
+				auto pos_header = text.find("header");
+				if (pos_header != std::string::npos) {
+						auto header_str  = text.substr(pos_header + 8);
+						auto split_index = FindParentheses(header_str);
+						header_str       = header_str.substr(
+                split_index.first, split_index.second - split_index.first);
+
+						std::vector<std::string> lines_vec;
+						cpp_streamer::StringSplit(header_str, ",", lines_vec);
+						for (auto ite = lines_vec.begin(); ite != lines_vec.end(); ite++)
+						{
+								auto message_type_pos = ite->find("messageType");
+								if (message_type_pos != std::string::npos) {
+										response.header.message_type
+										    = ite->substr(message_type_pos + 14,
+										                  ite->size() - (message_type_pos + 15));
+								}
+
+								auto connect_id_pos = ite->find("connectId");
+								if (connect_id_pos != std::string::npos) {
+										response.header.connect_id
+										    = ite->substr(connect_id_pos + 12,
+										                  ite->size() - (connect_id_pos + 13));
+								}
+
+								auto status_message_pos = ite->find("statusMessage");
+								if (status_message_pos != std::string::npos) {
+										response.header.status_message = ite->substr(
+										    status_message_pos + 16,
+										    ite->size() - (status_message_pos + 17));
+								}
+
+								auto status_pos = ite->find("status\"");
+								if (status_pos != std::string::npos) {
+										auto size              = ite->size();
+										response.header.status = std::stoi(ite->substr(
+										    status_pos + 8, size - (status_pos + 8)));
+								}
+						}
+				}
+
+				// 解析载荷
+				// 解析头部
+				auto pos_paylad = text.find("payload");
+				if (pos_paylad != std::string::npos) {
+						auto payload_str = text.substr(pos_header + 9);
+						auto split_index = FindParentheses(payload_str);
+						payload_str      = payload_str.substr(
+                split_index.first, split_index.second - split_index.first);
+
+						std::vector<std::string> lines_vec;
+						cpp_streamer::StringSplit(payload_str, ",", lines_vec);
+						for (auto ite = lines_vec.begin(); ite != lines_vec.end(); ite++)
+						{
+								auto request_id_pos = ite->find("requestId");
+								if (request_id_pos != std::string::npos) {
+										response.payload.request_id
+										    = ite->substr(request_id_pos + 12,
+										                  ite->size() - (request_id_pos + 13));
+								}
+
+								auto simple_rate_pos = ite->find("simpleRate");
+								if (simple_rate_pos != std::string::npos) {
+										response.payload.simple_rate
+										    = ite->substr(simple_rate_pos + 13,
+										                  ite->size() - (simple_rate_pos + 14));
+								}
+
+								auto pack_overlap_pos = ite->find("packOverlap");
+								if (pack_overlap_pos != std::string::npos) {
+										response.payload.pack_overlap
+										    = ite->substr(pack_overlap_pos + 14,
+										                  ite->size() - (pack_overlap_pos + 15));
+								}
+						}
 				}
 		}
 

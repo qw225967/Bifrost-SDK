@@ -109,9 +109,15 @@ void HttpClient::OnRead(int ret_code, const char* data, size_t data_size) {
 
     resp_ptr_->data_.AppendData(data, data_size);
 
+		bool has_websocket_together = false;
+		int tcp_coalescence_offset = 0;
     if (!resp_ptr_->header_ready_) {
         std::string header_str(resp_ptr_->data_.Data(), resp_ptr_->data_.DataLen());
         size_t pos = header_str.find("\r\n\r\n");
+				// 表明有数据粘包发送
+				has_websocket_together = data_size > pos + 4;
+				tcp_coalescence_offset = has_websocket_together ? (data_size - 4 - pos) : 0;
+
         if (pos != std::string::npos) {
             std::vector<std::string> lines_vec;
             resp_ptr_->header_ready_ = true;
@@ -168,6 +174,10 @@ void HttpClient::OnRead(int ret_code, const char* data, size_t data_size) {
         cb_->OnHttpRead(0, resp_ptr_);
         client_->AsyncRead();
     }
+
+		if (has_websocket_together) {
+				this->OnRead(0, data + (data_size - tcp_coalescence_offset), tcp_coalescence_offset);
+		}
 }
 
 }

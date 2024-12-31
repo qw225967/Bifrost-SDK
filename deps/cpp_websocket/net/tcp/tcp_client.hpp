@@ -111,27 +111,45 @@ public:
         char port_sz[80];
         std::string dst_ip;
 
-        if (!IsIPv4(host)) {
-            snprintf(port_sz, sizeof(port_sz), "%d", dst_port);
-            addrinfo hints;
-            memset(&hints, 0, sizeof(hints));
-            hints.ai_family = AF_UNSPEC;
-            hints.ai_socktype = SOCK_STREAM;
+				// 处理域名
+				auto pos = host.find(".com");
+				if (pos != std::string::npos) {
+						// 获取域名对应的IP地址
+						struct hostent *server = gethostbyname(host.c_str());
+						if (server == nullptr) {
+								return;
+						}
 
-            addrinfo* ai  = NULL;
-            if(getaddrinfo(host.c_str(), port_sz, (const addrinfo*)&hints, &ai)) {
-                printf("get address info error\n");
-                // throw CppStreamException("get address info error");
-            }
-            freeaddrinfo(ai);
-            assert(sizeof(dst_addr_) == ai->ai_addrlen);
+						// 构建服务器地址结构
+						memset(&dst_addr_, 0, sizeof(dst_addr_));
+						dst_addr_.sin_family = AF_INET;
+						dst_addr_.sin_port = htons(dst_port);
+						memcpy(&dst_addr_.sin_addr.s_addr, server->h_addr, server->h_length);
+						dst_ip = GetIpStr((sockaddr*)&dst_addr_, dst_port);
+						std::cout << dst_ip << ":" << dst_port << std::endl;
+				} else {
+						if (!IsIPv4(host)) {
+								snprintf(port_sz, sizeof(port_sz), "%d", dst_port);
+								addrinfo hints;
+								memset(&hints, 0, sizeof(hints));
+								hints.ai_family = AF_UNSPEC;
+								hints.ai_socktype = SOCK_STREAM;
 
-            memcpy((void*)&dst_addr_, ai->ai_addr, sizeof(dst_addr_));
-            dst_ip = GetIpStr(ai->ai_addr, dst_port);
-        } else {
-            GetIpv4Sockaddr(host, htons(dst_port), (struct sockaddr*)&dst_addr_);
-            dst_ip = GetIpStr((sockaddr*)&dst_addr_, dst_port);
-        }
+								addrinfo* ai  = NULL;
+								if(getaddrinfo(host.c_str(), port_sz, (const addrinfo*)&hints, &ai)) {
+										printf("get address info error\n");
+										// throw CppStreamException("get address info error");
+								}
+								freeaddrinfo(ai);
+								assert(sizeof(dst_addr_) == ai->ai_addrlen);
+
+								memcpy((void*)&dst_addr_, ai->ai_addr, sizeof(dst_addr_));
+								dst_ip = GetIpStr(ai->ai_addr, dst_port);
+						} else {
+								GetIpv4Sockaddr(host, htons(dst_port), (struct sockaddr*)&dst_addr_);
+								dst_ip = GetIpStr((sockaddr*)&dst_addr_, dst_port);
+						}
+				}
 
         //if ((r = uv_ip4_addr(host.c_str(), dst_port, &dst_addr_)) != 0) {
         //    throw CppStreamException("connect address error");

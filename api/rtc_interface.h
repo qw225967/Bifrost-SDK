@@ -87,6 +87,9 @@ namespace RTCApi {
 				 */
 				virtual void OnSendText(uint8_t* data, uint32_t len) = 0;
 				virtual void OnSendText(std::string data) = 0;
+
+
+				virtual std::string GetConnectId() = 0;
 		};
 } // namespace RTCInterface
 

@@ -8,6 +8,7 @@
  *******************************************************/
 
 #include "io/net_io_factory.h"
+#include "netdb.h"
 
 namespace CoreIO {
 		NetIOFactory::NetIOFactory() {}
@@ -39,11 +40,11 @@ namespace CoreIO {
 			}).get();
 		}
 
-		void NetIOFactory::DestroyUdpSocket(std::shared_ptr<UdpSocket> socket){
+		void NetIOFactory::DestroyUdpSocket(const std::shared_ptr<UdpSocket>& socket){
 			network_thread_->Post<void>([this, socket]() { socket->Close(); }).get();
 		}
 
-		std::shared_ptr<WebsocketClient> NetIOFactory::CreateWebsocketClient(std::string ip, uint16_t port, const std::string& subpath, bool ssl_enable){
+		std::shared_ptr<WebsocketClient> NetIOFactory::CreateWebsocketClient(const std::string& ip, uint16_t port, const std::string& subpath, bool ssl_enable){
 			if (is_closed_.load()) {
 				SPDLOG_ERROR("net io factory is closed");
 				return nullptr;

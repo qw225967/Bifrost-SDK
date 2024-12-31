@@ -18,7 +18,7 @@
 namespace CoreIO {
 		class PacketDispatcherInterface;
 
-		enum class Protocol { UDP = 1, TCP = 2, WEBSOCKET = 3 };
+		enum class Protocol { UDP = 1, TCP = 2, WEBSOCKET = 3, WEBSOCKET_TEXT = 4 };
 
 		enum class Type { CLIENT = 1, SERVER };
 

@@ -39,8 +39,11 @@ public:
 #if (OPENSSL_VERSION_NUMBER < 0x10002000L) // v1.0.2
         ssl_ctx_ = SSL_CTX_new(TLS_method());
 #else
-        ssl_ctx_ = SSL_CTX_new(TLSv1_2_method());
+        ssl_ctx_ = SSL_CTX_new(TLS_client_method());
 #endif
+				SSL_CTX_set_min_proto_version(ssl_ctx_, TLS1_2_VERSION);
+				SSL_CTX_set_max_proto_version(ssl_ctx_, TLS1_3_VERSION);
+				SSL_CTX_set_options(ssl_ctx_, SSL_OP_CIPHER_SERVER_PREFERENCE);
         SSL_CTX_set_verify(ssl_ctx_, SSL_VERIFY_PEER, on_verify_callback);
         if (SSL_CTX_set_cipher_list(ssl_ctx_, "ALL") != 1) {
             return -1;
@@ -77,7 +80,7 @@ public:
         }
 
         cb_->PlaintextDataSend((char*)data, size);
- 
+
         if ((r0 = BIO_reset(bio_out_)) != 1) {
             return -1;
         }
@@ -91,17 +94,19 @@ public:
         int r1 = 0;
         bool ready = false;
 
-        if ((r0 = BIO_write(bio_in_, buf, nn)) <= 0) {
+				r0 = BIO_write(bio_in_, buf, nn);
+        if (r0 <= 0) {
             return -1;
         }
 
-        if ((r0 = SSL_do_handshake(ssl_)) != -1 || (r1 = SSL_get_error(ssl_, r0)) != SSL_ERROR_WANT_READ) {
-            return -1;
-        }
+        r0 = SSL_do_handshake(ssl_);r1 = SSL_get_error(ssl_, r0);
+				if (r0 != -1 || r1 != SSL_ERROR_WANT_READ) {
+						return -1;
+				}
 
         char* data = nullptr;
-        ssize_t size = 0;
-        if ((size = BIO_get_mem_data(bio_out_, &data)) > 0) {
+        ssize_t size = BIO_get_mem_data(bio_out_, &data);
+        if (size > 0) {
             if ((r0 = BIO_reset(bio_in_)) != 1) {
                 return -1;
             }

@@ -19,6 +19,7 @@
 #include "utils/cpp11_adaptor.h"
 #include "utils/utils.h"
 #include <spdlog/spdlog.h>
+#include <stack>
 
 #include <atomic>
 #include <future>
@@ -32,6 +33,23 @@ namespace CoreIO {
 		                        public TimerInterface,
 		                        public SocketInterface {
 		public:
+				struct WebsocketEventResponseHeader {
+						std::string message_type;
+						std::string connect_id;
+						std::string status_message;
+						int status;
+				};
+				struct WebsocketEventResponsePayload {
+						std::string request_id;
+						std::string simple_rate;
+						std::string pack_overlap;
+				};
+				struct WebsocketEventResponse {
+						WebsocketEventResponseHeader header;
+						WebsocketEventResponsePayload payload;
+				};
+
+		public:
 				WebsocketClient(std::shared_ptr<NetworkThread> networkThread)
 				    : TimerInterface(networkThread->GetLoop(), 0),
 				      network_thread_(networkThread) {
@@ -40,6 +58,10 @@ namespace CoreIO {
 
 				~WebsocketClient() {
 						this->mem_buf_.membuf_uninit();
+				}
+
+				WebsocketEventResponse GetWebsocketEventResponse() {
+						return response_;
 				}
 
 				bool Init(const std::string& ip, uint16_t port,
@@ -150,6 +172,8 @@ namespace CoreIO {
 						}
 
 						SPDLOG_INFO("OnReadText: {}", text);
+
+						this->ReadResponseJson(this->response_, text);
 				}
 
 				void OnReadData(int code, const uint8_t* data, size_t len) override {
@@ -177,6 +201,108 @@ namespace CoreIO {
 						is_connected_.store(false);
 				}
 
+
+				std::pair<size_t, size_t> FindParentheses(std::string text) {
+						std::stack<std::pair<char, size_t>> parentheses;
+						size_t i = 0;
+
+						for (; i < text.size(); i++) {
+								if (text[i] == '{') {
+										parentheses.push(std::pair<char, size_t>(text[i], i));
+								}
+								if (text[i] == '}') {
+										if (parentheses.size() == 1) {
+												auto result = parentheses.top();
+												return std::pair<size_t, size_t>(result.second + 1, i);
+										}
+										parentheses.pop();
+								}
+						}
+				}
+
+				void ReadResponseJson(WebsocketEventResponse& response, std::string text) {
+						auto json_str = text.substr(1, text.size() - 2);
+
+						// 解析头部
+						auto pos_header = text.find("header");
+						if (pos_header != std::string::npos) {
+								auto header_str  = text.substr(pos_header + 8);
+								auto split_index = FindParentheses(header_str);
+								header_str       = header_str.substr(
+                    split_index.first, split_index.second - split_index.first);
+
+								std::vector<std::string> lines_vec;
+								cpp_streamer::StringSplit(header_str, ",", lines_vec);
+								for (auto ite = lines_vec.begin(); ite != lines_vec.end(); ite++)
+								{
+										auto message_type_pos = ite->find("messageType");
+										if (message_type_pos != std::string::npos) {
+												response.header.message_type
+												    = ite->substr(message_type_pos + 14,
+												                  ite->size() - (message_type_pos + 15));
+										}
+
+										auto connect_id_pos = ite->find("connectId");
+										if (connect_id_pos != std::string::npos) {
+												response.header.connect_id
+												    = ite->substr(connect_id_pos + 12,
+												                  ite->size() - (connect_id_pos + 13));
+										}
+
+										auto status_message_pos = ite->find("statusMessage");
+										if (status_message_pos != std::string::npos) {
+												response.header.status_message = ite->substr(
+												    status_message_pos + 16,
+												    ite->size() - (status_message_pos + 17));
+										}
+
+										auto status_pos = ite->find("status\"");
+										if (status_pos != std::string::npos) {
+												auto size              = ite->size();
+												response.header.status = std::stoi(ite->substr(
+												    status_pos + 8, size - (status_pos + 8)));
+										}
+								}
+						}
+
+						// 解析载荷
+						// 解析头部
+						auto pos_paylad = text.find("payload");
+						if (pos_paylad != std::string::npos) {
+								auto payload_str = text.substr(pos_paylad + 9);
+								auto split_index = FindParentheses(payload_str);
+								payload_str      = payload_str.substr(
+                    split_index.first, split_index.second - split_index.first);
+
+								std::vector<std::string> lines_vec;
+								cpp_streamer::StringSplit(payload_str, ",", lines_vec);
+								for (auto ite = lines_vec.begin(); ite != lines_vec.end(); ite++)
+								{
+										auto request_id_pos = ite->find("requestId");
+										if (request_id_pos != std::string::npos) {
+												response.payload.request_id
+												    = ite->substr(request_id_pos + 12,
+												                  ite->size() - (request_id_pos + 13));
+										}
+
+										auto simple_rate_pos = ite->find("simpleRate");
+										if (simple_rate_pos != std::string::npos) {
+												response.payload.simple_rate
+												    = ite->substr(simple_rate_pos + 13,
+												                  ite->size() - (simple_rate_pos + 14));
+										}
+
+										auto pack_overlap_pos = ite->find("packOverlap");
+										if (pack_overlap_pos != std::string::npos) {
+												response.payload.pack_overlap
+												    = ite->substr(pack_overlap_pos + 14,
+												                  ite->size() - (pack_overlap_pos + 15));
+										}
+								}
+						}
+				}
+
+
 		private:
 				std::atomic<bool> is_connected_{ false };
 				std::atomic<bool> closed_{ true };
@@ -188,6 +314,9 @@ namespace CoreIO {
 
 				// RTP buf
 				RTCUtils::MemBuffer mem_buf_;
+
+				// websocket info
+				WebsocketEventResponse response_;
 		};
 
 } // namespace CoreIO

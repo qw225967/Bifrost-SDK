@@ -25,12 +25,32 @@ namespace RTC {
 		public:
 				enum class StreamType { StreamSender, StreamReceiver };
 
+		public:
+				struct WebsocketEventResponseHeader {
+						std::string message_type;
+						std::string connect_id;
+						std::string status_message;
+						int status;
+				};
+				struct WebsocketEventResponsePayload {
+						std::string request_id;
+						std::string simple_rate;
+						std::string pack_overlap;
+				};
+				struct WebsocketEventResponse {
+						WebsocketEventResponseHeader header;
+						WebsocketEventResponsePayload payload;
+				};
+
+
 				class Listener {
 				public:
 						virtual ~Listener() = default;
 						virtual void OnPacketReceived(uint16_t seq,
 						                              RTCUtils::CopyOnWriteBuffer buffer)
 						    = 0;
+
+						virtual void OnReceiveEvent() = 0;
 
 						virtual void OnPacketSent(uint8_t* data,
 						                          uint32_t len,
@@ -100,6 +120,11 @@ namespace RTC {
 				void ReceiveRtpPacket(RtpPacketPtr& rtp_packet,
 				                      const struct sockaddr* addr);
 				void SendRtcpPacket();
+
+		private:
+				std::pair<size_t, size_t> FindParentheses(std::string text);
+
+				void ReadResponseJson(WebsocketEventResponse& response, std::string text);
 
 		private:
 				// 记录网络线程对象

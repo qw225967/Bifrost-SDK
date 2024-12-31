@@ -11,7 +11,6 @@
 #define PACKET_DISPATCHER_INTERFACE_H
 #include <uv.h>
 #include <stdint.h>
-
 #include <vector>
 
 #include "io/socket_interface.h"

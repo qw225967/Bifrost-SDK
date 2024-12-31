@@ -26,9 +26,9 @@ namespace CoreIO {
 				std::shared_ptr<NetworkThread> GetNetworkThread() { return network_thread_; }
 
 				std::shared_ptr<UdpSocket> CreateUdpSocket(std::string ip = "", uint16_t port = 0);
-				void DestroyUdpSocket(std::shared_ptr<UdpSocket> socket);
+				void DestroyUdpSocket(const std::shared_ptr<UdpSocket>& socket);
 
-				std::shared_ptr<WebsocketClient> CreateWebsocketClient(std::string ip, uint16_t port, const std::string& subpath, bool ssl_enable);
+				std::shared_ptr<WebsocketClient> CreateWebsocketClient(const std::string& ip, uint16_t port, const std::string& subpath, bool ssl_enable);
 				void DestroyWebsocketClient(std::shared_ptr<WebsocketClient> socket);
 			
 		private:
